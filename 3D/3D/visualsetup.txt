@@ -1,0 +1,14 @@
+
+Experimental Setup For Visualization:
+
+number of VCM plane				50
+Inter VCM plane distance			50
+Total Point on static mega target		125
+Total cell in each VCM plane			150*150
+Dimension of static Target			250	
+Data Set			British dataset with 6*10^4 obstacles
+Total Calculated Direction			1 (only +ve X)
+Dynamic Target to static Target ratio		not done
+
+target center 
+1750.00 1800.00 200.00

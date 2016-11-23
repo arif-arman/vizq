@@ -1,0 +1,423 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Visibility Query</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link href="{% static 'simple-sidebar.css' %}" rel="stylesheet">
+		<style>
+			.boxcorner {
+				border-radius: 20px;
+    			border-left: 2px solid #606060;
+    			border-right: 2px solid #606060;
+    			border-bottom: 2px solid #606060;
+    			margin-top: 10px;
+    			padding-top: 10px;
+    			padding-left: 10px;
+    			padding-bottom: 10px;
+
+
+			}
+			.custrow {
+    			padding-top: 5px;
+    			padding-bottom: 5px;
+
+
+			}
+			.table td{
+			    border-bottom: #606060 solid 0.5px !important;
+			}
+			.table th{
+			    border-top: #606060 solid 0.5px !important;
+			    border-bottom: #606060 solid 0.5px !important;
+			}
+			
+			body {
+				background-color: #f0f0f0;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+</head>
+<body onload="onload()">
+<script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="{% static 'build/three.js' %}"></script>
+<script src="{% static 'js/utils/GeometryUtils.js' %}"></script>
+
+<script src="{% static 'js/renderers/Projector.js' %}"></script>
+<script src="{% static 'js/renderers/CanvasRenderer.js' %}"></script>
+
+<script src="{% static 'js/controls/OrbitControls.js' %}"></script>
+<script src="{% static 'js/Detector.js' %}"></script>
+
+<script src="{% static 'js/libs/stats.min.js' %}"></script>
+<script src="{% static 'myCamera/myCamera.js' %}"></script>
+
+<div id="wrapper">
+	<div id="sidebar-wrapper">
+		<ul class="sidebar-nav">
+			<li class="sidebar-brand">
+				<a href="">VizQ (3D)</a>
+			</li>
+		</ul>
+        <div class="container-fluid settings" style="margin-top: 70px;">
+        	<div class="row boxcorner" >
+        		<div class="col-lg-6">
+        			Mode
+        		</div>
+        		<div class="col-offset-lg-1 col-lg-5">
+        			<select name="mode" id="mode" class="form-control" onchange="modeChange()">
+						<option value="mvq">MVQ</option>
+						<option value="vcm">VCM</option>
+						<option value="tvcm">TVCM</option>
+					</select>
+        		</div>
+        	</div>
+            
+           
+            	
+            	 <br>
+	            	<div class="row">
+	            		<div class="col-lg-12">
+	            			Obstacle Set
+	            		</div>
+	            	</div>
+            	<div class="boxcorner">
+	            	<div class="row custrow">
+	            		<div class="col-lg-1"></div>
+	            		<div class="col-lg-7">
+	            			<select name="ob" id="ob" class="form-control">
+							{% for o in ob %}
+								<option value="{{ o }}">{{ o }}</option>
+							{% endfor %}
+							</select>
+	            		</div>
+	            		<div class="col-lg-3">
+	            			<button class="btn btn-md btn-primary" onclick="loadDB()">Load</button>
+	            		</div>
+	            	</div>
+	            	<div class="row custrow">
+	            		<div class="col-lg-1"></div>
+	            		<form class="form-inline" action="/upload_ob" method="post" enctype="multipart/form-data">
+	            			<div class="col-lg-8">
+								{% csrf_token %}
+								{% for field in form %}
+									{{ field }}
+								{% endfor %}
+	            			</div>
+	            			<input type="hidden" name="type" value="ob"/>
+	            		
+	            		
+	            	</div>
+	            	<div class="row custrow">
+	            		<div class="col-lg-1"></div>
+	            		<div class="col-lg-2">	
+	            				<button type="submit" class="btn btn-md btn-primary">Upload</button>
+	            		</div>
+	            		</form>
+	            	</div>
+            	</div>
+            
+            
+            <div id="query_locations" style="display: none;">
+			<br>
+	            <div class="row" >
+            		<div class="col-lg-12">
+            		  	Query Locations
+            		</div>
+            	</div>
+            	<div class="boxcorner">
+		        	<div class="row custrow">
+		        		<div class="col-lg-1"></div>
+		        		<div class="col-lg-7">
+							<select name="qp" id="qp" class="form-control">
+								{% for q in qp %}
+									<option value="{{ q }}">{{ q }}</option>
+								{% endfor %}
+							</select>
+		        		</div>
+		        		<div class="col-lg-3">
+		        			<button class="btn btn-md btn-primary" onclick="loadQP()">Load</button>
+		        		</div>
+		        	</div>
+		        	<div class="row custrow">
+		        		<div class="col-lg-1"></div>
+		        		<form class="form-inline" action="/upload_qp" method="post" enctype="multipart/form-data">
+		        			<div class="col-lg-9">
+								{% csrf_token %}
+								{% for field in form %}
+									{{ field }}
+								{% endfor %}
+		        			</div>
+		        			<input type="hidden" name="type" value="qp"/>
+		        		
+		        		
+		        	</div>
+		        	<div class="row custrow">
+		        		<div class="col-lg-1"></div>
+		        		<div class="col-lg-2">	
+		    				<button type="submit" class="btn btn-md btn-primary">Upload</button>
+		    			</div>
+		    			</form>
+		        	</div>
+            	</div>
+            	<div class="row boxcorner">
+            		<div class="col-lg-5">
+            			Results (k)
+            		</div>
+            		<div class="col-lg-3">
+            			<input class="form-control" type="text" name="k" id="k" size="2" />
+            		</div>
+            	</div>
+
+			</div>
+
+
+            <div id="vcm_settings" class="boxcorner" >
+				<div class="row">
+					<div class="col-lg-2">
+						Axis
+					</div>
+					<div class="col-lg-5">
+						<select name="axis" id="axis" class="form-control" onchange="axisChange()">
+						<option value="0">-X</option>
+						<option value="1">+X</option>
+						<option value="2">-Y</option>
+						<option value="3">+Y</option>
+						<option value="4">-Z</option>
+						<option value="5">+Z</option>
+					</select>
+					</div>
+				</div>
+			</div>
+			<div id="tvcm_settings" class="boxcorner">
+
+				<div  class="row custrow">
+					<div class="col-lg-12" id="texts">
+						<div id="t1" class="row custrow">
+							<div class="col-lg-2">
+								Text
+							</div>
+							<div class="col-lg-6">
+								<input type="text" name="vcm_text" id="vcm_text" class="form-control" />
+							</div>
+							<div class="col-lg-4" style="float:right;">
+								<select name="fontsize" id="fontsize" class="form-control" ">
+								{% for f in fontsize %}
+									<option value="{{ f }}">{{ f }}</option>
+								{% endfor %}
+							</select>
+							</div>
+							<br>
+						</div>
+					</div>
+					<div class="col-lg-12">
+						<div class="row custrow">
+							<div class="col-lg-2">
+							</div>
+							<div class="col-lg-7">
+								<button class="btn btn-md btn-primary" onclick="loadText()">Load</button>
+							</div>
+							<div class="col-lg-1">
+								<button type="button" class="btn btn-xs btn-default" aria-label="Left Align" onclick="addText()">
+								  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+								</button>
+							</div>	
+							<div class="col-lg-1">
+								<button type="button" class="btn btn-xs btn-default" aria-label="Left Align" onclick="removeText()">
+								  <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+								</button>
+							</div>			
+						</div>	
+					</div>
+					
+				</div>			
+			</div>
+            <br>
+            
+            	<div class="row">
+
+            		<div class="col-lg-offset-3 col-lg-4" >
+            			<button type="submit" onclick="run()" class="btn btn-lg btn-primary">Run</button>
+            		</div>
+            	</div>
+            <br>
+            
+	            <div class="row">
+	        		<div class="col-lg-7" >
+	        			Console
+	        		</div>
+	        		<div class="col-lg-4" id="mvqViewResults" onclick="mvqViewResults()">
+	        			<button class="btn btn-sm btn-primary">< View Results</button>
+	        		</div>
+	        	</div>
+	        	<div class="row boxcorner">
+	        		<div class="col-lg-12" id="logger">
+	        			{% if messages %}
+	        				{% for message in messages %}
+						    {{ message }}
+						    {% endfor %}
+	        			{% endif %}
+	        		</div>
+	        	</div>
+	        	<div class="row" style="float:right; margin-right:10px; margin-top:10px;">
+	        		<button type="button" class="btn btn-xs btn-default" aria-label="Left Align" data-toggle="modal" data-target=".bs-example-modal-sm">
+					  <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+					</button>
+	        	</div>
+        </div>
+            
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      	<div class="row">
+      		<div class="col-lg-2"></div>
+      		<div class="col-lg-10">
+      		<br>
+      			<div class="row">
+      				<h4>MVQ Controls</h4>
+      			</div>
+      			<div class="row">
+      				<div class="col-lg-4">q</div>
+      				<div class="col-lg-8">next ranked query point</div>
+      			</div>
+      			<div class="row">
+      				<div class="col-lg-4">mouse left</div>
+      				<div class="col-lg-8">view visible region of query location</div>
+      			</div>
+      			<br>
+      			<div class="row">
+      				<h4>VCM/TVCM Controls</h4>
+      			</div>
+
+      			<div class="row">
+      				<div class="col-lg-4">v</div>
+      				<div class="col-lg-8">vcm plane at next segment</div>
+      			</div>
+      			<div class="row">
+      				<div class="col-lg-4">b</div>
+      				<div class="col-lg-8">vcm plane at previous segment</div>
+      			</div>
+      			<br>
+      			<div class="row">
+      				<h4>General Controls</h4>
+      			</div>
+      			<div class="row">
+      				<div class="col-lg-4">SHIFT + mouse left</div>
+      				<div class="col-lg-8">select target</div>
+      			</div>
+      			<div class="row">
+      				<div class="col-lg-4">o</div>
+      				<div class="col-lg-8">show/hide obstacles</div>
+      			</div>
+      			<div class="row">
+      				<div class="col-lg-4">mouse left</div>
+      				<div class="col-lg-8">camera rotate</div>
+      			</div>
+      			<div class="row">
+      				<div class="col-lg-4">mouse right</div>
+      				<div class="col-lg-8">camera pan</div>
+      			</div>
+      			<div class="row">
+      				<div class="col-lg-4">mouse wheel</div>
+      				<div class="col-lg-8">camera zoom</div>
+      			</div>
+      			<br>
+      		</div>
+      	</div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script src="{% static 'js/myjs.js' %}"></script>
+<script>
+	if (!Detector.webgl) Detector.addGetWebGLMessage();
+
+	var mode;
+
+	var container, stats;
+	var camera, scene, renderer;
+	var controls;
+	var delta = 0.1;
+	var objects = [];
+	var objectsHidden = false;
+	var tempqp = [];
+	var querypoints = [];
+	var qpLoaded = false;
+	//var obstaclePath = "obstacles2.txt";
+	var queryPath = "querypoints.txt";
+	var qp = -1;	// which query point drawing now
+	var prevqp = null;
+	var tempqpRendered = [];
+	var qpRendered = [];
+	var rankMarkRendered = [];
+	var qpGroupRendered = [];
+
+	var vcmArray = [];
+	var maxseg;
+	var nseg;
+	var curseg = 100;
+	var totp;
+	var dir = 1;
+	var vcmGroup = null;
+
+	var raycaster, mouse, particleMaterial;
+
+	var target = [];
+	var targetSet = false;
+	var dbLoaded = false;
+
+	var prevPick = null;
+	var prevQPPick = null;
+
+	var k_ans;
+
+	// text stuff
+	var textGroup, textMesh1, textMesh2, textGeo, textMaterial;
+	var firstLetter = true;
+	var text = "three.js",
+				height = 0.01,
+				size = 2.5,
+				hover = 0,
+				curveSegments = 12,
+				bevelThickness = 0,
+				bevelSize = 0,
+				bevelSegments = 0,
+				bevelEnabled = false,
+				font = undefined,
+				fontName = "optimer", // helvetiker, optimer, gentilis, droid sans, droid serif
+				fontWeight = "bold";
+
+	// mvq sprites
+	var sprite1, mapA, mapB, materialA, materialB;
+
+	var mvqHTML;
+	
+	var camera2;
+
+	var $textID = 1;
+	var vcmMesh = null;
+
+	init();
+	animate();
+
+	
+
+</script>
+
+</body>
+</html>

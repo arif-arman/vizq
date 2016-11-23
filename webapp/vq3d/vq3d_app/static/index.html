@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Visibility Query</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #f0f0f0;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+
+		<script src="../build/three.js"></script>
+
+		<script src="js/renderers/Projector.js"></script>
+		<script src="js/renderers/CanvasRenderer.js"></script>
+
+		<script src="js/libs/stats.min.js"></script>
+		<script src="myCamera/myCamera.js"></script>
+
+		<script>
+
+			var container, stats;
+			var camera, scene, renderer;
+			var delta = 0.1;
+			var objects = [];
+			var querypoints = [];
+			var obstaclePath = "obstacles2.txt";
+			var queryPath = "querypoints.txt";
+
+			var target;
+			
+			init();
+			animate();
+
+			function getFileFromServer(url, doneCallBack) {
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = handleStateChange;
+				xhr.open("GET", url, true);
+				xhr.send();
+
+				function handleStateChange() {
+					if (xhr.readyState === 4) {
+						doneCallBack(xhr.status == 200 ? xhr.responseText : null);
+					}
+				}
+			}
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+				/*
+				var info = document.createElement( 'div' );
+				info.style.position = 'absolute';
+				info.style.top = '10px';
+				info.style.width = '100%';
+				info.style.textAlign = 'center';
+				info.innerHTML = '<a href="http://threejs.org" target="_blank">three.js</a> - orthographic view';
+				container.appendChild( info );
+				*/
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+				myCamera = new MyCamera();
+				camera.position.set(myCamera.camPosition.x, myCamera.camPosition.y, myCamera.camPosition.z);
+				camera.lookAt(myCamera.look);
+				camera.up = myCamera.upDir;
+				//camera.position.set( 500, 800, 1000 );
+				//camera.lookAt( new THREE.Vector3() );
+				//camera.up = new THREE.Vector3( 0, 0, 1 );
+				//console.log(myCamera.camPosition);
+				//console.log(myCamera.look);
+
+				scene = new THREE.Scene();
+
+				// Grid
+
+				var size = 1000, step = 10;
+
+				var geometry = new THREE.Geometry();
+
+				for ( var i = - size; i <= size; i += step ) {
+
+					geometry.vertices.push( new THREE.Vector3( - size, i, 0 ) );
+					geometry.vertices.push( new THREE.Vector3(   size, i, 0 ) );
+
+					geometry.vertices.push( new THREE.Vector3( i, -size, 0 ) );
+					geometry.vertices.push( new THREE.Vector3( i, size,   0 ) );
+
+				}
+
+				var material = new THREE.LineBasicMaterial( { color: 0x000000, opacity: 0.1 } );
+
+				var line = new THREE.LineSegments( geometry, material );
+				//	scene.add( line );
+				
+				// x axis
+				var geometry = new THREE.Geometry();
+				geometry.vertices.push(new THREE.Vector3(-size, 0, 0));
+				geometry.vertices.push(new THREE.Vector3(size, 0, 0));
+				var material = new THREE.LineBasicMaterial( { color: 0xFF0000, opacity: 1 } );
+				var line = new THREE.LineSegments( geometry, material);
+				scene.add(line);
+
+				// y axis
+				var geometry = new THREE.Geometry();
+				geometry.vertices.push(new THREE.Vector3(0, -size, 0));
+				geometry.vertices.push(new THREE.Vector3(0, size, 0));
+				var material = new THREE.LineBasicMaterial( { color: 0x00FF00, opacity: 1 } );
+				var line = new THREE.LineSegments( geometry, material);
+				scene.add(line);
+
+				// z axis
+				var geometry = new THREE.Geometry();
+				geometry.vertices.push(new THREE.Vector3(0, 0, -size));
+				geometry.vertices.push(new THREE.Vector3(0, 0, size));
+				var material = new THREE.LineBasicMaterial( { color: 0x0000FF, opacity: 1 } );
+				var line = new THREE.LineSegments( geometry, material);
+				scene.add(line);
+				
+				// Cubes
+
+				//console.log("reading file");
+				getFileFromServer(obstaclePath, function(text) {
+
+					if (text === null) {
+					}
+					else {
+						var lines = text.split('\n');
+						for (var line = 1; line < lines.length; line++) {
+							var p = lines[line].split(' ');
+							var x1 = parseInt(p[0]);
+							var x2 = parseInt(p[3]);
+							var y1 = parseInt(p[1]);
+							var y2 = parseInt(p[4]);
+							var z1 = parseInt(p[2]);
+							var z2 = parseInt(p[5]);
+
+							//console.log(p);
+							//console.log(x1 + " " + x2 + " " + y1 + " " + y2 + " " + z1 + " " + z2);
+							var geometry = new THREE.BoxGeometry(1,1,1);
+							var object = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial( { color: Math.random() * 0xffffff, opacity: 1 } ) );
+							object.position.x = (x1+x2)/2;
+							object.position.y = (y1+y2)/2;
+							object.position.z = (z1+z2)/2;
+
+
+							//console.log(object.position);
+							object.scale.x =  Math.abs(x2-x1);
+							object.scale.y = Math.abs(y2-y1);
+							object.scale.z = Math.abs(z2-z1) ;
+							//console.log(object.position);
+							scene.add(object);
+							objects.push(object);
+						}
+					}
+					//console.log(text);
+				});
+
+				getFileFromServer(queryPath, function(text) {
+
+					if (text === null) {
+					}
+					else {
+						var lines = text.split('\n');
+						for (var line = 0; line < lines.length; line++) {
+							var p = lines[line].split(' ');
+							var x = parseInt(p[1]);
+							var y = parseInt(p[2]);
+							var z = parseInt(p[3]);
+
+							//console.log(p);
+							
+							var geometry = new THREE.BoxGeometry(1,1,1);
+							var object = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial( { color: 0x000000, opacity: 1 } ) );
+							object.position.x = x;
+							object.position.y = y;
+							object.position.z = z;
+
+							scene.add(object);
+							querypoints.push(object);
+						}
+					}
+					//console.log(text);
+				});
+				
+				// target
+				var geometry = new THREE.BoxGeometry(10,10,10);
+				target = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial( { color: 0x000000, alphaTest: 0.5} ) );
+				scene.add(target);
+/*
+				var geometry = new THREE.BoxGeometry(1,1,1);
+				var object = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial( { color: 0xFF0000, alphaTest: 0.5} ) );
+				object.position.x = 6.2;
+				object.position.y = 3.5;
+				object.position.z = 1.5;
+				scene.add(object);
+
+*/
+
+				
+				var geometry = new THREE.PlaneGeometry(3,7);
+				var material = new THREE.MeshBasicMaterial( {color: 0xff0000, side: THREE.DoubleSide, alphaTest: 0.5} );
+				var plane = new THREE.Mesh(geometry, material);
+				plane.position.x = 6.2;
+				plane.position.y = 3.5;
+				plane.position.z = 1.5;
+				plane.rotation.x = Math.PI/2;
+				plane.rotation.y = Math.PI/2;
+				scene.add(plane);
+				
+
+				// Lights
+
+				var ambientLight = new THREE.AmbientLight( Math.random() * 0x10 );
+				scene.add( ambientLight );
+
+				var directionalLight = new THREE.DirectionalLight( Math.random() * 0xffffff );
+				directionalLight.position.x = Math.random() - 0.5;
+				directionalLight.position.y = Math.random() - 0.5;
+				directionalLight.position.z = Math.random() - 0.5;
+				directionalLight.position.normalize();
+				scene.add( directionalLight );
+
+				var directionalLight = new THREE.DirectionalLight( Math.random() * 0xffffff );
+				directionalLight.position.x = Math.random() - 0.5;
+				directionalLight.position.y = Math.random() - 0.5;
+				directionalLight.position.z = Math.random() - 0.5;
+				directionalLight.position.normalize();
+				scene.add( directionalLight );
+
+				//renderer = new THREE.CanvasRenderer();
+				renderer = new THREE.WebGLRenderer({antialias: true});
+				renderer.setClearColor( 0xf0f0f0 );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				stats = new Stats();
+				container.appendChild( stats.dom );
+
+				//
+				document.addEventListener( 'keydown', onDocumentKeyDown, false );
+				window.addEventListener( 'resize', onWindowResize, false );
+				//window.addEventListener('move', onKeyDown, false);
+
+			}
+
+
+			function onDocumentKeyDown(event) {
+				//event.preventDefault();
+				//console.log(event.keyCode);
+				switch(event.keyCode) {
+					case 49: myCamera.pitch(delta); break;	// 1
+					case 50: myCamera.pitch(-delta); break;	// 2
+					case 51: myCamera.yaw(delta); break;	// 3
+					case 52: myCamera.yaw(-delta); break;	// 4
+					case 53: myCamera.roll(delta); break;	// 5
+					case 54: myCamera.roll(-delta); break;	// 6
+					case 83: myCamera.slide(5, 1); break; //s down
+					case 87: myCamera.slide(5, 2); break; //w up
+					case 65: myCamera.slide(5, 3); break; //a left
+					case 68: myCamera.slide(5, 4); break; //d right
+					case 38: myCamera.slide(5, 5); break; //up arrow
+					case 40: myCamera.slide(5, 6); break; //down arrow
+				}
+				var keyDownEvent = event || window.event,
+        		keycode = (keyDownEvent.which) ? keyDownEvent.which : keyDownEvent.keyCode;
+			    //return false;
+
+			}
+
+			function onWindowResize() {
+
+				camera.left = window.innerWidth / - 2;
+				camera.right = window.innerWidth / 2;
+				camera.top = window.innerHeight / 2;
+				camera.bottom = window.innerHeight / - 2;
+
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			//
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				stats.begin();
+				render();
+				stats.end();
+
+			}
+
+			function render() {
+				//console.log(objects.length);
+				var timer = Date.now() * 0.0001;
+
+				//camera.position.x = Math.cos( timer ) * 200;
+				//camera.position.y = Math.sin( timer ) * 200;
+				//myCamera.look = scene.position;
+				camera.position.set(myCamera.camPosition.x, myCamera.camPosition.y, myCamera.camPosition.z);
+				camera.lookAt(myCamera.look);
+				camera.up = myCamera.upDir;
+
+				renderer.render( scene, camera );
+
+			}
+
+		</script>
+
+	</body>
+</html>

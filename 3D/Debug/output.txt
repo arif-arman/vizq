@@ -1,0 +1,611 @@
+position: -100 100 100
+visibility: 111.675
+visible planes: 3
+plane;;
+-5 5 5
+5 5 5
+5 -5 5
+-5 -5 5
+invisible parts: 2
+inv_plane;;
+5 2.95699 5
+5 5 5
+5 5 5
+5 2.95699 5
+;;inv_plane
+inv_plane;;
+4.5 -5 5
+4.5 -3.44445 5
+5 -3.44445 5
+5 -5 5
+;;inv_plane
+;;plane
+plane;;
+-5 5 -5
+-5 5 5
+-5 -5 5
+-5 -5 -5
+invisible parts: 1
+inv_plane;;
+-5 -4.5 -5
+-5 -4.5 -4.19354
+-5 0.913979 -4.19354
+-5 0.913979 -5
+;;inv_plane
+;;plane
+plane;;
+-5 5 -5
+-5 5 5
+5 5 5
+5 5 -5
+invisible parts: 1
+inv_plane;;
+5 5 2.95699
+5 5 5
+5 5 5
+5 5 2.95699
+;;inv_plane
+;;plane
+position: 0 30 0
+visibility: 100
+visible planes: 1
+plane;;
+-5 5 -5
+-5 5 5
+5 5 5
+5 5 -5
+invisible parts: 1
+inv_plane;;
+5 5 5
+5 5 5
+5 5 5
+5 5 5
+;;inv_plane
+;;plane
+position: -80 -80 30
+visibility: 99.5463
+visible planes: 3
+plane;;
+-5 5 5
+5 5 5
+5 -5 5
+-5 -5 5
+invisible parts: 1
+inv_plane;;
+5 5 5
+5 5 5
+5 5 5
+5 5 5
+;;inv_plane
+;;plane
+plane;;
+-5 5 -5
+-5 5 5
+-5 -5 5
+-5 -5 -5
+invisible parts: 3
+inv_plane;;
+-5 3.21918 -5
+-5 3.21918 -2.87671
+-5 5 -2.87671
+-5 5 -5
+;;inv_plane
+inv_plane;;
+-5 -2.94521 -5
+-5 -2.94521 -2.87671
+-5 2.5 -2.87671
+-5 2.5 -5
+;;inv_plane
+inv_plane;;
+-5 3.82352 -2.30769
+-5 3.82352 5
+-5 5 5
+-5 5 -2.30769
+;;inv_plane
+;;plane
+plane;;
+-5 -5 -5
+-5 -5 5
+5 -5 5
+5 -5 -5
+invisible parts: 0
+;;plane
+position: 70 -70 -70
+visibility: 98.6666
+visible planes: 3
+plane;;
+-5 5 -5
+5 5 -5
+5 -5 -5
+-5 -5 -5
+invisible parts: 1
+inv_plane;;
+5 -5 -5
+5 -1.45455 -5
+5 -1.45455 -5
+5 -5 -5
+;;inv_plane
+;;plane
+plane;;
+5 5 -5
+5 5 5
+5 -5 5
+5 -5 -5
+invisible parts: 3
+inv_plane;;
+5 5 5
+5 5 5
+5 5 5
+5 5 5
+;;inv_plane
+inv_plane;;
+5 3.25397 -2.93651
+5 3.25397 3.66667
+5 5 3.66667
+5 5 -2.93651
+;;inv_plane
+inv_plane;;
+5 -5 -5
+5 -5 -0.0943451
+5 1.13207 -0.0943451
+5 1.13207 -5
+;;inv_plane
+;;plane
+plane;;
+-5 -5 -5
+-5 -5 5
+5 -5 5
+5 -5 -5
+invisible parts: 1
+inv_plane;;
+1.25 -5 -5
+1.25 -5 1.25
+5 -5 1.25
+5 -5 -5
+;;inv_plane
+;;plane
+position: 100 0 0
+visibility: 97.3082
+visible planes: 1
+plane;;
+5 5 -5
+5 5 5
+5 -5 5
+5 -5 -5
+invisible parts: 3
+inv_plane;;
+5 5 5
+5 5 5
+5 5 5
+5 5 5
+;;inv_plane
+inv_plane;;
+5 1.02151 -5
+5 1.02151 -2.04301
+5 3.16667 -2.04301
+5 3.16667 -5
+;;inv_plane
+inv_plane;;
+5 1.11765 2.23529
+5 1.11765 5
+5 3.47561 5
+5 3.47561 2.23529
+;;inv_plane
+;;plane
+position: -50 20 -30
+visibility: 95.8035
+visible planes: 3
+plane;;
+-5 5 -5
+5 5 -5
+5 -5 -5
+-5 -5 -5
+invisible parts: 0
+;;plane
+plane;;
+-5 5 -5
+-5 5 5
+-5 -5 5
+-5 -5 -5
+invisible parts: 2
+inv_plane;;
+-5 -1.375 -3.83721
+-5 -1.375 1.5
+-5 2.2093 1.5
+-5 2.2093 -3.83721
+;;inv_plane
+inv_plane;;
+-5 -5 -3.83721
+-5 -5 1.5
+-5 -4.06977 1.5
+-5 -4.06977 -3.83721
+;;inv_plane
+;;plane
+plane;;
+-5 5 -5
+-5 5 5
+5 5 5
+5 5 -5
+invisible parts: 1
+inv_plane;;
+5 5 5
+5 5 5
+5 5 5
+5 5 5
+;;inv_plane
+;;plane
+position: 30 0 0
+visibility: 95.3196
+visible planes: 1
+plane;;
+5 5 -5
+5 5 5
+5 -5 5
+5 -5 -5
+invisible parts: 3
+inv_plane;;
+5 5 5
+5 5 5
+5 5 5
+5 5 5
+;;inv_plane
+inv_plane;;
+5 1.08696 -5
+5 1.08696 -2.17391
+5 3.75 -2.17391
+5 3.75 -5
+;;inv_plane
+inv_plane;;
+5 1.66667 3.33333
+5 1.66667 5
+5 5 5
+5 5 3.33333
+;;inv_plane
+;;plane
+position: 200 100 0
+visibility: 91.8382
+visible planes: 2
+plane;;
+5 5 -5
+5 5 5
+5 -5 5
+5 -5 -5
+invisible parts: 3
+inv_plane;;
+5 4.01554 5
+5 5 5
+5 5 5
+5 4.01554 5
+;;inv_plane
+inv_plane;;
+5 -1.60526 -5
+5 -1.60526 -2.02073
+5 1.99481 -2.02073
+5 1.99481 -5
+;;inv_plane
+inv_plane;;
+5 -5 2.10811
+5 -5 5
+5 -2.24324 5
+5 -2.24324 2.10811
+;;inv_plane
+;;plane
+plane;;
+-5 5 -5
+-5 5 5
+5 5 5
+5 5 -5
+invisible parts: 1
+inv_plane;;
+0.806458 5 5
+0.806458 5 5
+5 5 5
+5 5 5
+;;inv_plane
+;;plane
+position: 100 100 0
+visibility: 91.556
+visible planes: 2
+plane;;
+5 5 -5
+5 5 5
+5 -5 5
+5 -5 -5
+invisible parts: 2
+inv_plane;;
+5 2.95699 5
+5 5 5
+5 5 5
+5 2.95699 5
+;;inv_plane
+inv_plane;;
+5 -4.5 -5
+5 -4.5 -2.04301
+5 0.913979 -2.04301
+5 0.913979 -5
+;;inv_plane
+;;plane
+plane;;
+-5 5 -5
+-5 5 5
+5 5 5
+5 5 -5
+invisible parts: 1
+inv_plane;;
+2.95699 5 5
+2.95699 5 5
+5 5 5
+5 5 5
+;;inv_plane
+;;plane
+position: 0 0 30
+visibility: 90.5003
+visible planes: 1
+plane;;
+-5 5 5
+5 5 5
+5 -5 5
+-5 -5 5
+invisible parts: 2
+inv_plane;;
+5 5 5
+5 5 5
+5 5 5
+5 5 5
+;;inv_plane
+inv_plane;;
+-1.38889 -2.77778 5
+-1.38889 2.77778 5
+5 2.77778 5
+5 -2.77778 5
+;;inv_plane
+;;plane
+position: -30 0 0
+visibility: 89.2516
+visible planes: 1
+plane;;
+-5 5 -5
+-5 5 5
+-5 -5 5
+-5 -5 -5
+invisible parts: 3
+inv_plane;;
+-5 1.08696 -5
+-5 1.08696 -2.17391
+-5 3.75 -2.17391
+-5 3.75 -5
+;;inv_plane
+inv_plane;;
+-5 -5 -5
+-5 -5 -2.17391
+-5 -3.26087 -2.17391
+-5 -3.26087 -5
+;;inv_plane
+inv_plane;;
+-5 -5 2.77778
+-5 -5 5
+-5 -1.38889 5
+-5 -1.38889 2.77778
+;;inv_plane
+;;plane
+position: 30 -30 0
+visibility: 87.4878
+visible planes: 2
+plane;;
+5 5 -5
+5 5 5
+5 -5 5
+5 -5 -5
+invisible parts: 2
+inv_plane;;
+5 5 5
+5 5 5
+5 5 5
+5 5 5
+;;inv_plane
+inv_plane;;
+5 3.69565 -5
+5 3.69565 -2.17391
+5 5 -2.17391
+5 5 -5
+;;inv_plane
+;;plane
+plane;;
+-5 -5 -5
+-5 -5 5
+5 -5 5
+5 -5 -5
+invisible parts: 0
+;;plane
+position: 30 -30 -30
+visibility: 83.7186
+visible planes: 3
+plane;;
+-5 5 -5
+5 5 -5
+5 -5 -5
+-5 -5 -5
+invisible parts: 1
+inv_plane;;
+5 -5 -5
+5 0 -5
+5 0 -5
+5 -5 -5
+;;inv_plane
+;;plane
+plane;;
+5 5 -5
+5 5 5
+5 -5 5
+5 -5 -5
+invisible parts: 3
+inv_plane;;
+5 5 5
+5 5 5
+5 5 5
+5 5 5
+;;inv_plane
+inv_plane;;
+5 3.69565 -2.82609
+5 3.69565 5
+5 5 5
+5 5 -2.82609
+;;inv_plane
+inv_plane;;
+5 -5 -5
+5 -5 2.69231
+5 4.61538 2.69231
+5 4.61538 -5
+;;inv_plane
+;;plane
+plane;;
+-5 -5 -5
+-5 -5 5
+5 -5 5
+5 -5 -5
+invisible parts: 1
+inv_plane;;
+-1.25 -5 -5
+-1.25 -5 5
+5 -5 5
+5 -5 -5
+;;inv_plane
+;;plane
+position: 30 30 0
+visibility: 83.4612
+visible planes: 2
+plane;;
+5 5 -5
+5 5 5
+5 -5 5
+5 -5 -5
+invisible parts: 2
+inv_plane;;
+5 2.82609 5
+5 5 5
+5 5 5
+5 2.82609 5
+;;inv_plane
+inv_plane;;
+5 -5 -5
+5 -5 -2.17391
+5 0.652174 -2.17391
+5 0.652174 -5
+;;inv_plane
+;;plane
+plane;;
+-5 5 -5
+-5 5 5
+5 5 5
+5 5 -5
+invisible parts: 1
+inv_plane;;
+2.82609 5 5
+2.82609 5 5
+5 5 5
+5 5 5
+;;inv_plane
+;;plane
+position: -30 30 0
+visibility: 83.4612
+visible planes: 2
+plane;;
+-5 5 -5
+-5 5 5
+-5 -5 5
+-5 -5 -5
+invisible parts: 1
+inv_plane;;
+-5 -5 -5
+-5 -5 -2.17391
+-5 0.652174 -2.17391
+-5 0.652174 -5
+;;inv_plane
+;;plane
+plane;;
+-5 5 -5
+-5 5 5
+5 5 5
+5 5 -5
+invisible parts: 1
+inv_plane;;
+5 5 5
+5 5 5
+5 5 5
+5 5 5
+;;inv_plane
+;;plane
+position: -30 0 -30
+visibility: 82.2421
+visible planes: 2
+plane;;
+-5 5 -5
+5 5 -5
+5 -5 -5
+-5 -5 -5
+invisible parts: 0
+;;plane
+plane;;
+-5 5 -5
+-5 5 5
+-5 -5 5
+-5 -5 -5
+invisible parts: 2
+inv_plane;;
+-5 1.08696 -2.82609
+-5 1.08696 5
+-5 3.75 5
+-5 3.75 -2.82609
+;;inv_plane
+inv_plane;;
+-5 -5 -2.82609
+-5 -5 5
+-5 -3.26087 5
+-5 -3.26087 -2.82609
+;;inv_plane
+;;plane
+position: -30 -30 0
+visibility: 81.5398
+visible planes: 2
+plane;;
+-5 5 -5
+-5 5 5
+-5 -5 5
+-5 -5 -5
+invisible parts: 2
+inv_plane;;
+-5 3.69565 -5
+-5 3.69565 -2.17391
+-5 5 -2.17391
+-5 5 -5
+;;inv_plane
+inv_plane;;
+-5 -2.82609 -5
+-5 -2.82609 -2.17391
+-5 3.75 -2.17391
+-5 3.75 -5
+;;inv_plane
+;;plane
+plane;;
+-5 -5 -5
+-5 -5 5
+5 -5 5
+5 -5 -5
+invisible parts: 0
+;;plane
+position: 0 0 -30
+visibility: 63.9225
+visible planes: 1
+plane;;
+-5 5 -5
+5 5 -5
+5 -5 -5
+-5 -5 -5
+invisible parts: 1
+inv_plane;;
+-3.84615 -3.84615 -5
+-3.84615 3.84615 -5
+3.84615 3.84615 -5
+3.84615 -3.84615 -5
+;;inv_plane
+;;plane

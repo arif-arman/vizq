@@ -1,0 +1,12 @@
+total obstacles 6K
+angular res 1
+total point on target 5^3
+
+test cases are not chosen perfect randomly
+chosen from a region of dense obstacle
+
+300 avg reduced obstacle size 1184.600000   avg time 20.978700
+240 avg reduced obstacle size 1152.700000   avg time 21.007900
+180 avg reduced obstacle size 1123.600000   avg time 24.400800
+120 avg reduced obstacle size 1070.100000   avg time 25.174200
+60 avg reduced obstacle size 896.888889   avg time 20.237556

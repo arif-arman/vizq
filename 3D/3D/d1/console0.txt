@@ -1,0 +1,299 @@
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 746, reduced obstacle set size1341
+test case 1 : execution time 24.045000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 724.000000 3169.000000 100.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 3296, reduced obstacle set size2300
+test case 2 : execution time 92.333000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 1962.000000 5358.000000 178.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 1024, reduced obstacle set size1095
+test case 3 : execution time 16.673000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 3145.000000 5705.000000 164.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 3, reduced obstacle set size382
+test case 4 : execution time 3.767000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 4961.000000 827.000000 181.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size0
+test case 5 : execution time 1.749000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 1942.000000 2995.000000 191.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 1439, reduced obstacle set size1063
+test case 6 : execution time 14.845000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 2391.000000 5436.000000 127.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 583, reduced obstacle set size775
+test case 7 : execution time 17.172000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 153.000000 3902.000000 104.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 2099, reduced obstacle set size3129
+test case 8 : execution time 107.985000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 2421.000000 4382.000000 192.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 1211, reduced obstacle set size769
+test case 9 : execution time 10.203000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 4895.000000 3718.000000 116.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size0
+test case 10 : execution time 1.743000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 4771.000000 5726.000000 147.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size82
+test case 11 : execution time 2.780000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 4912.000000 1869.000000 138.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size7
+test case 12 : execution time 4.184000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 2035.000000 2299.000000 167.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 600, reduced obstacle set size956
+test case 13 : execution time 28.158000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 3811.000000 4703.000000 194.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size137
+test case 14 : execution time 3.893000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 2673.000000 6333.000000 122.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 436, reduced obstacle set size479
+test case 15 : execution time 12.771000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 2711.000000 7141.000000 164.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 24, reduced obstacle set size332
+test case 16 : execution time 5.367000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 547.000000 6868.000000 153.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 2762, reduced obstacle set size1776
+test case 17 : execution time 64.314000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 2757.000000 662.000000 144.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 5, reduced obstacle set size181
+test case 18 : execution time 5.763000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 3723.000000 4859.000000 137.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size178
+test case 19 : execution time 5.564000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 778.000000 3529.000000 141.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 2487, reduced obstacle set size2396
+test case 20 : execution time 94.640000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 2190.000000 3035.000000 116.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size800
+test case 21 : execution time 9.086000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 106.000000 288.000000 142.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 1292, reduced obstacle set size1351
+test case 22 : execution time 58.081000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 4264.000000 942.000000 140.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size10
+test case 23 : execution time 3.615000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 3805.000000 3446.000000 148.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size264
+test case 24 : execution time 8.013000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 1101.000000 7006.000000 150.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 1237, reduced obstacle set size1300
+test case 25 : execution time 33.547000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 4629.000000 3548.000000 193.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size47
+test case 26 : execution time 5.598000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 4954.000000 84.000000 123.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size0
+test case 27 : execution time 4.181000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 4966.000000 3840.000000 156.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size0
+test case 28 : execution time 3.398000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 1308.000000 5931.000000 176.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 1780, reduced obstacle set size1544
+test case 29 : execution time 53.809000 seconds.
+Tree freed.
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 4626.000000 439.000000 144.000000
+inserting object 5900inserting object 5986
+Tree constructed from E:\Kaysar\Thesis\all codes\3D\3D\3D\my.txt and residing in
+ memory
+ obstacle discarded 0, reduced obstacle set size10
+test case 30 : execution time 1.745000 seconds.
+Tree freed.
+total discarded 21024   total reduced obstacle size 22704   total time 699.02200
+0
+avg discarded 700.800000   avg reduced obstacle size 756.800000   avg time 23.30
+0733
