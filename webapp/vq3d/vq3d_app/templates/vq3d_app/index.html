@@ -77,6 +77,7 @@
 						<option value="mvq">MVQ</option>
 						<option value="vcm">VCM</option>
 						<option value="tvcm">TVCM</option>
+						<option value="cmvq">CMVQ(2D)</option>
 					</select>
         		</div>
         	</div>
@@ -124,6 +125,51 @@
 	            		</form>
 	            	</div>
             	</div>
+				
+			<div id="cmvq_settings" style="display: none;">
+			<br>
+	            <div class="row" >
+            		<div class="col-lg-12">
+            		  	Target Path
+            		</div>
+            	</div>
+            	<div class="boxcorner">
+		        	<div class="row custrow">
+		        		<div class="col-lg-1"></div>
+		        		<div class="col-lg-7">
+							<select name="tp" id="tp" class="form-control">
+								{% for t in tp %}
+									<option value="{{ t }}">{{ t }}</option>
+								{% endfor %}
+							</select>
+		        		</div>
+		        		<div class="col-lg-3">
+		        			<button class="btn btn-md btn-primary" onclick="loadTP()">Load</button>
+		        		</div>
+		        	</div>
+		        	<div class="row custrow">
+		        		<div class="col-lg-1"></div>
+		        		<form class="form-inline" action="/upload_tp" method="post" enctype="multipart/form-data">
+		        			<div class="col-lg-9">
+								{% csrf_token %}
+								{% for field in form %}
+									{{ field }}
+								{% endfor %}
+		        			</div>
+		        			<input type="hidden" name="type" value="tp"/>
+		        		
+		        		
+		        	</div>
+		        	<div class="row custrow">
+		        		<div class="col-lg-1"></div>
+		        		<div class="col-lg-2">	
+		    				<button type="submit" class="btn btn-md btn-primary">Upload</button>
+		    			</div>
+		    			</form>
+		        	</div>
+            	</div>	
+
+			</div>
             
             
             <div id="query_locations" style="display: none;">
@@ -174,6 +220,14 @@
             		</div>
             		<div class="col-lg-3">
             			<input class="form-control" type="text" name="k" id="k" size="2" />
+            		</div>
+            	</div>
+            	<div class="row boxcorner cmvq">
+            		<div class="col-lg-5">
+            			Field of View (FOV)
+            		</div>
+            		<div class="col-lg-3">
+            			<input class="form-control" type="text" name="fov" id="fov" size="4" />
             		</div>
             	</div>
 
@@ -242,13 +296,21 @@
 			</div>
             <br>
             
-            	<div class="row">
+            	<div class="row cmvq" id="precompute" style="display: block; text-align:center;">
 
             		<div class="col-lg-offset-3 col-lg-4" >
+            			<button type="submit" onclick="precompute()" class="btn btn-lg btn-primary">Process</button>
+            		</div>
+            	</div>
+            	<br>
+            	<div class="row">
+
+            		<div class="col-lg-offset-3 col-lg-4" style="text-align: center;" >
             			<button type="submit" onclick="run()" class="btn btn-lg btn-primary">Run</button>
             		</div>
             	</div>
-            <br>
+				<br>
+				            
             
 	            <div class="row">
 	        		<div class="col-lg-7" >
@@ -274,66 +336,21 @@
 	        	</div>
         </div>
             
+                
+            
+            
+            	
+                
+            
     </div>
 </div>
 
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
+      	<h3>Key Controls</h3>
       	<div class="row">
-      		<div class="col-lg-2"></div>
-      		<div class="col-lg-10">
-      		<br>
-      			<div class="row">
-      				<h4>MVQ Controls</h4>
-      			</div>
-      			<div class="row">
-      				<div class="col-lg-4">q</div>
-      				<div class="col-lg-8">next ranked query point</div>
-      			</div>
-      			<div class="row">
-      				<div class="col-lg-4">mouse left</div>
-      				<div class="col-lg-8">view visible region of query location</div>
-      			</div>
-      			<br>
-      			<div class="row">
-      				<h4>VCM/TVCM Controls</h4>
-      			</div>
-
-      			<div class="row">
-      				<div class="col-lg-4">v</div>
-      				<div class="col-lg-8">vcm plane at next segment</div>
-      			</div>
-      			<div class="row">
-      				<div class="col-lg-4">b</div>
-      				<div class="col-lg-8">vcm plane at previous segment</div>
-      			</div>
-      			<br>
-      			<div class="row">
-      				<h4>General Controls</h4>
-      			</div>
-      			<div class="row">
-      				<div class="col-lg-4">SHIFT + mouse left</div>
-      				<div class="col-lg-8">select target</div>
-      			</div>
-      			<div class="row">
-      				<div class="col-lg-4">o</div>
-      				<div class="col-lg-8">show/hide obstacles</div>
-      			</div>
-      			<div class="row">
-      				<div class="col-lg-4">mouse left</div>
-      				<div class="col-lg-8">camera rotate</div>
-      			</div>
-      			<div class="row">
-      				<div class="col-lg-4">mouse right</div>
-      				<div class="col-lg-8">camera pan</div>
-      			</div>
-      			<div class="row">
-      				<div class="col-lg-4">mouse wheel</div>
-      				<div class="col-lg-8">camera zoom</div>
-      			</div>
-      			<br>
-      		</div>
+      		<div class="col-lg-6"></div>
       	</div>
     </div>
   </div>
@@ -358,6 +375,12 @@
 	var tempqp = [];
 	var querypoints = [];
 	var qpLoaded = false;
+	var targetpathSelected = false;
+	var cmvqTargetPath = [];
+	var cmvqCurrentTargetPos;
+	var cmvqTarget = null;
+	var cmvqTargetMark = null;
+	var targetSize = 2;
 	//var obstaclePath = "obstacles2.txt";
 	var queryPath = "querypoints.txt";
 	var qp = -1;	// which query point drawing now
@@ -370,7 +393,7 @@
 	var vcmArray = [];
 	var maxseg;
 	var nseg;
-	var curseg = 100;
+	var curseg = 0;
 	var totp;
 	var dir = 1;
 	var vcmGroup = null;
@@ -385,6 +408,10 @@
 	var prevQPPick = null;
 
 	var k_ans;
+
+	var qpointdb = []
+	var cmvqobjects = []
+	var qpRenderedCMVQ = []
 
 	// text stuff
 	var textGroup, textMesh1, textMesh2, textGeo, textMaterial;

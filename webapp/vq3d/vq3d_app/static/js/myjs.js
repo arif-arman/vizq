@@ -30,6 +30,8 @@ function modeChange() {
 		$('#query_locations').slideUp();
 		$('#tvcm_settings').slideUp();
 		$('#vcm_settings').slideDown();
+		$('#cmvq_settings').slideUp();
+		$('.cmvq').slideUp();
 		///document.getElementById('query_locations').innerHTML = "";
 		//document.getElementById('vcm_settings').innerHTML = '<object type="text/html" data="vq3d_app/vcm.html" ></object>';
 	}
@@ -38,17 +40,27 @@ function modeChange() {
 		$('#vcm_settings').slideUp();
 		$('#tvcm_settings').slideUp();
 		$('#query_locations').slideDown();
-		
+		$('#cmvq_settings').slideUp();
+		$('.cmvq').slideUp();		
 	}
 	else if (mode === "tvcm") {
 
 		$('#vcm_settings').slideDown();
 		$('#query_locations').slideUp();
 		$('#tvcm_settings').slideDown();
+		$('#cmvq_settings').slideUp();
+		$('.cmvq').slideUp();
 		
 	}
+	else  if  (mode === "cmvq") {
+		$('#vcm_settings').slideUp();
+		$('#tvcm_settings').slideUp();
+		$('#query_locations').slideDown();
+		$('#cmvq_settings').slideDown();
+		$('.cmvq').slideDown();
+	}
+		
 }
-
 
 function init() {
 
@@ -202,7 +214,6 @@ function loadFont() {
 	} );
 }
 
-
 function onDocumentKeyDown(event) {
 	//event.preventDefault();
 	//console.log(event.keyCode);
@@ -223,7 +234,10 @@ function onDocumentKeyDown(event) {
 		case 81: 
 			if (mode === "mvq") {
 				prevqp = qp; qp++; qp = qp % querypoints.length; qpDraw(qp); $('#mvqViewResults').show();
-			}   
+			}  
+			else if (mode === "cmvq") { 
+				prevqp = qp; qp++; qp = qp % Object.keys(qpointdb).length; qpdraw_cmvq(qp); 
+			}
 			break;	// q
 		case 86: 
 			if (mode !== "mvq") {
@@ -618,6 +632,42 @@ function qpDraw(q) {
 	
 }
 
+function qpdraw_cmvq(q) {
+	console.log(prevqp + " " + q);
+	if (q == -1) {
+		var size = Object.keys(qpointdb).length;
+		for (var i=0;i<size;i++) {
+			var pos = qpointdb[i]["position"].split(' ');
+			var x = parseFloat(pos[0]);
+			var y = parseFloat(pos[1]);
+			var vr = qpointdb[i]["vr"].split(' ');
+
+			var geom = new THREE.Geometry();
+		    var v1 = new THREE.Vector3(parseFloat(vr[0]), parseFloat(vr[1]), 0);
+		    var v2 = new THREE.Vector3(parseFloat(vr[2]), parseFloat(vr[3]), 0);
+		    var v3 = new THREE.Vector3(parseFloat(vr[4]), parseFloat(vr[5]), 0);
+		    
+		    //console.log(geom.vertices);
+		    geom.vertices.push(v1);
+		    geom.vertices.push(v2);
+		    geom.vertices.push(v3);
+		    
+		    geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+		    geom.computeFaceNormals();
+		    
+		    var mesh= new THREE.Mesh( geom, new THREE.MeshBasicMaterial( {color: 0x0000fe, side: THREE.DoubleSide, transparent: true, opacity: 0.6, alphaTest: 0.5} ));
+		    //scene.add(mesh);
+		    qpRenderedCMVQ.push(mesh);
+		}
+	}
+	else {
+		//console.log(qpRenderedCMVQ[q]);
+		if (prevqp >= 0) 
+			scene.remove(qpRenderedCMVQ[prevqp]);
+		scene.add(qpRenderedCMVQ[q]);
+	}
+}
+
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
@@ -780,9 +830,6 @@ function runMVQ() {
 	else if (!dbLoaded) {
 		document.getElementById('logger').innerHTML = "Obstacle set not loaded"; return;
 	}
-	else if (!targetSet) {
-		document.getElementById('logger').innerHTML = "Target not set"; return;
-	}
 	k_ans = document.getElementById('k').value;
 	var params = "mode=" + document.getElementById('mode').value;
 	params += "&ob=" + document.getElementById('ob').value;
@@ -844,13 +891,23 @@ function loadQP() {
 		if (text === null) {
 		}
 		else {
-			var json_obj = JSON.parse(text)
+			var json_obj = JSON.parse(text);
+			//console.log(json_obj);
 			//var size = json_obj['size'];
 			for (var line = 0; line <Object.keys(json_obj).length; line++) {
 				var p = json_obj[line].split(' ');
-				var x = parseFloat(p[1]);
-				var y = parseFloat(p[2]);
-				var z = parseFloat(p[3]);
+				if (mode === "cmvq") {
+					if (line == 0) continue;
+					//console.log(p);
+					var x = parseFloat(p[0]);
+					var y = parseFloat(p[1]);
+					var z = parseFloat(p[2]);
+				}
+				else {
+					var x = parseFloat(p[1]);
+					var y = parseFloat(p[2]);
+					var z = parseFloat(p[3]);
+				}
 				/*
 				//console.log(p);
 				//console.log(x1 + " " + x2 + " " + y1 + " " + y2 + " " + z1 + " " + z2);
@@ -902,10 +959,10 @@ function loadQP() {
 		}
 		//console.log(text);
 	});
-	var geometry = new THREE.BoxGeometry(10,10,10);
+	/*var geometry = new THREE.BoxGeometry(10,10,10);
 	var object = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial( { color: 0x000000, opacity: 1 } ) );
-	//scene.add(object);
-
+	scene.add(object);
+*/
 }
 
 
@@ -943,7 +1000,8 @@ function loadDB() {
 		if (text === null) {
 		}
 		else {
-			var json_obj = JSON.parse(text)
+			var json_obj = JSON.parse(text);
+			//console.log(json_obj);
 			var size = json_obj['size'];
 			for (var line = 1; line <=size; line++) {
 				var p = json_obj[line].split(' ');
@@ -967,7 +1025,8 @@ function loadDB() {
 				//console.log(object.position);
 				object.scale.x =  Math.abs(x2-x1);
 				object.scale.y = Math.abs(y2-y1);
-				object.scale.z = Math.abs(z2-z1) ;
+				if (mode === "cmvq") object.scale.z = 0.1;
+				else object.scale.z = Math.abs(z2-z1);
 				//console.log(object.position);
 				scene.add(object);
 				objects.push(object);
@@ -975,6 +1034,65 @@ function loadDB() {
 			dbLoaded = true;
 		}
 		//console.log(text);
+	});
+}
+
+function drawCMVQTarget(pos) {
+	console.log(cmvqTarget);
+	if (cmvqTarget != null) {
+		scene.remove(cmvqTarget);
+		scene.remove(cmvqTargetMark);
+	}
+	var midx = parseInt(cmvqTargetPath[pos][0]);
+	var midy = parseInt(cmvqTargetPath[pos][1]);
+	console.log(midx + " " + midy);
+	var geometry = new THREE.Geometry();  
+    geometry.vertices.push(
+    new THREE.Vector3(midx - targetSize/2, midy - targetSize/2, 1),//vertex0
+    new THREE.Vector3(midx - targetSize/2, midy + targetSize/2, 1),
+    new THREE.Vector3(midx + targetSize/2, midy + targetSize/2, 1),
+    new THREE.Vector3(midx + targetSize/2, midy - targetSize/2, 1)
+    );
+
+
+    geometry.faces.push(
+    new THREE.Face3(0,1,2),	//use vertices of rank 2,1,0
+    new THREE.Face3(2,3,0)	//vertices[3],1,2...
+	);
+	var material = new THREE.MeshBasicMaterial( {color: 0x000000, side: THREE.DoubleSide, alphaTest: 0.5} );
+	cmvqTarget = new THREE.Mesh(geometry, material);
+	scene.add(cmvqTarget);
+
+	var material2 = materialB.clone();
+	//material.color.setHSL( 0.5 * Math.random(), 0.75, 0.5 );
+	//material.map.offset.set( -0.5, -0.5 );
+	//material.map.repeat.set( 2, 2 );
+	cmvqTargetMark = new THREE.Sprite( material2 );
+	cmvqTargetMark.position.set( midx, midy+3, 1);
+	cmvqTargetMark.scale.set( 3, 3, 3 );
+	scene.add(cmvqTargetMark);
+}
+
+function loadTP() {
+	var params = "path=" + document.getElementById('tp').value;
+	params += "&type=tp";
+	
+	get('http://127.0.0.1:8000/read_file', params, function(text) {
+		if (text == null) {
+		}
+		else {
+			var json_obj = JSON.parse(text);
+			console.log(json_obj);
+			for (var i=1; i<Object.keys(json_obj).length;i++) {
+				var t = json_obj[i].split(" ");
+				//console.log(t);
+				cmvqTargetPath.push(t);
+			}
+			targetpathSelected = true;
+			cmvqCurrentTargetPos = 0;
+			drawCMVQTarget(cmvqCurrentTargetPos);
+		}
+		//console.log(cmvqTargetPath);
 	});
 }
 
@@ -1024,6 +1142,49 @@ function runVCM() {
 	});
 }
 
+function runCMVQ() {
+	if (!dbLoaded) {
+		$('#logger').html("Obstacle set not loaded"); 
+		return;
+	}
+	if (!qpLoaded) {
+		$('#logger').html("Query location set not loaded"); 
+		return;
+	}
+	if (!targetpathSelected) {
+		$('#logger').html("Target path not loaded"); 
+		return;
+	}
+	var params = "mode=cmvq";
+	params += "&ob=" + $('#ob').val();
+	params += "&qp=" + $('#qp').val();
+	params += "&posx=" + cmvqTargetPath[cmvqCurrentTargetPos][0];
+	params += "&posy=" + cmvqTargetPath[cmvqCurrentTargetPos][1];
+	
+	//console.log(params);
+	get('http://127.0.0.1:8000/cmvq', params, function(text) {
+		if (text != null) {	
+			var json_obj = JSON.parse(text);
+			console.log(json_obj);
+			if (json_obj) {
+				if (Object.keys(json_obj).length > 0) {
+					var id = parseInt(json_obj[0]['id']);
+					prevqp = qp;
+					qp = id;
+					qpdraw_cmvq(id);
+					var text = "Position: " + json_obj[0]['x'] + " " + json_obj[0]['y'];
+					text += "<br>Visibility: " + json_obj[0]['visibility'];
+					$('#logger').html(text);
+					drawCMVQTarget(cmvqCurrentTargetPos);
+				}
+			}
+			cmvqCurrentTargetPos = (cmvqCurrentTargetPos + 1) % cmvqTargetPath.length;
+			//$('#logger').html("VCM generated");
+		}
+		else console.log("test");
+	});
+}
+
 function run() {
 
 	$('#logger').html('<img src="/static/gears.gif" width="50px" style="display: block; margin-left:auto; margin-right:auto;">');
@@ -1034,9 +1195,33 @@ function run() {
 	else if (mode === "vcm" || mode === "tvcm") {
 		runVCM();
 	}
-	
-	
-	
+	else runCMVQ();
+}
+
+function precompute() {
+	if (mode === "cmvq") {
+		//console.log("precomputing");
+		if (!qpLoaded) { $('#logger').html("Query point set not loaded"); return; }
+		if (!dbLoaded) { $('#logger').html("Obstacle set not loaded"); return; }
+		var params = "mode=cmvqprecompute";
+		
+		params += "&ob=" + $('#ob').val();
+		params += "&qp=" + $('#qp').val();
+		get('http://127.0.0.1:8000/cmvq', params, function(text) {
+			if (text != null) {	
+				var json_obj = JSON.parse(text);
+				qpointdb = json_obj;
+				qpdraw_cmvq(-1);
+				//console.log(vcmArray);
+				//console.log(json_obj);
+				$('#logger').html("Precomputation complete");
+			}
+			else console.log("test");
+		});
+	}
+	else {
+		$('#logger').html("Available only in CMVQ mode");
+	}
 }
 
 function createText() {

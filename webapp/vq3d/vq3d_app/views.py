@@ -25,7 +25,6 @@ def read_file(request):
 				else:
 					obj['size'] = line
 				counter+=1
-				
 			#print(lines)
 			f.close()
 		elif request.GET['type'] == "qp":
@@ -38,7 +37,16 @@ def read_file(request):
 				obj[counter] = line 
 				counter+=1
 			f.close()
-		
+		elif request.GET['type'] == "tp":
+			path = "tp/" + path
+			f = open(path, "r")
+			lines = f.read().split('\n')
+			obj = {}
+			counter = 0
+			for line in lines:
+				obj[counter] = line 
+				counter+=1
+			f.close()
 		return JsonResponse(obj)
 	return JsonResponse({'foo': 'bar'})
 
@@ -97,7 +105,37 @@ def upload_ob(request):
 			messages.add_message(request, messages.INFO, request.FILES['file'].name + ' upload successful.')
 			return redirect('/')
 
+def upload_tp(request):
+	if request.method == 'POST':
+		form = UploadFileForm(request.POST, request.FILES)
+		if form.is_valid():
+			save_uploaded_file(request.FILES['file'], request.FILES['file'].name, "tp")
+			#form = UploadFileForm()
+			
+			messages.add_message(request, messages.INFO, request.FILES['file'].name + ' upload successful.')
+			return redirect('/')
+			#return redirect(index, success='1')
+	
+def cmvq(request):
+	if request.method == 'GET':
+		if request.GET['mode'] == "cmvqprecompute":
+			params = {}
+			params['ob'] = request.GET['ob']
+			params['qp'] = request.GET['qp']
+			return JsonResponse(script.cmvq_run_script(params))
+		elif request.GET['mode'] == "cmvq":
+			params = {}
+			params['ob'] = request.GET['ob']
+			params['qp'] = request.GET['qp']
+			params['posx'] = request.GET['posx']
+			params['posy'] = request.GET['posy']
+			return JsonResponse(script.cmvq_run_query(params))
+	return JsonResponse({'foo': 'bar'})
+
 def index(request):
+	f = open("log.txt", "w")
+	f.write("index")
+	f.close()
 	response_data = {}
 	success = 0
 	fontsize = []
@@ -110,4 +148,6 @@ def index(request):
 	response_data['form'] = form;
 	response_data['qp'] = read_dir("qp/")
 	response_data['ob'] = read_dir("ob/")
+	response_data['tp'] = read_dir("tp/")
 	return render(request, 'vq3d_app/index.html', response_data)
+

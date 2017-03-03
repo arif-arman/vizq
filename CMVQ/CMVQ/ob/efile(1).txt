@@ -1,0 +1,2 @@
+ obstacle discarded 0, reduced obstacle set size14
+execution time 6.554000 seconds.

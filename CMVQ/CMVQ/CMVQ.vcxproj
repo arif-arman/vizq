@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AVR.h" />
+    <ClInclude Include="Clipper.h" />
+    <ClInclude Include="CodeBase\blockfile\blk_file.h" />
+    <ClInclude Include="CodeBase\blockfile\cache.h" />
+    <ClInclude Include="CodeBase\camera.h" />
+    <ClInclude Include="CodeBase\func\gendef.h" />
+    <ClInclude Include="CodeBase\heap\heap.h" />
+    <ClInclude Include="CodeBase\his\histogram.h" />
+    <ClInclude Include="CodeBase\linlist\linlist.h" />
+    <ClInclude Include="CodeBase\macros.h" />
+    <ClInclude Include="CodeBase\monotone.h" />
+    <ClInclude Include="CodeBase\prevSource.h" />
+    <ClInclude Include="CodeBase\rtree\distance.h" />
+    <ClInclude Include="CodeBase\rtree\entry.h" />
+    <ClInclude Include="CodeBase\rtree\rtnode.h" />
+    <ClInclude Include="CodeBase\rtree\rtree.h" />
+    <ClInclude Include="CodeBase\rtree\rtree_cmd.h" />
+    <ClInclude Include="CodeBase\vector3.h" />
+    <ClInclude Include="Coordinate.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="gpc.h" />
+    <ClInclude Include="MBR.h" />
+    <ClInclude Include="Pair.h" />
+    <ClInclude Include="QueryPoint.h" />
+    <ClInclude Include="Ray.h" />
+    <ClInclude Include="Stopwatch.h" />
+    <ClInclude Include="Utility.h" />
+    <ClInclude Include="Vector3d.h" />
+    <ClInclude Include="VisibleRegion.h" />
+    <ClInclude Include="VisibleRegionOverT.h" />
+    <ClInclude Include="VisibleSegment.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CodeBase\blockfile\blk_file.cpp" />
+    <ClCompile Include="CodeBase\blockfile\cache.cpp" />
+    <ClCompile Include="CodeBase\camera.cpp" />
+    <ClCompile Include="CodeBase\func\functions.cpp" />
+    <ClCompile Include="CodeBase\gpc.cpp" />
+    <ClCompile Include="CodeBase\heap\heap.cpp" />
+    <ClCompile Include="CodeBase\his\histogram.cpp" />
+    <ClCompile Include="CodeBase\linlist\linlist.cpp" />
+    <ClCompile Include="CodeBase\monotone.cpp" />
+    <ClCompile Include="CodeBase\prevSource.cpp" />
+    <ClCompile Include="CodeBase\rtree\distance.cpp" />
+    <ClCompile Include="CodeBase\rtree\entry.cpp" />
+    <ClCompile Include="CodeBase\rtree\rtnode.cpp" />
+    <ClCompile Include="CodeBase\rtree\rtree.cpp" />
+    <ClCompile Include="CodeBase\rtree\rtree_cmd.cpp" />
+    <ClCompile Include="CodeBase\vector3.cpp" />
+    <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CodeBase\boston.txt" />
+    <Text Include="CodeBase\boston_3D_normalized.txt" />
+    <Text Include="CodeBase\cityGml_british_3D_normalize.txt" />
+    <Text Include="CodeBase\cityGml_british_3D_normalize10.txt" />
+    <Text Include="CodeBase\clipfile.txt" />
+    <Text Include="CodeBase\efile.txt" />
+    <Text Include="CodeBase\error.txt" />
+    <Text Include="CodeBase\log.txt" />
+    <Text Include="CodeBase\log1.txt" />
+    <Text Include="CodeBase\log300.txt" />
+    <Text Include="CodeBase\my.txt" />
+    <Text Include="CodeBase\my0.txt" />
+    <Text Include="CodeBase\my1.txt" />
+    <Text Include="CodeBase\my2.txt" />
+    <Text Include="CodeBase\my3.txt" />
+    <Text Include="CodeBase\my4.txt" />
+    <Text Include="CodeBase\out1.txt" />
+    <Text Include="CodeBase\outfile.txt" />
+    <Text Include="CodeBase\randtarget - Copy.txt" />
+    <Text Include="CodeBase\randtarget.txt" />
+    <Text Include="CodeBase\randtargetboston.txt" />
+    <Text Include="CodeBase\randtargetsyn.txt" />
+    <Text Include="CodeBase\rob.txt" />
+    <Text Include="CodeBase\subjfile.txt" />
+    <Text Include="CodeBase\temp.txt" />
+    <Text Include="CodeBase\test1.txt" />
+    <Text Include="CodeBase\test2.txt" />
+    <Text Include="CodeBase\test3.txt" />
+    <Text Include="CodeBase\test5.txt" />
+    <Text Include="CodeBase\Uni10000.txt" />
+    <Text Include="CodeBase\Uni15000.txt" />
+    <Text Include="CodeBase\Uni20000.txt" />
+    <Text Include="CodeBase\Uni25000.txt" />
+    <Text Include="CodeBase\Uni5000.txt" />
+    <Text Include="CodeBase\Zipf10000.txt" />
+    <Text Include="CodeBase\Zipf15000.txt" />
+    <Text Include="CodeBase\Zipf20000.txt" />
+    <Text Include="CodeBase\Zipf25000.txt" />
+    <Text Include="CodeBase\Zipf5000.txt" />
+    <Text Include="objects.txt" />
+    <Text Include="querypoints.txt" />
+    <Text Include="TargetPath.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CodeBase\datagen.o" />
+    <None Include="CodeBase\temp.o" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AAD992F1-8B2E-4C8E-BFEA-CE113E3CEAD3}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>CMVQ</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile />
+      <ExceptionHandling>Async</ExceptionHandling>
+      <MultiProcessorCompilation>false</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

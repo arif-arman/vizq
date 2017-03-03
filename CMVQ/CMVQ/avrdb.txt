@@ -1,0 +1,44 @@
+AVR ID: 0
+No of contours: 1
+AVR ID: 1
+No of contours: 1
+AVR ID: 2
+No of contours: 1
+AVR ID: 3
+No of contours: 1
+AVR ID: 4
+No of contours: 1
+AVR ID: 5
+No of contours: 1
+AVR ID: 6
+No of contours: 1
+AVR ID: 7
+No of contours: 1
+AVR ID: 8
+No of contours: 1
+AVR ID: 9
+No of contours: 1
+AVR ID: 10
+No of contours: 1
+AVR ID: 11
+No of contours: 1
+AVR ID: 12
+No of contours: 1
+AVR ID: 13
+No of contours: 1
+AVR ID: 14
+No of contours: 1
+AVR ID: 15
+No of contours: 1
+AVR ID: 16
+No of contours: 1
+AVR ID: 17
+No of contours: 1
+AVR ID: 18
+No of contours: 1
+AVR ID: 19
+No of contours: 1
+AVR ID: 20
+No of contours: 1
+AVR ID: 21
+No of contours: 1

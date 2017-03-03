@@ -1,0 +1,30 @@
+test 1:
+time needed  for building rtree 15.100000
+time needed  for reduction 46.845000
+total target points 343
+time needed  for calculating vcm 403.874000
+time needed  for merging vcm 0.052000
+test 2:
+time needed  for building rtree 14.287000
+time needed  for reduction 5.043000
+total target points 343
+time needed  for calculating vcm 148.086000
+time needed  for merging vcm 0.044000
+test 3:
+time needed  for building rtree 14.173000
+time needed  for reduction 0.007000
+total target points 343
+time needed  for calculating vcm 0.551000
+time needed  for merging vcm 0.042000
+test 4:
+time needed  for building rtree 13.735000
+time needed  for reduction 48.959000
+total target points 343
+time needed  for calculating vcm 404.878000
+time needed  for merging vcm 0.043000
+test 5:
+time needed  for building rtree 14.187000
+time needed  for reduction 2.605000
+total target points 343
+time needed  for calculating vcm 141.184000
+time needed  for merging vcm 0.043000

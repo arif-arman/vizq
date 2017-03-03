@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\CodeBase">
+      <UniqueIdentifier>{97e0f227-8506-4355-88ed-898d766640e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CodeBase">
+      <UniqueIdentifier>{e371d529-09d4-41f6-b27b-9b0b1b1d5ab0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Coordinate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QueryPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VisibleRegion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MBR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\blockfile\blk_file.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\blockfile\cache.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\camera.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\rtree\distance.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\func\gendef.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\rtree\entry.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\heap\heap.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\his\histogram.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\linlist\linlist.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\macros.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\monotone.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\prevSource.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\rtree\rtnode.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\rtree\rtree.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\rtree\rtree_cmd.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="CodeBase\vector3.h">
+      <Filter>Header Files\CodeBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Clipper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gpc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AVR.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VisibleSegment.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stopwatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VisibleRegionOverT.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\blockfile\blk_file.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\blockfile\cache.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\camera.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\rtree\distance.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\rtree\entry.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\func\functions.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\gpc.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\heap\heap.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\his\histogram.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\linlist\linlist.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\monotone.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\prevSource.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\rtree\rtnode.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\rtree\rtree.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\rtree\rtree_cmd.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+    <ClCompile Include="CodeBase\vector3.cpp">
+      <Filter>Source Files\CodeBase</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="querypoints.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="objects.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="CodeBase\clipfile.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\cityGml_british_3D_normalize10.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\cityGml_british_3D_normalize.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\boston_3D_normalized.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\boston.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\efile.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\error.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\log.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\log1.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\log300.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\my.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\my0.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\my1.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\my2.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\my3.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\my4.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\out1.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\outfile.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\randtarget - Copy.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\randtarget.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\randtargetboston.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\randtargetsyn.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\rob.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\subjfile.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\temp.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\test1.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\test2.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\test3.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\test5.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\Uni5000.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\Uni10000.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\Uni15000.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\Uni20000.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\Uni25000.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\Zipf5000.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\Zipf10000.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\Zipf15000.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\Zipf20000.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="CodeBase\Zipf25000.txt">
+      <Filter>Source Files\CodeBase</Filter>
+    </Text>
+    <Text Include="TargetPath.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CodeBase\datagen.o">
+      <Filter>Source Files\CodeBase</Filter>
+    </None>
+    <None Include="CodeBase\temp.o">
+      <Filter>Source Files\CodeBase</Filter>
+    </None>
+  </ItemGroup>
+</Project>

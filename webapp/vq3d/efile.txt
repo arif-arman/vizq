@@ -1,1 +1,1 @@
-execution time 28.797000 seconds.
+execution time 22.879000 seconds.

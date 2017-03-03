@@ -1,6 +1,6 @@
 import subprocess
 import pprint
-#pp = pprint.PrettyPrinter(indent=4)
+pp = pprint.PrettyPrinter(indent=4)
 
 def run_command(command):
     p = subprocess.Popen(command, shell=True,
@@ -96,7 +96,8 @@ def run_script(params):
 	qp['visible_planes'] = vp
 	response_data[qpCount-1] = qp
 	f = open('output_json.txt', 'w')
-	pprint.pprint (response_data, f)
+	#pprint.pprint (response_data, f)
+	f.close()
 	return response_data
 
 def vcm_run_script(params):
@@ -130,5 +131,53 @@ def vcm_run_script(params):
 			seg[row] = line
 			row += 1
 	f = open('vcm_output_json.txt', 'w')
-	pprint.pprint (response_data, f)
+	#pprint.pprint (response_data, f)
+	f.close()
+	return response_data
+
+def cmvq_run_script(params):
+	# runs precomputation and returns query point details (position, visible regions)
+	command = "CMVQ.exe precompute " + params['ob'] + " " + params['qp']
+	#print ("zitu: " + command)
+	run_command(command)
+	response_data = {}
+	data = {}
+	f = open("VizQ/qpointdb.txt", "r")
+	lines = f.read().split("\n")
+	counter = 0
+	for line in lines:
+		if "qid" in line:
+			qid = int(line[5:])
+			if qid > 0:
+				response_data[counter] = data
+				counter+=1
+				data = {}
+		elif "position" in line:
+			position = line[10:-1]
+			data['position'] = position
+		elif "vr" in line:
+			data['vr'] = line[4:]
+	response_data[counter] = data
+	return response_data
+
+def cmvq_run_query(params):
+	command = "CMVQ.exe cmvq " + params['ob'] + " " + params['qp'] + " " + params['posx'] + " " + params['posy']
+	#print(command)
+	response_data = {}
+	counter = 0
+	for line in run_command(command):
+		line = line.strip()
+		line = line.decode('ascii')
+		if not line:
+			continue
+		l = line.split(" ")
+		print (l)
+		data = {}
+		data['id'] = l[0]
+		data['x'] = l[1]
+		data['y'] = l[2]
+		data['visibility'] = l[3]
+		response_data[counter] = data
+		counter += 1
+	print (response_data)
 	return response_data

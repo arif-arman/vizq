@@ -20,10 +20,12 @@ from vq3d_app import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index'),
     url(r'^mvq', views.mvq, name='mvq'),
     url(r'^vcm', views.vcm, name='vcm'),
+    url(r'^cmvq', views.cmvq, name='cmvq'),
+    url(r'^$', views.index, name='index'),
     url(r'^read_file', views.read_file, name='read_file'),
     url(r'^upload_qp', views.upload_qp, name='upload_qp'),
     url(r'^upload_ob', views.upload_ob, name='upload_ob'),
+    url(r'^upload_tp', views.upload_tp, name='upload_tp'),
 ]

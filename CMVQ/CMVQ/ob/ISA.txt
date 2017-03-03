@@ -1,0 +1,104 @@
+1. good afternoon everyone. I am Arif Arman and welcome to the presentation of our paper titled indvizcmap, visibility color map in an indoor 3d space
+
+2. in this presentation, first I will briefly discuss 3d indoor and outdoor models and applications of visibility queries in real world. after that I will move on to discuss the proposed solution to construct a visibility color map or vcm. finally I will demonstrate our tool "indvizcmap" to construct vcm for a dataset. later on we will discuss some future directions of our work.
+
+5. 3D environment modeling of indoor spaces is feasible due to wide availability of affordable depth cameras, such as those deployed in microsoft kinect system, compared to state of the art Time-of-Flight depth cameras, 
+
+3. 3D models representing buildings, bridges, and trees of major cities are now available in all popular map services such as Google Maps, Google Earth, and OpenStreet Map. We can see in the picture of 3D models of Melbourne, New york, London, and Rome in Googlemap. 
+
+4. Similarly, here we can see 3D models of 4 European cities in Openstreemap.
+
+
+
+6. These 3D models are composed of objects of simple geometric shapes such as rectangles and trainagles. End-users can build 3D models of their own environments by using simple geometric shapes and upload those in the web. Hence, in the last couple of years, we have witnessed a huge growth of 3D datasets. The increasing availability of these realistic 3D datasets provides us an opportunity to answer many real-life queries involving visibility in the presence of 3D obstacles.
+
+7. For example, a security company may want to find the suitable positions for surveillance cameras in a car parking facility; a hospital authority may want to find suitable position and appropriate font size for a digital notice board, displaying important information; an advertisement company may want to check visibility from surrounding areas before placing a billboard and find text size suitable for display; 
+
+8. All these applications require measuring and differentiating the visibility of an object from different viewpoints in a dataspace. 
+Visibility Color Map or VCM can be used to quantify the visibility of an extended target object from the surrounding space. Constructing a
+VCM for a target involves assigning each viewpoint in the space a value between 0 and 1 which measures the visibility of the target from that viewpoint. As you can see in the figure, a VCM is constructed for the target object T in presence of an obstacle o. The visibility of T from different locations of the space is marked with different shades of grey.
+
+9. To determine the visibility of the target from a viewpoint, we need to take into account the effect of several factors, namely distance, angle and obstacles between the target and the viewpoint. Note that, a billboard may be seen from several viewpoints but is readable only from those viewpoints that are closer to the target. Therefore we also need to take text size into account for visibility computation.
+
+In the presence of a large set of obstacles, measuring the visibility of a target even from a single viewpoint is an expensive operation.
+
+10. The novel maximum visibility query proposed by sarah et al. finds the top k viewpoints from a given set of points from which the visibility of an extended target is maximum. This is opposed to our goal as we seek to assign a color value to all the viewpoints in the dataspace. 
+
+The construction of VCM as we define was first studied by choudhury et al. They introduce the idea of VCM and devise a scalable method to calculate VCM of an extended target object in the presence of a large set of obstacles. 
+
+11. The solution proposed by choudhury et al. to construct a VCM starts by partitioning whole space  into disjoint equi-visible cells. all points inside a cell have the same view of the target.
+
+Next they determine the region from which the target is entirely visible. This region is called the visible region. In the figure, the completely darkened region is non-visible. The rest is declared as visible. 
+
+Finally, the cells inside the visible region are assigned appropriate visibility color by performing spatial join.
+
+12. One shortcoming of the described method is that it does not take the partial visibility into account, i.e., considered as non-visible if an obstacle even slightly blocks the view of the target from that viewpoint. 
+
+Another issue that we point out is, this method does not consider the case for a moving target, thus a slight change of the target’s position invalidates the entire VCM.
+
+13. To alleviate all of the above limitations, Ishat et al. introduce an efficient method to construct vcm considering partial visibility of target. Their proposed method is applicable for both fixed and moving target. They have also proved effectiveness of their solution by conducting experiments with real and synthetic datasets.
+
+13. In this work, we introduce an interactive desktop tool to construct VCM considering partial visibility of target using methodologies proposed by Ishat et al. Also we extend their method by constructing VCM for text data of particular font size on target. 
+
+Later on we demonstrate our tool for some synthetic datasets that prove effectiveness of our solution.
+
+15. The first step is to determine the potentially visible set or PVS. PVS is a reduced version of the obstacle set which only contains those obstacles which are potentially visible from the target. To determine PVS, we index the obstacles in an R-tree and perform plane sweep in all principle axis direction. The occlusion effect of the obstacles are measured on different positions of the sweep plane to calculate the aggregated projection. In the figure aggregated projections are shown with bold lines which are essentially the occlusion effect of the obstacles located in front of the sweep plane. Obstacles of MBRs falling completely inside the aggregated projections are discarded as they are non-visible from the target, such as o6, o7 and o8 in the figure. Thus we reduce the size of the obstacle set and use this reduced version in all later stages of the algorithm.
+
+16. Next step is to determine the visibility states of the boundary points. Boundary points are points on the surface of the target spaced equally apart from one another. We consider a number of boundary points on the target and determine how many of them are visible from each cell. We calculate what portion of a target is visible from a cell in this way. The visibility state of a boundary point indicates which cells are visible and which cells are not visible from that boundary point. To determine the visibility state of a boundary point, we perform plane sweep, calculate the aggregated projections at the cell midpoints and check whether a cells midpoint falls inside the aggregated projections to determine its visibility.
+As you can see in the figure, the darkened cells are non-visible from the boundary point b.
+
+17. Next, we determine the visibility states of all boundary points and merge the results to find out how many boundary points are visible from each cell which is a measure of what portion of the target is visible from each cell. In the figure, visibility states of three points b1, b2 and b3 are shown and the rightmost part gives the count of boundary points visible from the cells. Finally we incorporate the effects of distance, angle and text size between the cells and the target to determine the final visibility color value of all the cells
+
+18. To extend the proposed approach for a moving target, we rely on a pre-computation based idea that assumes an extended buffer area around the target, which is called the super target. We pre-compute the PVS and visible states for the super target. Hence, once the target moves to a nearby position, our proposed data structure can be incrementally updated to generate the VCM for a new target position. Thus the cost of the preprocessing steps is amortized over all subsequent runs of the process for different positions of the target inside the super target.
+
+19. We integrate the effect of text size by using Snellen chart. In a snellen chart, each font size has a corresponding distance number which is the farthest orthogonal distance an eye/lens can read the text
+
+20. demo
+
+21. IndVizCMap opens a new avenue for a number of future works such as allow users to capture indoor structure and find vcm.
+
+Another approach is to determine the area surrounding the target for which the PVS remains unchanged. This area can be thought of as a safe region. Determining the safe region will improve our approach to construct VCM for a moving target. 
+
+22. 
+
+
+
+
+
+
+1. Let's take a look at our tool indvizcmap. The interface consists of a display window where objects are displayed. There's a panel for keyboard instructions that shows camera and vcm control and a console to show several messages to user. A default database is loaded on start-up and the objects are displayed. For a better visual experience, each object is assigned a random color. indvizcmap restrics that the database should be in .txt format.
+
+2. A user needs to select an object as target before generating vcm, otherwise a message would be shown in console. selected target is colored in cyan and is translated to center of object space for better visualization. 
+
+The dropdown box allows user to select a major axis along which VCM is to be constructed. for now let it be positive x. settings panel includes a text box to add text data and a spinner to set font size. however setting text is optional for indvizcmap so let us leave this field blank for now.
+
+3. now if I click generate vcm, indvizcmap will compute pvs by pruning unnecessary obstacles and generate some boundary points (64 in this case). 
+
+you can see these are the obstacles that are discarded for various reasons.
+IndVizCMap is now computing vcm for each boundary point as you may see in our debug console. 
+
+When VCM computation of the target is complete, user's console will show the message. Also discarded obstacles are now colored as follows:
+	obstacles that are in different direction of vcm plane are colored red
+	obstacles that are out of projection plane are colored yellow
+	obstacles that are totally occluded by another obstacles projection are colored blue
+	obstacles that are in near distance of target are colored green
+
+4. using m or shift+m key we can move vcm plane back and forth to better visualize occlusion effects of obstacles. note that occlusion effect of obstacle is considered after the near distance of obstacle.
+
+We can see the effects of obstacles on the VCM plane. Target is completely visible from a white cell, completely invisible from a black cell and partially visible from gray cells.
+
+5. IndVizCMap integrates a dynamic camera with yaw, pitch and roll functionalities. This gives user better viewing opportunities.
+
+6. Now let us select another database from our file system. You can see the viewing window gets updated as soon as database is loaded. now we select positive y as the axis along which we want to generate vcm. let us select a target and add some text.
+
+The text can be visualized on target body. If we increase the font size we can see the text getting large.
+
+Now let's generate VCM for this scenario.
+
+We can see that number of boundary points have now reduced to 16 since we are only generating points on the face that contains text data, not throughout complete object.
+
+let's move the vcm plane for better visualization. We can see the effect of text data as corners of vcm plane has now gotten completely black which implies text is not readable from these cells. If we move VCM plane further away we can see number of black cells increasing. At some point the plane becomes completely black.
+
+in this situation if we increase the font size of text, we can see reduction in some black cells since farthest distance of visibility increases with increment of font size.
+
+ 

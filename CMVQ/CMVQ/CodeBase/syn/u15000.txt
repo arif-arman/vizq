@@ -1,0 +1,110 @@
+test 1:
+time needed  for building rtree 18.486000
+reduced obstacle set size 343
+total io 896
+time needed  for reduction 69.342000
+total target points 64
+time needed  for calculating vcm 24.024000
+time needed  for merging vcm 0.015000
+naive approach:
+naive time 21931200.000000
+total error 0.484375
+test 2:
+time needed  for building rtree 5.694000
+reduced obstacle set size 1119
+total io 2820
+time needed  for reduction 758.099000
+total target points 64
+time needed  for calculating vcm 43.774000
+time needed  for merging vcm 0.031000
+naive approach:
+naive time 71800200.000000
+total error 0.000000
+test 3:
+time needed  for building rtree 5.647000
+reduced obstacle set size 861
+total io 1562
+time needed  for reduction 243.501000
+total target points 64
+time needed  for calculating vcm 14.789000
+time needed  for merging vcm 0.015000
+naive approach:
+naive time 54954000.000000
+total error 0.000000
+test 4:
+time needed  for building rtree 5.585000
+reduced obstacle set size 0
+total io 26
+time needed  for reduction 0.000000
+total target points 64
+time needed  for calculating vcm 0.047000
+time needed  for merging vcm 0.015000
+naive approach:
+naive time 0.000000
+total error 0.000000
+test 5:
+time needed  for building rtree 11.950000
+reduced obstacle set size 1087
+total io 2943
+time needed  for reduction 279.162000
+total target points 64
+time needed  for calculating vcm 161.242000
+time needed  for merging vcm 0.016000
+naive approach:
+naive time 69471000.000000
+total error 0.656250
+test 6:
+time needed  for building rtree 5.601000
+reduced obstacle set size 1168
+total io 2543
+time needed  for reduction 862.447000
+total target points 64
+time needed  for calculating vcm 71.043000
+time needed  for merging vcm 0.015000
+naive approach:
+naive time 74777400.000000
+total error 1.562500
+test 7:
+time needed  for building rtree 5.662000
+reduced obstacle set size 1171
+total io 2112
+time needed  for reduction 675.216000
+total target points 64
+time needed  for calculating vcm 207.278000
+time needed  for merging vcm 0.015000
+naive approach:
+naive time 73823400.000000
+total error 2.281250
+test 8:
+time needed  for building rtree 5.741000
+reduced obstacle set size 1105
+total io 2376
+time needed  for reduction 318.381000
+total target points 64
+time needed  for calculating vcm 90.854000
+time needed  for merging vcm 0.016000
+naive approach:
+naive time 70790400.000000
+total error 0.000000
+test 9:
+time needed  for building rtree 5.694000
+reduced obstacle set size 1091
+total io 3590
+time needed  for reduction 1205.118000
+total target points 64
+time needed  for calculating vcm 12.870000
+time needed  for merging vcm 0.015000
+naive approach:
+naive time 193892400.000000
+total error 0.000000
+test 10:
+time needed  for building rtree 20.218000
+reduced obstacle set size 273
+total io 740
+time needed  for reduction 54.693000
+total target points 64
+time needed  for calculating vcm 14.540000
+time needed  for merging vcm 0.015000
+naive approach:
+naive time 17409600.000000
+total error 0.015625

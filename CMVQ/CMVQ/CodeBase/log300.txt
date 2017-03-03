@@ -1,0 +1,90 @@
+test 1:
+time needed  for building rtree 15.627000
+time needed  for reduction 0.227000
+total target points 64
+time needed  for calculating vcm 10.274000
+time needed  for merging vcm 0.042000
+naive approach:
+naive time 19363716.000000
+total error 5.421875
+test 2:
+time needed  for building rtree 13.727000
+time needed  for reduction 0.020000
+total target points 64
+time needed  for calculating vcm 0.129000
+time needed  for merging vcm 0.042000
+naive approach:
+naive time 19005876.000000
+total error 3.296875
+test 3:
+time needed  for building rtree 13.726000
+time needed  for reduction 76.733000
+total target points 64
+time needed  for calculating vcm 200.592000
+time needed  for merging vcm 0.042000
+naive approach:
+naive time 18120780.000000
+total error 15.156250
+test 4:
+time needed  for building rtree 15.359000
+time needed  for reduction 41.765000
+total target points 64
+time needed  for calculating vcm 136.766000
+time needed  for merging vcm 0.043000
+naive approach:
+naive time 19874700.000000
+total error 0.390625
+test 5:
+time needed  for building rtree 13.976000
+time needed  for reduction 55.607000
+total target points 64
+time needed  for calculating vcm 166.512000
+time needed  for merging vcm 0.045000
+naive approach:
+naive time 18202968.000000
+total error 9.859375
+test 6:
+time needed  for building rtree 14.764000
+time needed  for reduction 52.374000
+total target points 64
+time needed  for calculating vcm 173.975000
+time needed  for merging vcm 0.042000
+naive approach:
+naive time 19380924.000000
+total error 10.468750
+test 7:
+time needed  for building rtree 13.701000
+time needed  for reduction 33.941000
+total target points 64
+time needed  for calculating vcm 144.648000
+time needed  for merging vcm 0.043000
+naive approach:
+naive time 19263420.000000
+total error 9.796875
+test 8:
+time needed  for building rtree 5.718000
+time needed  for reduction 12.125000
+total target points 64
+time needed  for calculating vcm 61.709000
+time needed  for merging vcm 0.017000
+naive approach:
+naive time 7540308.000000
+total error 11.375000
+test 9:
+time needed  for building rtree 5.725000
+time needed  for reduction 6.767000
+total target points 64
+time needed  for calculating vcm 37.796000
+time needed  for merging vcm 0.018000
+naive approach:
+naive time 7646040.000000
+total error 11.093750
+test 10:
+time needed  for building rtree 5.683000
+time needed  for reduction 1.909000
+total target points 64
+time needed  for calculating vcm 21.684000
+time needed  for merging vcm 0.018000
+naive approach:
+naive time 7761024.000000
+total error 9.546875

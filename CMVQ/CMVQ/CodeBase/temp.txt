@@ -1,0 +1,133 @@
+test 1:
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 1962.000000 5358.000000 178.000000
+inserting object 4700inserting object 4791
+Tree constructed from E:\Kaysar\Thesis\New folder\vcm10\vcm\my1.txt and residing
+ in memory
+time needed  for building rtree 11.172000
+time needed  for reduction 26.274000
+total target points 64
+time needed  for calculating vcm 71.909000
+time needed  for merging vcm 0.098000
+naive approach:
+target is centerd at 1962.000000 5358.000000 178.000000
+50  64 4780 15278536
+naive time 32164128.000000
+total error 5.781250
+Tree freed.
+test 2:
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 3145.000000 5705.000000 164.000000
+inserting object 4700inserting object 4791
+Tree constructed from E:\Kaysar\Thesis\New folder\vcm10\vcm\my1.txt and residing
+ in memory
+time needed  for building rtree 10.897000
+time needed  for reduction 3.514000
+total target points 64
+time needed  for calculating vcm 27.723000
+time needed  for merging vcm 0.084000
+naive approach:
+target is centerd at 3145.000000 5705.000000 164.000000
+50  64 4790 15179264
+naive time 31532976.000000
+total error 3.000000
+Tree freed.
+test 3:
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 4961.000000 827.000000 181.000000
+inserting object 4700inserting object 4791
+Tree constructed from E:\Kaysar\Thesis\New folder\vcm10\vcm\my1.txt and residing
+ in memory
+time needed  for building rtree 15.085000
+time needed  for reduction 0.006000
+total target points 64
+time needed  for calculating vcm 0.206000
+time needed  for merging vcm 0.086000
+naive approach:
+target is centerd at 4961.000000 827.000000 181.000000
+50  64 4790 15067072
+naive time 31456080.000000
+total error 2.000000
+Tree freed.
+test 4:
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 1942.000000 2995.000000 191.000000
+inserting object 4700inserting object 4791
+Tree constructed from E:\Kaysar\Thesis\New folder\vcm10\vcm\my1.txt and residing
+ in memory
+time needed  for building rtree 11.864000
+time needed  for reduction 28.721000
+total target points 64
+time needed  for calculating vcm 100.952000
+time needed  for merging vcm 0.086000
+naive approach:
+target is centerd at 1942.000000 2995.000000 191.000000
+50  64 4790 15173094
+naive time 31306752.000000
+total error 0.843750
+Tree freed.
+test 5:
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 2391.000000 5436.000000 127.000000
+inserting object 4700inserting object 4791
+Tree constructed from E:\Kaysar\Thesis\New folder\vcm10\vcm\my1.txt and residing
+ in memory
+time needed  for building rtree 13.493000
+time needed  for reduction 5.688000
+total target points 64
+time needed  for calculating vcm 31.089000
+time needed  for merging vcm 0.085000
+naive approach:
+target is centerd at 2391.000000 5436.000000 127.000000
+50  64 4790 15274021
+naive time 31848768.000000
+total error 4.968750
+Tree freed.
+test 6:
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 153.000000 3902.000000 104.000000
+inserting object 4700inserting object 4791
+Tree constructed from E:\Kaysar\Thesis\New folder\vcm10\vcm\my1.txt and residing
+ in memory
+time needed  for building rtree 12.135000
+time needed  for reduction 11.015000
+total target points 64
+time needed  for calculating vcm 150.552000
+time needed  for merging vcm 0.085000
+naive approach:
+target is centerd at 153.000000 3902.000000 104.000000
+50  64 4790 14716400
+naive time 30010608.000000
+total error 3.812500
+Tree freed.
+test 7:
+Tree Runner V1.0 for RTree
+Designed by TAO Yufei, Dec. 2000
+Building in progress..
+target is centerd at 4771.000000 5726.000000 147.000000
+inserting object 4700inserting object 4791
+Tree constructed from E:\Kaysar\Thesis\New folder\vcm10\vcm\my1.txt and residing
+ in memory
+time needed  for building rtree 12.302000
+time needed  for reduction 0.092000
+total target points 64
+time needed  for calculating vcm 7.281000
+time needed  for merging vcm 0.083000
+naive approach:
+target is centerd at 4771.000000 5726.000000 147.000000
+50  64 4790 14901961
+naive time 30436560.000000
+total error 1.531250
+Tree freed.
