@@ -1,5 +1,5 @@
 /****************************************************************************
-  
+
   GLUI User Interface Toolkit
   ---------------------------
 
@@ -10,42 +10,100 @@
 
   Copyright (c) 1998 Paul Rademacher
 
-  WWW:    http://sourceforge.net/projects/glui/
-  Forums: http://sourceforge.net/forum/?group_id=92496
+  WWW:    https://github.com/libglui/glui
+  Issues: https://github.com/libglui/glui/issues
 
-  This software is provided 'as-is', without any express or implied 
-  warranty. In no event will the authors be held liable for any damages 
-  arising from the use of this software. 
+  This software is provided 'as-is', without any express or implied
+  warranty. In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-  Permission is granted to anyone to use this software for any purpose, 
-  including commercial applications, and to alter it and redistribute it 
-  freely, subject to the following restrictions: 
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-  1. The origin of this software must not be misrepresented; you must not 
-  claim that you wrote the original software. If you use this software 
-  in a product, an acknowledgment in the product documentation would be 
-  appreciated but is not required. 
-  2. Altered source versions must be plainly marked as such, and must not be 
-  misrepresented as being the original software. 
-  3. This notice may not be removed or altered from any source distribution. 
+  1. The origin of this software must not be misrepresented; you must not
+  claim that you wrote the original software. If you use this software
+  in a product, an acknowledgment in the product documentation would be
+  appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+  misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 
 *****************************************************************************/
 
 #include "glui_internal_control.h"
 
+#include "tinyformat.h"
+
+#include <algorithm>
+
 int _glui_draw_border_only = 0;
+
+/********* GLUI_Control::GLUI_Control() **********/
+
+GLUI_Control::GLUI_Control() 
+{
+    x_off          = GLUI_XOFF;
+    y_off_top      = GLUI_YOFF;
+    y_off_bot      = GLUI_YOFF;
+    x_abs          = GLUI_XOFF;
+    y_abs          = GLUI_YOFF;
+    active         = false;
+    enabled        = true;
+    int_val        = 0;
+    last_live_int  = 0;
+    float_array_size = 0;
+    name           = tfm::format("Control: %p", this);
+    float_val      = 0.0;
+    last_live_float = 0.0;
+    ptr_val        = NULL;
+    glui           = NULL;
+    w              = GLUI_DEFAULT_CONTROL_WIDTH;
+    h              = GLUI_DEFAULT_CONTROL_HEIGHT;
+    font           = NULL;
+    active_type    = GLUI_CONTROL_ACTIVE_MOUSEDOWN;
+    alignment      = GLUI_ALIGN_LEFT;
+    is_container   = false;
+    can_activate   = true;         /* By default, you can activate a control */
+    spacebar_mouse_click = true;    /* Does spacebar simulate a mouse click? */
+    live_type      = GLUI_LIVE_NONE;
+    text = "";
+    last_live_text = "";
+    live_inited    = false;
+    collapsible    = false;
+    is_open        = true;
+    hidden         = false;
+    memset(char_widths, -1, sizeof(char_widths)); /* JVK */
+    int i;
+    for( i=0; i<GLUI_DEF_MAX_ARRAY; i++ )
+        float_array_val[i] = last_live_float_array[i] = 0.0;
+}
+
+/********* GLUI_Control::~GLUI_Control() **********/
+
+GLUI_Control::~GLUI_Control()
+{
+  GLUI_Control *item = (GLUI_Control*) this->first_child();
+
+  while (item)
+  {
+    GLUI_Control *tmp = item;
+    item = (GLUI_Control*) item->next();
+    delete tmp;
+  }
+}
 
 /*************************** Drawing Utility routines *********************/
 
 /* Redraw this control. */
-void	      GLUI_Control::redraw(void) {
+void	      GLUI_Control::redraw() {
     if (glui==NULL || hidden) return;
     if (glui->should_redraw_now(this))
       translate_and_draw_front();
 }
 
 /** Redraw everybody in our window. */
-void	     GLUI_Control::redraw_window(void) {
+void	     GLUI_Control::redraw_window() {
   if (glui==NULL || hidden) return;
   if ( glui->get_glut_window_id() == -1 ) return;
   int orig = set_to_glut_window();
@@ -71,7 +129,7 @@ void GLUI_Control::translate_and_draw_front()
 
 /********** GLUI_Control::set_to_bkgd_color() ********/
 
-void GLUI_Control::set_to_bkgd_color( void )
+void GLUI_Control::set_to_bkgd_color()
 {
   if ( NOT glui )
     return;
@@ -86,7 +144,7 @@ void GLUI_Control::draw_box_inwards_outline( int x_min, int x_max, int y_min, in
   glBegin( GL_LINES );
   glColor3f( .5, .5, .5 );
   glVertex2i( x_min, y_min );     glVertex2i( x_max, y_min );
-  glVertex2i( x_min, y_min );     glVertex2i( x_min, y_max );     
+  glVertex2i( x_min, y_min );     glVertex2i( x_min, y_max );
 
   glColor3f( 1., 1., 1. );
   glVertex2i( x_min, y_max );     glVertex2i( x_max, y_max );
@@ -103,7 +161,7 @@ void GLUI_Control::draw_box_inwards_outline( int x_min, int x_max, int y_min, in
   glColor3f( .75, .75, .75 );
   glVertex2i( x_min+1, y_max-1 );     glVertex2i( x_max-1, y_max-1 );
   glVertex2i( x_max-1, y_max-1 );     glVertex2i( x_max-1, y_min+1 );
-  glEnd();  
+  glEnd();
 }
 
 
@@ -155,7 +213,7 @@ void GLUI_Control::draw_active_box( int x_min, int x_max, int y_min, int y_max )
   glVertex2i(x_min, y_min);      glVertex2i( x_max, y_min );
   glVertex2i(x_max, y_max);      glVertex2i( x_min, y_max );
   glEnd();
-  
+
   glDisable( GL_LINE_STIPPLE );
 }
 
@@ -171,12 +229,12 @@ void   GLUI_Control::draw_emboss_box(int x_min,int x_max,int y_min,int y_max)
   glVertex2i( x_min, y_min );    glVertex2i( x_max, y_min );
   glVertex2i( x_max, y_max );    glVertex2i( x_min, y_max );
   glEnd();
- 
+
   glBegin( GL_LINE_LOOP );
   glVertex2i( x_min+1, y_min+1 );    glVertex2i( x_max-1, y_min+1 );
   glVertex2i( x_max-1, y_max-1 );    glVertex2i( x_min+1, y_max-1 );
   glEnd();
-  
+
   glColor3f( .5, .5, .5 );
   glBegin( GL_LINE_LOOP );
   glVertex2i( x_min, y_min );
@@ -198,7 +256,7 @@ void GLUI_Control::draw_recursive( int x, int y )
   if ( NOT can_draw() )
     return;
 
-  /*if ( 1 ) {  --  Debugging to check control width  
+  /*if ( 1 ) {  --  Debugging to check control width
     glColor3f( 1.0, 0.0, 0.0 );
     glBegin( GL_LINES );
     glVertex2i( x_abs, y_abs );00
@@ -210,8 +268,8 @@ void GLUI_Control::draw_recursive( int x, int y )
   glMatrixMode( GL_MODELVIEW );
   glPushMatrix();
 
-  glTranslatef( (float) this->x_abs + .5, 
-		(float) this->y_abs + .5, 
+  glTranslatef( (float) this->x_abs + .5,
+		(float) this->y_abs + .5,
 		0.0 );
 
   if ( NOT _glui_draw_border_only ) {
@@ -219,8 +277,8 @@ void GLUI_Control::draw_recursive( int x, int y )
     }
 
     this->draw( this->x_off, this->y_off_top );
-  } 
-  else 
+  }
+  else
   {
     if ( dynamic_cast<GLUI_Column*>(this) ) {
       /*   printf( "%s w/h:   %d/%d\n", (char*) name, w, h );              */
@@ -235,7 +293,7 @@ void GLUI_Control::draw_recursive( int x, int y )
     glEnd();
   }
   glPopMatrix();
-  
+
   node = (GLUI_Control*) first_child();
   while( node ) {
     node->draw_recursive( node->x_abs, node->y_abs );
@@ -251,7 +309,7 @@ int GLUI_Control::set_to_glut_window()
 {
   int orig_window;
 
-  if ( NOT glui) 
+  if ( NOT glui)
     return 1;
 
   orig_window = glutGetWindow();
@@ -285,7 +343,7 @@ void GLUI_Control::set_font(void *new_font)
 
 /********** GLUI_Control::draw_string() ************/
 
-void GLUI_Control::draw_string( const char *text )
+void GLUI_Control::draw_string( const GLUI_String &text )
 {
   _glutBitmapString( get_font(), text );
 }
@@ -301,7 +359,7 @@ void GLUI_Control::draw_char(char c)
 
 /*********** GLUI_Control::string_width() **********/
 
-int GLUI_Control::string_width(const char *text)
+int GLUI_Control::string_width(const GLUI_String &text)
 {
   return _glutBitmapWidthString( get_font(), text );
 }
@@ -310,7 +368,7 @@ int GLUI_Control::string_width(const char *text)
 /************* GLUI_Control::char_width() **********/
 
 int GLUI_Control::char_width(char c)
-{ /* Hash table for faster character width lookups - JVK 
+{ /* Hash table for faster character width lookups - JVK
        Speeds up the textbox a little bit.
   */
   int hash_index = c % CHAR_WIDTH_HASH_SIZE;
@@ -324,12 +382,12 @@ int GLUI_Control::char_width(char c)
 
 /*************** GLUI_Control::get_font() **********/
 
-void *GLUI_Control::get_font( void )
+void *GLUI_Control::get_font()
 {
   /*** Does this control have its own font? ***/
   if ( this->font != NULL )
     return this->font;
-  
+
   /*** Does the parent glui have a font? ***/
   if ( glui )
     return glui->font;
@@ -386,14 +444,14 @@ void GLUI_Control::align()
   if ( NOT parent() )
     return;  /* Clearly this shouldn't happen, though */
 
-  get_this_column_dims(&col_x, &col_y, &col_w, &col_h, 
+  get_this_column_dims(&col_x, &col_y, &col_w, &col_h,
 		       &col_x_off, &col_y_off);
 
   if ( dynamic_cast<GLUI_Column*>(this) ) {
     /*		if ( this->prev() != NULL ) {
-		((GLUI_Control*)prev())->get_this_column_dims(&col_x, &col_y, &col_w, &col_h, 
+		((GLUI_Control*)prev())->get_this_column_dims(&col_x, &col_y, &col_w, &col_h,
 		&col_x_off, &col_y_off);
-		
+
 		x_abs = col_x + col_w;
 		}
 		else {
@@ -418,12 +476,12 @@ void GLUI_Control::align()
     int delta = x_abs - orig_x_abs;
 
     GLUI_Control *node;
-		
+
     node = (GLUI_Control*) this->first_child();
     while( node != NULL ) {
-      if ( dynamic_cast<GLUI_Column*>(node) ) { 
+      if ( dynamic_cast<GLUI_Column*>(node) ) {
 	node->x_abs += delta;
-      } 
+      }
 
       node = (GLUI_Control*) node->next();
     }
@@ -463,10 +521,10 @@ void GLUI_Control::pack_old(int x, int y)
   /*** Iterate over children, packing them first ***/
   node = (GLUI_Control*) this->first_child();
   while( node != NULL ) {
-    if ( dynamic_cast<GLUI_Panel*>(node) && !node->collapsible) { 
+    if ( dynamic_cast<GLUI_Panel*>(node) && !node->collapsible) {
       /* Pad some space above fixed size panels */
       curr_y += GLUI_ITEMSPACING;
-    } 
+    }
     else if ( dynamic_cast<GLUI_Column*>(node)) {
       curr_column = (GLUI_Column*) node;
       if ( 1 ) {
@@ -489,7 +547,7 @@ void GLUI_Control::pack_old(int x, int y)
       continue;
     }
     node->pack( curr_x, curr_y );
-    if ( dynamic_cast<GLUI_Panel*>(node) && !node->collapsible)  
+    if ( dynamic_cast<GLUI_Panel*>(node) && !node->collapsible)
       /* Pad some space below fixed size panels */
       curr_y += GLUI_ITEMSPACING;
     curr_y  += node->h;
@@ -508,10 +566,10 @@ void GLUI_Control::pack_old(int x, int y)
   if ( this->is_container ) {
     max_y += y_margin_bot;  /*** Add bottom border inside box */
     if ( this->first_child() ) {
-      if ( dynamic_cast<GLUI_Rollout*>(this) ) {	
+      if ( dynamic_cast<GLUI_Rollout*>(this) ) {
 	/**  We don't want the rollout to shrink in width when it's
 	  closed **/
-	this->w = MAX(this->w, column_x + max_w + 2 * x_margin );
+	this->w = std::max(this->w, column_x + max_w + 2 * x_margin );
       }
       else {
 	this->w        = column_x + max_w + 2 * x_margin;
@@ -522,17 +580,17 @@ void GLUI_Control::pack_old(int x, int y)
       this->w        = GLUI_DEFAULT_CONTROL_WIDTH;
       this->h        = GLUI_DEFAULT_CONTROL_HEIGHT;
     }
-    /** Expand panel if necessary (e.g., to include all the text in 
+    /** Expand panel if necessary (e.g., to include all the text in
       a panel label) **/
-    this->update_size();   
+    this->update_size();
   }
 }
 
 /*** GLUI_Control::get_this_column_dims() **********/
 /* Gets the x,y,w,h,and x/y offsets of the column to which a control belongs */
 
-void    GLUI_Control::get_this_column_dims( int *col_x, int *col_y, 
-					    int *col_w, int *col_h, 
+void    GLUI_Control::get_this_column_dims( int *col_x, int *col_y,
+					    int *col_w, int *col_h,
 					    int *col_x_off, int *col_y_off )
 {
   GLUI_Control *node, *parent_ptr;
@@ -545,7 +603,7 @@ void    GLUI_Control::get_this_column_dims( int *col_x, int *col_y,
 
   parent_h     = parent_ptr->h;
   parent_y_abs = parent_ptr->y_abs;
-  
+
   if ( dynamic_cast<GLUI_Panel*>(parent_ptr) AND
        parent_ptr->int_val == GLUI_PANEL_EMBOSSED AND
        parent_ptr->name != "" ) {
@@ -558,7 +616,7 @@ void    GLUI_Control::get_this_column_dims( int *col_x, int *col_y,
 
     /**   Look for first control in this column   **/
     first = this;
-    while (first->prev() AND !dynamic_cast<GLUI_Column*>(first->prev()) ) 
+    while (first->prev() AND !dynamic_cast<GLUI_Column*>(first->prev()) )
       first = first->prev();
 
     /**   Look for last control in this column    **/
@@ -655,7 +713,7 @@ void    GLUI_Control::pack( int x, int y )
   x_margin     = this->x_off;
   y_margin_top = this->y_off_top;
   y_margin_bot = this->y_off_bot;
-  
+
   this->x_abs = x_in;
   this->y_abs = y_in;
 
@@ -673,10 +731,10 @@ void    GLUI_Control::pack( int x, int y )
 
   node = (GLUI_Control*) this->first_child();
   while( node != NULL ) {
-    if ( dynamic_cast<GLUI_Panel*>(node) && !node->collapsible) { 
+    if ( dynamic_cast<GLUI_Panel*>(node) && !node->collapsible) {
       /* Pad some space above fixed-size panels */
       curr_y += GLUI_ITEMSPACING;
-    } 
+    }
     else if ( dynamic_cast<GLUI_Column*>(node) ) {
       curr_column = (GLUI_Column*) node;
       curr_x   += max_w + 1 * x_margin;
@@ -694,13 +752,13 @@ void    GLUI_Control::pack( int x, int y )
       node = (GLUI_Control*) node->next();
       continue;
     }
-		
+
     node->pack( curr_x, curr_y );
 
     if ( dynamic_cast<GLUI_Panel*>(node)  && !node->collapsible)
       /* Pad some space below fixed-size panels */
       curr_y += GLUI_ITEMSPACING;
-    
+
     curr_y  += node->h;
 
     if ( node->w > max_w ) {
@@ -716,7 +774,7 @@ void    GLUI_Control::pack( int x, int y )
     }
 
     node = (GLUI_Control*) node->next();
-    
+
     if ( node ) {
       curr_y += GLUI_ITEMSPACING;
     }
@@ -738,9 +796,9 @@ void    GLUI_Control::pack( int x, int y )
       }
     }
 
-    /** Expand panel if necessary (e.g., to include all the text in 
+    /** Expand panel if necessary (e.g., to include all the text in
       a panel label) **/
-    this->update_size();   
+    this->update_size();
 
 
     /*** Now we step through the GLUI_Columns, setting the 'h'  ***/
@@ -800,41 +858,41 @@ void GLUI_Control::sync_live(int recurse, int draw_it)
         last_live_int = *((int*)ptr_val);
         changed = true;
       }
-    }   
+    }
     else if ( live_type == GLUI_LIVE_FLOAT ) {
       if ( *((float*)ptr_val) != last_live_float ) {
         set_float_val( *((float*)ptr_val) );
         last_live_float = *((float*)ptr_val);
         changed = true;
       }
-    } 
+    }
     else if ( live_type == GLUI_LIVE_TEXT ) {
       if ( last_live_text.compare((const char*)ptr_val) != 0 ) {
         set_text( (char*) ptr_val );
         last_live_text = (const char*)ptr_val;
         changed = true;
       }
-    } 
+    }
     else if ( live_type == GLUI_LIVE_STRING ) {
       if ( last_live_text.compare(((std::string*) ptr_val)->c_str()) != 0 ) {
         set_text( ((std::string*) ptr_val)->c_str());
         last_live_text = *((std::string*) ptr_val);
         changed = true;
       }
-    } 
-    else if ( live_type == GLUI_LIVE_FLOAT_ARRAY ) { 
+    }
+    else if ( live_type == GLUI_LIVE_FLOAT_ARRAY ) {
       /***  Step through the arrays, and see if they're the same  ***/
-      
+
       fp = (float*) ptr_val;
       for ( i=0; i<float_array_size; i++ ) {
         if ( *fp != last_live_float_array[i] ) {
           changed = true;
           break;
         }
-		
+
         fp++;
       }
-      
+
       if ( changed == true) {
         fp = (float*) ptr_val;
         set_float_array_val( fp );
@@ -865,7 +923,7 @@ void GLUI_Control::sync_live(int recurse, int draw_it)
     if ( collapsible == true AND is_open == false ) {
       /** Here we have a collapsed control (e.g., a rollout that is closed **/
       /** We need to go in and sync all the collapsed controls inside      **/
-       
+
       node = this->collapsed_node.first_child();
       while( node ) {
 	((GLUI_Control*) node)->sync_live(true, false);
@@ -886,28 +944,28 @@ void GLUI_Control::output_live(int update_main_gfx)
 
   if ( ptr_val == NULL )
     return;
-   
-  if ( NOT live_inited ) 
+
+  if ( NOT live_inited )
     return;
-   
+
   if ( live_type == GLUI_LIVE_NONE ) {
   }
   else if ( live_type == GLUI_LIVE_INT ) {
     *((int*)ptr_val) = int_val;
     last_live_int    = int_val;
-  } 
+  }
   else if ( live_type == GLUI_LIVE_FLOAT ) {
     *((float*)ptr_val) = float_val;
     last_live_float    = float_val;
-  } 
+  }
   else if ( live_type == GLUI_LIVE_TEXT ) {
     strncpy( (char*) ptr_val, text.c_str(), text.length()+1);
     last_live_text =  text;
-  } 
+  }
   else if ( live_type == GLUI_LIVE_STRING ) {
     (*(std::string*)ptr_val)= text.c_str();
     last_live_text =  text;
-  } 
+  }
   else if ( live_type == GLUI_LIVE_FLOAT_ARRAY ) {
     fp = (float*) ptr_val;
 
@@ -932,14 +990,14 @@ void GLUI_Control::output_live(int update_main_gfx)
 void GLUI_Control::execute_callback()
 {
   int old_window;
-  
+
   old_window = glutGetWindow();
 
-  if ( glui AND glui->main_gfx_window_id != -1 ) 
+  if ( glui AND glui->main_gfx_window_id != -1 )
     glutSetWindow( glui->main_gfx_window_id );
 
   this->callback( this );
-//  if ( this->callback ) 
+//  if ( this->callback )
 //    this->callback( this->user_id );
 
   glutSetWindow( old_window );
@@ -962,11 +1020,11 @@ void GLUI_Control::init_live()
   else if ( live_type == GLUI_LIVE_INT ) {
     set_int_val( *((int*)ptr_val) );
     last_live_int = *((int*)ptr_val);
-  } 
+  }
   else if ( live_type == GLUI_LIVE_FLOAT ) {
     set_float_val( *((float*)ptr_val) );
     last_live_float = *((float*)ptr_val);
-  } 
+  }
   else if ( live_type == GLUI_LIVE_TEXT ) {
     set_text( (const char*) ptr_val );
     last_live_text = (const char*) ptr_val;
@@ -1030,10 +1088,10 @@ void  GLUI_Control::get_float_array_val( float *array_ptr )
 
 /**** GLUI_Control::set_name() ********************/
 
-void   GLUI_Control::set_name( const char *str )
+void   GLUI_Control::set_name( const GLUI_String &str )
 {
   name = str;
-  redraw(); 
+  redraw();
 }
 
 /**** GLUI_Control::enable() ****************/
@@ -1043,7 +1101,7 @@ void GLUI_Control::enable()
   GLUI_Control *node;
 
   enabled = true;
-   
+
   if ( NOT glui )
     return;
 
@@ -1066,7 +1124,7 @@ void GLUI_Control::disable()
   GLUI_Control *node;
 
   enabled = false;
-  
+
   if ( NOT glui )
     return;
 
@@ -1124,24 +1182,10 @@ void GLUI_Control::set_alignment(int new_align)
 /* and OpenGL context switching by calling its idle.                         */
 
 bool GLUI_Control::needs_idle() const
-{ 
-  return false; 
-}
-
-
-/********* GLUI_Control::~GLUI_Control() **********/
-
-GLUI_Control::~GLUI_Control()
 {
-  GLUI_Control *item = (GLUI_Control*) this->first_child();
-
-  while (item) 
-  {
-    GLUI_Control *tmp = item;
-    item = (GLUI_Control*) item->next();
-    delete tmp;
-  }
+  return false;
 }
+
 
 /********* GLUI_Control::hide_internal() ********/
 /** Sets hidden==true for this  control and all its siblings.             */
@@ -1155,9 +1199,9 @@ void         GLUI_Control::hide_internal( int recurse )
   while( node != NULL ) {
     ((GLUI_Control*)node)->hidden = true;
 
-    if ( recurse AND node->first_child() != NULL )  
+    if ( recurse AND node->first_child() != NULL )
       ((GLUI_Control*) node->first_child())->hide_internal(true);
-      
+
     node = node->next();
   }
 
@@ -1165,9 +1209,9 @@ void         GLUI_Control::hide_internal( int recurse )
   while( node != NULL ) {
     ((GLUI_Control*)node)->hidden = true;
 
-    if ( recurse AND node->first_child() != NULL )  
+    if ( recurse AND node->first_child() != NULL )
       ((GLUI_Control*) node->first_child())->hide_internal(true);
-      
+
     node = node->next();
   }
 }
@@ -1183,13 +1227,13 @@ void         GLUI_Control::unhide_internal( int recurse )
 
   node = (GLUI_Node *) this;
   while( node != NULL ) {
-    /*    printf( "unhide: %s [%d]\n", ((GLUI_Control*)node)->name.c_str(), 
+    /*    printf( "unhide: %s [%d]\n", ((GLUI_Control*)node)->name.c_str(),
 	    ((GLUI_Control*)node)->hidden );*/
     ((GLUI_Control*)node)->hidden = false;
 
-    if ( recurse AND node->first_child() != NULL )  
+    if ( recurse AND node->first_child() != NULL )
       ((GLUI_Control*) node->first_child())->unhide_internal(true);
-      
+
     node = node->next();
   }
 
@@ -1197,9 +1241,9 @@ void         GLUI_Control::unhide_internal( int recurse )
   while( node != NULL ) {
     ((GLUI_Control*)node)->hidden = false;
 
-    if ( recurse AND node->first_child() != NULL )  
+    if ( recurse AND node->first_child() != NULL )
       ((GLUI_Control*) node->first_child())->unhide_internal(true);
-      
+
     node = node->next();
   }
 }

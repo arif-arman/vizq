@@ -1,5 +1,5 @@
 /****************************************************************************
-  
+
   GLUI User Interface Toolkit
   ---------------------------
 
@@ -10,33 +10,37 @@
 
   Copyright (c) 1998 Paul Rademacher
 
-  WWW:    http://sourceforge.net/projects/glui/
-  Forums: http://sourceforge.net/forum/?group_id=92496
+  WWW:    https://github.com/libglui/glui
+  Issues: https://github.com/libglui/glui/issues
 
-  This software is provided 'as-is', without any express or implied 
-  warranty. In no event will the authors be held liable for any damages 
-  arising from the use of this software. 
+  This software is provided 'as-is', without any express or implied
+  warranty. In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-  Permission is granted to anyone to use this software for any purpose, 
-  including commercial applications, and to alter it and redistribute it 
-  freely, subject to the following restrictions: 
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-  1. The origin of this software must not be misrepresented; you must not 
-  claim that you wrote the original software. If you use this software 
-  in a product, an acknowledgment in the product documentation would be 
-  appreciated but is not required. 
-  2. Altered source versions must be plainly marked as such, and must not be 
-  misrepresented as being the original software. 
-  3. This notice may not be removed or altered from any source distribution. 
+  1. The origin of this software must not be misrepresented; you must not
+  claim that you wrote the original software. If you use this software
+  in a product, an acknowledgment in the product documentation would be
+  appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+  misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 
 *****************************************************************************/
 
 #include "glui_internal_control.h"
 
+#include "tinyformat.h"
+
+#include <algorithm>
+
 /****************************** GLUI_Listbox::GLUI_Listbox() **********/
 GLUI_Listbox::GLUI_Listbox( GLUI_Node *parent,
-                            const char *name, int *value_ptr,
-                            int id, 
+                            const GLUI_String &name, int *value_ptr,
+                            int id,
                             GLUI_CB cb)
 {
   common_init();
@@ -50,6 +54,20 @@ GLUI_Listbox::GLUI_Listbox( GLUI_Node *parent,
   init_live();
 }
 
+void GLUI_Listbox::common_init()
+{
+    name           = tfm::format("Listbox: %p", this);
+    w              = GLUI_EDITTEXT_WIDTH;
+    h              = GLUI_EDITTEXT_HEIGHT;
+    orig_value     = -1;
+    title_x_offset = 0;
+    text_x_offset  = 55;
+    can_activate   = true;
+    curr_text      = "";
+    live_type      = GLUI_LIVE_INT;  /* This has an integer live var */
+    depressed      = false;
+    glut_menu_id   = -1;
+}
 
 /****************************** GLUI_Listbox::mouse_down_handler() **********/
 
@@ -73,7 +91,7 @@ int    GLUI_Listbox::mouse_up_handler( int local_x, int local_y, bool inside )
 int    GLUI_Listbox::mouse_held_down_handler( int local_x, int local_y,
 					      bool inside)
 {
-  
+
   return false;
 }
 
@@ -95,7 +113,7 @@ void    GLUI_Listbox::draw( int x, int y )
 
   /*  draw_active_area();              */
 
-  name_x = MAX(text_x_offset - string_width(this->name) - 3,0);
+  name_x = std::max(text_x_offset - string_width(this->name) - 3,0);
   draw_name( name_x , 13);
   draw_box_inwards_outline( text_x_offset, w,
 			    0, h );
@@ -133,7 +151,7 @@ void    GLUI_Listbox::draw( int x, int y )
 
 
 /************************************ GLUI_Listbox::update_si() **********/
-void   GLUI_Listbox::update_size( void )
+void   GLUI_Listbox::update_size()
 {
   recalculate_item_width();
 }
@@ -152,7 +170,7 @@ void    GLUI_Listbox::set_int_val( int new_val )
 
 /**************************************** GLUI_Listbox::add_item() **********/
 
-int  GLUI_Listbox::add_item( int id, const char *new_text )
+int  GLUI_Listbox::add_item( int id, const GLUI_String &new_text )
 {
   GLUI_Listbox_Item *new_node = new GLUI_Listbox_Item;
   GLUI_Listbox_Item *head;
@@ -181,11 +199,11 @@ int  GLUI_Listbox::add_item( int id, const char *new_text )
 
 /************************************** GLUI_Listbox::delete_item() **********/
 
-int  GLUI_Listbox::delete_item( const char *text )
+int  GLUI_Listbox::delete_item( const GLUI_String &text )
 {
   GLUI_Listbox_Item *node = get_item_ptr(text);
 
-  if (node) 
+  if (node)
   {
     node->unlink();
     delete node;
@@ -203,21 +221,21 @@ int  GLUI_Listbox::delete_item(int id)
 {
   GLUI_Listbox_Item *node = get_item_ptr(id);
 
-  if (node) 
+  if (node)
   {
     node->unlink();
     delete node;
     return true;
   }
   if (recalculate_item_width()) glui->refresh();
-  
+
   return false;
 }
 
 
 /************************************** GLUI_Listbox::sort_items() **********/
 
-int  GLUI_Listbox::sort_items( void )
+int  GLUI_Listbox::sort_items()
 {
   return false;
 }
@@ -236,7 +254,7 @@ void     GLUI_Listbox::dump( FILE *output )
   item = (GLUI_Listbox_Item *) items_list.first_child();
   while( item ) {
     fprintf( output, "         %3d : %s\n", item->id, item->text.c_str() );
-    
+
     item = (GLUI_Listbox_Item *) item->next();
   }
 }
@@ -244,7 +262,7 @@ void     GLUI_Listbox::dump( FILE *output )
 
 /************************************ GLUI_Listbox::get_item_ptr() **********/
 
-GLUI_Listbox_Item *GLUI_Listbox::get_item_ptr( const char *text )
+GLUI_Listbox_Item *GLUI_Listbox::get_item_ptr( const GLUI_String &text )
 {
   GLUI_Listbox_Item *item;
 
@@ -252,7 +270,7 @@ GLUI_Listbox_Item *GLUI_Listbox::get_item_ptr( const char *text )
   while( item ) {
     if ( item->text == text )
       return item;
-    
+
     item = (GLUI_Listbox_Item *) item->next();
   }
 
@@ -270,7 +288,7 @@ GLUI_Listbox_Item *GLUI_Listbox::get_item_ptr( int id )
   while( item ) {
     if ( item->id == id )
       return item;
-    
+
     item = (GLUI_Listbox_Item *) item->next();
   }
 
@@ -284,15 +302,15 @@ static void listbox_callback( int i )
 {
   int old_val;
 
-  if ( NOT GLUI_Master.curr_left_button_glut_menu OR 
-       !dynamic_cast<GLUI_Listbox*>(GLUI_Master.curr_left_button_glut_menu) ) 
+  if ( NOT GLUI_Master.curr_left_button_glut_menu OR
+       !dynamic_cast<GLUI_Listbox*>(GLUI_Master.curr_left_button_glut_menu) )
     return;
 
   old_val = ((GLUI_Listbox*)GLUI_Master.curr_left_button_glut_menu)->int_val;
   ((GLUI_Listbox*)GLUI_Master.curr_left_button_glut_menu)->set_int_val(i);
 
   /****   If value changed, execute callback   ****/
-  if ( old_val != 
+  if ( old_val !=
        ((GLUI_Listbox*)GLUI_Master.curr_left_button_glut_menu)->int_val ) {
     ((GLUI_Listbox*)GLUI_Master.curr_left_button_glut_menu)->execute_callback();
   }
@@ -309,7 +327,7 @@ int     GLUI_Listbox::mouse_over( int state, int x, int y )
 
   if ( state AND enabled AND x > x_abs + text_x_offset) {
     /****  Build a GLUT menu for this listbox   ***/
-    
+
     /*	printf( "%d %d\n", x, y );              */
 
     glut_menu_id = glutCreateMenu(listbox_callback);
@@ -321,7 +339,7 @@ int     GLUI_Listbox::mouse_over( int state, int x, int y )
     }
 
     glutAttachMenu( GLUT_LEFT_BUTTON);
-    
+
     GLUI_Master.set_left_button_glut_menu_control( this );
   }
   else if ( glut_menu_id != -1 ) {
@@ -352,7 +370,7 @@ int    GLUI_Listbox::do_selection( int item_num )
       sel_item = item;
       break;
     }
-    
+
     item = (GLUI_Listbox_Item *) item->next();
   }
 
@@ -375,7 +393,7 @@ GLUI_Listbox::~GLUI_Listbox()
 {
   GLUI_Listbox_Item *item = (GLUI_Listbox_Item *) items_list.first_child();
 
-  while (item) 
+  while (item)
   {
     GLUI_Listbox_Item *tmp = item;
     item = (GLUI_Listbox_Item *) item->next();
@@ -417,9 +435,9 @@ int    GLUI_Listbox::special_handler( int key,int modifiers )
 }
 
 
-/************************* GLUI_Listbox::recalculate_item_width( void ) ***********/
+/************************* GLUI_Listbox::recalculate_item_width() ***********/
 /** Change w and return true if we need to be widened to fit the current items. */
-bool    GLUI_Listbox::recalculate_item_width( void )
+bool    GLUI_Listbox::recalculate_item_width()
 {
   int item_text_size;
 
@@ -430,16 +448,16 @@ bool    GLUI_Listbox::recalculate_item_width( void )
   text_x_offset = string_width( name );
 
   /* Find the longest item string ***/
-  item_text_size = 0;   
- 
+  item_text_size = 0;
+
   GLUI_Listbox_Item *item = (GLUI_Listbox_Item *) items_list.first_child();
   while( item ) {
-    item_text_size = MAX(item_text_size,string_width(item->text));
+    item_text_size = std::max(item_text_size,string_width(item->text));
     item = (GLUI_Listbox_Item *) item->next();
   }
-  
+
   /* Sum up our layout: name, item, and drop-down marker */
-  int new_wid=text_x_offset+MAX(GLUI_EDITTEXT_MIN_TEXT_WIDTH,item_text_size)+20;
+  int new_wid=text_x_offset+std::max(GLUI_EDITTEXT_MIN_TEXT_WIDTH,item_text_size)+20;
   if ( w != new_wid) {
     w = new_wid;
     return true; /* we gotta be shortened or widened */

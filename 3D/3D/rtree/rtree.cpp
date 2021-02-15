@@ -2400,7 +2400,7 @@ void QueryPoint :: update_visibliliyRegion(Rectangle2 obstacle, Rectangle2 targe
 class CompareRect 
 {
     public:
-    bool operator()(const Rectangle2& t1, const Rectangle2& t2) 
+    bool operator()(const Rectangle2& t1, const Rectangle2& t2) const
     {
 		if(t1.upper_left.x<t2.upper_left.x) return true;
 		return false;
@@ -2411,7 +2411,7 @@ class CompareRect
 class CompareBox 
 {
     public:
-    bool operator()(const Box2& t1, const Box2& t2) 
+    bool operator()(const Box2& t1, const Box2& t2) const
     {
 		// if (t1.a.x < t2.a.x) return true;
 		//return false;
@@ -2472,17 +2472,17 @@ Box2 HeapEntry_to_box(HeapEntry *he)
 
 }
 
-bool Rectangle2::operator==(Rectangle2 a)
+bool Rectangle2::operator==(const Rectangle2& a) const
 {
 	return (upper_left.x==a.upper_left.x) && (upper_left.y==a.upper_left.y) && (lower_right.x==a.lower_right.x) && (lower_right.y==a.lower_right.y);
 }
 
-bool Point3D::operator==(Point3D a)
+bool Point3D::operator==(const Point3D& a) const
 {
 	return (a.x == x && a.y == y && a.z == z);
 }
 
-bool polygon::operator==(polygon poly)
+bool polygon::operator==(const polygon& poly) const
 {
 	if(sides.size() != poly.sides.size()) return false;
 	for(int i=0;i<poly.sides.size();i++)
@@ -2501,7 +2501,7 @@ bool polygon::operator==(polygon poly)
 	}
 	return true;
 }
-bool line::operator==(line l)
+bool line::operator==(const line& l) const
 {
 	return (l.a == a && l.b == b);
 }
@@ -3728,7 +3728,7 @@ float QueryPoint3D::init_visibility(Box2 t)
 class ComparePoint3D 
 {
     public:
-    bool operator()(const Point3D& t1, const Point3D& t2) 
+    bool operator()(const Point3D& t1, const Point3D& t2) const
     {
 		if(t1.x<t2.x) return true;
 		return false;

@@ -3300,6 +3300,8 @@ void VCM::run2(int dir) {
 	logfp = fopen("log.txt", "w");
 	efile = fopen("efile.txt", "w");
 
+	printf("Running VCM ... \n");
+
 	//input();	
 
 	// 
@@ -3411,6 +3413,7 @@ void VCM::run2(int dir) {
 	fprintf(logfp, "avg discarded %lf   avg reduced obstacle size %lf   avg time %lf\n", (double)totDiscard / (double)testCase, (double)totCnt / (double)testCase, totTime / (double)testCase);
 	fclose(logfp);
 	fclose(efile);
+	printf("Exiting VCM\n");
 }
 ///
 void VCM::debug3()

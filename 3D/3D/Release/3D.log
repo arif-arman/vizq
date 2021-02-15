@@ -1,0 +1,361 @@
+﻿  algebra3.cpp
+  arcball.cpp
+  blk_file.cpp
+D:\Research\VizQ\vizq\3D\3D\blockfile\blk_file.cpp(45,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\blockfile\blk_file.cpp(50,11): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\blockfile\blk_file.cpp(62,10): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  cache.cpp
+  camera.cpp
+  functions.cpp
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(244,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(246,53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(292,13): warning C4101: 'k': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(372,33): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(401,25): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(421,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(431,28): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(440,13): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(445,36): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(459,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(466,3): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(512,17): warning C4305: 'return': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(539,18): warning C4305: 'return': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(543,38): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(551,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(554,18): warning C4305: 'return': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(557,19): warning C4305: 'return': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(590,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(593,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(607,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(644,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(655,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(676,32): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(678,32): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(680,32): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(682,32): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(691,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(693,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(695,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(697,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(707,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(708,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(709,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(710,29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(737,23): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(749,23): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(725,9): warning C4101: 'i': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(758,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(759,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(760,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(761,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+D:\Research\VizQ\vizq\3D\3D\func\functions.cpp(880,20): warning C4305: '=': truncation from 'double' to 'float'
+  glui.cpp
+  glui_add_controls.cpp
+  glui_bitmaps.cpp
+  glui_bitmap_img_data.cpp
+  glui_button.cpp
+  glui_checkbox.cpp
+  glui_column.cpp
+  glui_commandline.cpp
+  glui_control.cpp
+D:\Research\VizQ\vizq\3D\3D\glui_control.cpp(962,5): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  glui_edittext.cpp
+  glui_filebrowser.cpp
+  glui_list.cpp
+  glui_listbox.cpp
+  glui_mouse_iaction.cpp
+  Compiling...
+  glui_node.cpp
+  glui_panel.cpp
+  glui_radio.cpp
+  glui_rollout.cpp
+  glui_rotation.cpp
+  glui_scrollbar.cpp
+  glui_separator.cpp
+  glui_spinner.cpp
+  glui_statictext.cpp
+  glui_string.cpp
+D:\Research\VizQ\vizq\3D\3D\glui_string.cpp(48,15): warning C4996: '_vsnprintf': This function or variable may be unsafe. Consider using _vsnprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  glui_textbox.cpp
+  glui_translation.cpp
+  glui_tree.cpp
+  glui_treepanel.cpp
+  glui_window.cpp
+  gpc.cpp
+D:\Research\VizQ\vizq\3D\3D\gpc.cpp(1042,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\gpc.cpp(1051,5): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\gpc.cpp(1054,7): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\gpc.cpp(1061,7): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  linlist.cpp
+D:\Research\VizQ\vizq\3D\3D\linlist\linlist.cpp(362,6): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\linlist\linlist.cpp(382,2): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  mian.cpp
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(47,1): warning C4005: 'INF': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\macros.h(24): message : see previous definition of 'INF'
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(48,1): warning C4005: 'EPS': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\macros.h(22): message : see previous definition of 'EPS'
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(51,1): warning C4005: 'Z': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\macros.h(23): message : see previous definition of 'Z'
+D:\Research\VizQ\vizq\3D\3D\macros.h(22,1): warning C4005: 'EPS': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(48): message : see previous definition of 'EPS'
+D:\Research\VizQ\vizq\3D\3D\macros.h(23,1): warning C4005: 'Z': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(51): message : see previous definition of 'Z'
+D:\Research\VizQ\vizq\3D\3D\macros.h(24,1): warning C4005: 'INF': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(47): message : see previous definition of 'INF'
+D:\Research\VizQ\vizq\3D\3D\func\gendef.h(33,1): warning C4005: 'min': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(197): message : see previous definition of 'min'
+D:\Research\VizQ\vizq\3D\3D\func\gendef.h(34,1): warning C4005: 'max': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(193): message : see previous definition of 'max'
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(121,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(250,22): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.h(96,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.h(176,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.h(366,1): warning C4010: single-line comment contains line-continuation character
+D:\Research\VizQ\vizq\3D\3D\mian.cpp(164,9): warning C4101: 'j': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\mian.cpp(164,6): warning C4101: 'i': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\mian.cpp(542,3): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mian.cpp(543,3): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mian.cpp(553,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  monotone.cpp
+D:\Research\VizQ\vizq\3D\3D\monotone.cpp(136,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\monotone.cpp(366,16): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\monotone.cpp(410,15): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\monotone.cpp(422,16): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\monotone.cpp(485,16): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\monotone.cpp(524,14): warning C4018: '<': signed/unsigned mismatch
+  mvq.cpp
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(121,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(250,22): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(40,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(41,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(42,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(149,22): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(171,24): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(218,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(223,12): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(234,4): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(210,8): warning C4101: 'fpDataSetSize': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(251,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(266,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(292,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(293,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(294,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(299,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(300,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(301,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\mvq.cpp(329,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Compiling...
+  heap.cpp
+  myCamera.cpp
+  prevSource.cpp
+D:\Research\VizQ\vizq\3D\3D\prevSource.cpp(337,15): warning C4018: '<': signed/unsigned mismatch
+  quaternion.cpp
+  distance.cpp
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(64,23): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(64,39): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(84,46): warning C4305: '=': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(91,34): warning C4305: '=': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(95,22): warning C4305: '=': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(95,40): warning C4305: '=': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(100,16): warning C4305: '=': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(100,31): warning C4305: '=': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(107,22): warning C4305: '=': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(144,18): warning C4305: 'return': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(158,18): warning C4305: 'return': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(185,19): warning C4305: 'return': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(223,22): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(226,27): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(269,22): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(279,23): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(279,39): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(295,23): warning C4305: '=': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(319,16): warning C4305: '=': truncation from 'double' to 'float'
+D:\Research\VizQ\vizq\3D\3D\rtree\distance.cpp(346,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  entry.cpp
+  rtnode.cpp
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(121,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(250,22): warning C4018: '<': signed/unsigned mismatch
+  rtree.cpp
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(121,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(250,22): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(119,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(130,12): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(137,10): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(146,29): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(147,29): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(1627,9): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(1677,12): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(1686,11): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(1950,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(2089,22): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(2488,15): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(2491,17): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(2495,11): warning C4553: '==': result of expression not used; did you intend '='?
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(2904,8): warning C4101: 'j': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(3633,15): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(3941,15): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(4185,18): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(4223,15): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(4524,15): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(4691,24): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(4707,44): warning C4838: conversion from 'unsigned int' to 'int' requires a narrowing conversion
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(4710,24): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(4895,29): warning C4101: 'lowy': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(4895,15): warning C4101: 'topy': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(4895,8): warning C4101: 'leftx': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(4895,21): warning C4101: 'rightx': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5171,29): warning C4101: 'lowy': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5171,15): warning C4101: 'topy': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5152,8): warning C4101: 'j': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5171,8): warning C4101: 'leftx': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5171,21): warning C4101: 'rightx': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5377,29): warning C4101: 'lowy': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5377,15): warning C4101: 'topy': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5377,8): warning C4101: 'leftx': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5377,21): warning C4101: 'rightx': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5619,29): warning C4101: 'lowy': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5619,15): warning C4101: 'topy': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5619,8): warning C4101: 'leftx': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(5619,21): warning C4101: 'rightx': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6372,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6374,23): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6396,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6398,23): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6468,11): warning C4477: 'printf' : format string '%.2lf' requires an argument of type 'double', but variadic argument 1 has type 'gpc_vertex'
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6468,11): warning C4473: 'printf' : not enough arguments passed for format string
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6468,11): message : placeholders and their parameters expect 2 variadic arguments, but 1 were provided
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6468,11): message : the missing variadic argument 2 is required by format string '%.2lf'
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6505,13): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6596,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6597,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6599,11): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6601,2): warning C4996: 'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6618,13): warning C4101: 'gv': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.cpp(6619,18): warning C4101: 'gvl': unreferenced local variable
+  rtree_cmd.cpp
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(121,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(250,22): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree_cmd.cpp(64,12): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree_cmd.cpp(131,3): warning C4996: 'strupr': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strupr. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree_cmd.cpp(145,8): warning C4101: 'blen': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree_cmd.cpp(146,10): warning C4101: 'f': unreferenced local variable
+  text3d.cpp
+  vcm.cpp
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(47,1): warning C4005: 'INF': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\macros.h(24): message : see previous definition of 'INF'
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(48,1): warning C4005: 'EPS': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\macros.h(22): message : see previous definition of 'EPS'
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(51,1): warning C4005: 'Z': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\macros.h(23): message : see previous definition of 'Z'
+D:\Research\VizQ\vizq\3D\3D\func\gendef.h(33,1): warning C4005: 'min': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(197): message : see previous definition of 'min'
+D:\Research\VizQ\vizq\3D\3D\func\gendef.h(34,1): warning C4005: 'max': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(193): message : see previous definition of 'max'
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(121,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(250,22): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.h(96,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.h(176,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.h(366,1): warning C4010: single-line comment contains line-continuation character
+D:\Research\VizQ\vizq\3D\3D\macros.h(22,1): warning C4005: 'EPS': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(48): message : see previous definition of 'EPS'
+D:\Research\VizQ\vizq\3D\3D\macros.h(23,1): warning C4005: 'Z': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(51): message : see previous definition of 'Z'
+D:\Research\VizQ\vizq\3D\3D\macros.h(24,1): warning C4005: 'INF': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(47): message : see previous definition of 'INF'
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(233,10): warning C4101: 'j1': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(233,14): warning C4101: 'k1': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(233,6): warning C4101: 'i1': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(361,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(385,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(408,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(497,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(584,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(942,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1033,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1125,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1254,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1269,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1452,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1480,48): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1627,1): warning C4010: single-line comment contains line-continuation character
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1680,1): warning C4010: single-line comment contains line-continuation character
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1703,1): warning C4010: single-line comment contains line-continuation character
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1725,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1726,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1756,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1812,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1813,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1817,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1842,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1904,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1905,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1909,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1934,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2058,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2128,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2206,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2212,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2216,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2237,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2316,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2321,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2325,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2349,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2418,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2423,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2427,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2448,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2523,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2528,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2532,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2552,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2626,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2631,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2634,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2654,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2729,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2734,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2737,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2759,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2834,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2839,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2842,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2917,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2918,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2919,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2924,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2925,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2926,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2955,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3010,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3014,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3035,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3045,13): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3046,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3121,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3134,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3138,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3191,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3264,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3213,10): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3214,10): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3353,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3300,10): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3301,10): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3429,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3454,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3462,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3516,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3575,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3747,20): warning C4018: '<': signed/unsigned mismatch
+  vector3.cpp
+D:\Research\VizQ\vizq\3D\3D\vector3.cpp(163,2): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Research\VizQ\vizq\3D\3D\vector3.cpp(169,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  viewmodel.cpp
+  tinyfiledialogs.c
+  Generating code
+  0 of 2425 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  3D.vcxproj -> D:\Research\VizQ\vizq\3D\Release\3D.exe

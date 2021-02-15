@@ -1,35 +1,55 @@
 /*
-  This software is provided 'as-is', without any express or implied 
-  warranty. In no event will the authors be held liable for any damages 
-  arising from the use of this software. 
+  This software is provided 'as-is', without any express or implied
+  warranty. In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-  Permission is granted to anyone to use this software for any purpose, 
-  including commercial applications, and to alter it and redistribute it 
-  freely, subject to the following restrictions: 
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-  1. The origin of this software must not be misrepresented; you must not 
-  claim that you wrote the original software. If you use this software 
-  in a product, an acknowledgment in the product documentation would be 
-  appreciated but is not required. 
-  2. Altered source versions must be plainly marked as such, and must not be 
-  misrepresented as being the original software. 
-  3. This notice may not be removed or altered from any source 
+  1. The origin of this software must not be misrepresented; you must not
+  claim that you wrote the original software. If you use this software
+  in a product, an acknowledgment in the product documentation would be
+  appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+  misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source
 */
 #ifndef GLUI_INTERNAL_H
 #define GLUI_INTERNAL_H
 
 #include <cstdio>
 #include <cmath>
+#include <cassert>
+
+#if defined(GLUI_FREEGLUT)
+
+  // FreeGLUT does not yet work perfectly with GLUI
+  //  - use at your own risk.
+  
+  #include <GL/freeglut.h>
+
+#elif defined(GLUI_OPENGLUT)
+
+  // OpenGLUT does not yet work properly with GLUI
+  //  - use at your own risk.
+  
+  #include <GL/openglut.h>
+
+#else 
+
+  #ifdef __APPLE__
+  #include <GLUT/glut.h>
+  #else
+  #include <GL/glut.h>
+  #endif
+
+#endif
 
 #ifndef AND
 #define AND &&
 #define OR  ||
 #define NOT !
-#endif
-
-#ifndef MAX
-#define MAX(a,b)  ((a)>(b) ? (a) : (b))
-#define MIN(a,b)  ((a)<(b) ? (a) : (b))
 #endif
 
 #ifndef ABS
@@ -110,30 +130,12 @@
 
 /******************* swap two values, using a temp variable *********/
 #ifndef SWAP2
-#define SWAP2(a,b,t) {t=a;a=b;b=t;}     
+#define SWAP2(a,b,t) {t=a;a=b;b=t;}
 #endif
 
 #define VEC3_TO_ARRAY(v,a)  a[0]=v[0], a[1]=v[1], a[2]=v[2]
 
 /**** Return the ASCII control code given the non-control ASCII character */
 #define CTRL(c) ( (c>=('a'-1)) ? (c-'a'+1) : (c-'A'+1) )
-
-/*
-typedef unsigned char Byte;
-
-#ifndef _RGBC_
-class RGBc 
-{
-    public:
-    Byte r, g, b;
-
-    void set(Byte r,Byte g,Byte b) {this->r=r;this->g=g;this->b=b;}
-
-    RGBc( void ) {}
-    RGBc( Byte r, Byte g, Byte b ) { set( r, g, b ); }
-};
-#define _RGBC_
-#endif
-*/
 
 #endif /* GLUI_INTERNAL_H */

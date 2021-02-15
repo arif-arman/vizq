@@ -1,5 +1,5 @@
 /****************************************************************************
-  
+
   GLUI User Interface Toolkit
   ---------------------------
 
@@ -10,41 +10,40 @@
 
   Copyright (c) 1998 Paul Rademacher, 2005 William Baxter
 
-  This software is provided 'as-is', without any express or implied 
-  warranty. In no event will the authors be held liable for any damages 
-  arising from the use of this software. 
+  This software is provided 'as-is', without any express or implied
+  warranty. In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-  Permission is granted to anyone to use this software for any purpose, 
-  including commercial applications, and to alter it and redistribute it 
-  freely, subject to the following restrictions: 
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-  1. The origin of this software must not be misrepresented; you must not 
-  claim that you wrote the original software. If you use this software 
-  in a product, an acknowledgment in the product documentation would be 
-  appreciated but is not required. 
-  2. Altered source versions must be plainly marked as such, and must not be 
-  misrepresented as being the original software. 
-  3. This notice may not be removed or altered from any source distribution. 
+  1. The origin of this software must not be misrepresented; you must not
+  claim that you wrote the original software. If you use this software
+  in a product, an acknowledgment in the product documentation would be
+  appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+  misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 
   This program is -not- in the public domain.
 
 *****************************************************************************/
 
-#include "GL/glui.h"
-#include "glui_internal.h"
+#include "glui_internal_control.h"
 
 /****************************** GLUI_CommandLine::GLUI_CommandLine() **********/
-GLUI_CommandLine::GLUI_CommandLine( GLUI_Node *parent, const char *name, 
+GLUI_CommandLine::GLUI_CommandLine( GLUI_Node *parent, const GLUI_String &name,
                                     void *data, int id, GLUI_CB cb )
 {
   common_init();
   set_name( name );
-    
+
   data_type   = GLUI_EDITTEXT_TEXT;
   ptr_val     = data;
   user_id     = id;
   callback    = cb;
-    
+
   live_type = GLUI_LIVE_TEXT;
 
   parent->add_control( this );
@@ -79,9 +78,9 @@ int    GLUI_CommandLine::key_handler( unsigned char key,int modifiers )
 
 /****************************** GLUI_CommandLine::deactivate() **********/
 
-void    GLUI_CommandLine::deactivate( void )
+void    GLUI_CommandLine::deactivate()
 {
-  // if the commit_flag is set, add the current command to 
+  // if the commit_flag is set, add the current command to
   // history and call deactivate as normal
 
   // Trick deactivate into calling callback if and only if commit_flag set.
@@ -106,11 +105,11 @@ int    GLUI_CommandLine::special_handler( int key,int modifiers )
 {
   if ( NOT glui )
     return false;
-  
+
   if ( debug )
-    printf( "CMD_TEXT SPECIAL:%d - mod:%d   subs:%d/%d  ins:%d  sel:%d/%d\n", 
+    printf( "CMD_TEXT SPECIAL:%d - mod:%d   subs:%d/%d  ins:%d  sel:%d/%d\n",
 	    key, modifiers, substring_start, substring_end,insertion_pt,
-	    sel_start, sel_end );	 
+	    sel_start, sel_end );
 
   if ( key == GLUT_KEY_UP )  // PREVIOUS HISTORY
   {
@@ -157,9 +156,9 @@ void    GLUI_CommandLine::recall_history( int hist_num )
 
 /**************************** GLUI_CommandLine::add_to_history() ********/
 
-void    GLUI_CommandLine::add_to_history( const char *cmd )
+void    GLUI_CommandLine::add_to_history( const GLUI_String &cmd )
 {
-  if (cmd[0]=='\0') return; // don't add if it's empty
+  if (cmd.empty()) return; // don't add if it's empty
 
   curr_hist = newest_hist;
   get_history_str(newest_hist) = text;
@@ -177,7 +176,7 @@ void    GLUI_CommandLine::add_to_history( const char *cmd )
 
 /**************************** GLUI_CommandLine::reset_history() ********/
 
-void    GLUI_CommandLine::reset_history( void )
+void    GLUI_CommandLine::reset_history()
 {
   oldest_hist = newest_hist = curr_hist = 0;
 }
@@ -186,11 +185,11 @@ void    GLUI_CommandLine::reset_history( void )
 
 /*************************************** GLUI_CommandLine::dump() **************/
 
-void   GLUI_CommandLine::dump( FILE *out, const char *name )
+void   GLUI_CommandLine::dump( FILE *out, const GLUI_String &name )
 {
-  fprintf( out, 
+  fprintf( out,
 	   "%s (commandline@%p):  ins_pt:%d  subs:%d/%d  sel:%d/%d   len:%d\n",
-	   name, this, 
+	   name.c_str(), (void*)this,
 	   insertion_pt, substring_start, substring_end, sel_start, sel_end,
 	   (int)text.length());
 }

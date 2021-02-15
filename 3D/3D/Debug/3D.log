@@ -1,186 +1,95 @@
-﻿Build started 19-Nov-16 10:16:37 PM.
-     1>Project "H:\Study\Others\Visibility Query\3D\Executable\3D\3D\3D.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _CRT_SECURE_NO_WARNINGS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt mian.cpp vcm.cpp
-         vcm.cpp
-     1>h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(47): warning C4005: 'INF' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\macros.h(24) : see previous definition of 'INF'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(48): warning C4005: 'EPS' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\macros.h(22) : see previous definition of 'EPS'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(51): warning C4005: 'Z' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\macros.h(23) : see previous definition of 'Z'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\func\gendef.h(33): warning C4005: 'min' : macro redefinition
-                 c:\program files (x86)\windows kits\8.1\include\shared\minwindef.h(197) : see previous definition of 'min'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\func\gendef.h(34): warning C4005: 'max' : macro redefinition
-                 c:\program files (x86)\windows kits\8.1\include\shared\minwindef.h(193) : see previous definition of 'max'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\func\gendef.h(130): warning C4172: returning address of local variable or temporary
-     1>h:\study\others\visibility query\3d\executable\3d\3d\rtree\rtree.h(121): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\rtree\rtree.h(250): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.h(96): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.h(176): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.h(366): warning C4010: single-line comment contains line-continuation character
-     1>h:\study\others\visibility query\3d\executable\3d\3d\macros.h(22): warning C4005: 'EPS' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(48) : see previous definition of 'EPS'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\macros.h(23): warning C4005: 'Z' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(51) : see previous definition of 'Z'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\macros.h(24): warning C4005: 'INF' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(47) : see previous definition of 'INF'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(233): warning C4101: 'i1' : unreferenced local variable
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(233): warning C4101: 'j1' : unreferenced local variable
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(233): warning C4101: 'k1' : unreferenced local variable
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(361): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(385): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(408): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(497): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(584): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(942): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1033): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1125): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1452): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1480): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1627): warning C4010: single-line comment contains line-continuation character
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1680): warning C4010: single-line comment contains line-continuation character
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1703): warning C4010: single-line comment contains line-continuation character
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1725): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1726): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1756): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1812): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1813): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1817): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1842): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1904): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1905): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1909): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(1934): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2058): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2128): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2206): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2212): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2216): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2237): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2316): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2321): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2325): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2349): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2418): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2423): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2427): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2448): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2523): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2528): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2532): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2552): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2626): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2631): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2634): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2654): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2729): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2734): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2737): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2759): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2834): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2839): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(2842): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3010): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3014): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3121): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3134): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3138): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3191): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3264): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3351): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3427): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3452): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3460): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3514): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3573): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3745): warning C4018: '<' : signed/unsigned mismatch
-         mian.cpp
-     1>h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(47): warning C4005: 'INF' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\macros.h(24) : see previous definition of 'INF'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(48): warning C4005: 'EPS' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\macros.h(22) : see previous definition of 'EPS'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(51): warning C4005: 'Z' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\macros.h(23) : see previous definition of 'Z'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\macros.h(22): warning C4005: 'EPS' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(48) : see previous definition of 'EPS'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\macros.h(23): warning C4005: 'Z' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(51) : see previous definition of 'Z'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\macros.h(24): warning C4005: 'INF' : macro redefinition
-                 h:\study\others\visibility query\3d\executable\3d\3d\prevsource.h(47) : see previous definition of 'INF'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\func\gendef.h(33): warning C4005: 'min' : macro redefinition
-                 c:\program files (x86)\windows kits\8.1\include\shared\minwindef.h(197) : see previous definition of 'min'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\func\gendef.h(34): warning C4005: 'max' : macro redefinition
-                 c:\program files (x86)\windows kits\8.1\include\shared\minwindef.h(193) : see previous definition of 'max'
-     1>h:\study\others\visibility query\3d\executable\3d\3d\func\gendef.h(130): warning C4172: returning address of local variable or temporary
-     1>h:\study\others\visibility query\3d\executable\3d\3d\rtree\rtree.h(121): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\rtree\rtree.h(250): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.h(96): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.h(176): warning C4018: '<' : signed/unsigned mismatch
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.h(366): warning C4010: single-line comment contains line-continuation character
-     1>h:\study\others\visibility query\3d\executable\3d\3d\mian.cpp(164): warning C4101: 'i' : unreferenced local variable
-     1>h:\study\others\visibility query\3d\executable\3d\3d\mian.cpp(164): warning C4101: 'j' : unreferenced local variable
-         Generating Code...
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.cpp(3563): warning C4715: 'VCM::arrayIndexToPoint' : not all control paths return a value
-     1>h:\study\others\visibility query\3d\executable\3d\3d\vcm.h(91): warning C4715: 'polygonAdapter::adapt32' : not all control paths return a value
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\Study\Others\Visibility Query\3D\Executable\3D\Debug\3D.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"H:\Study\Others\Visibility Query\3D\Executable\3D\Debug\3D.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\Study\Others\Visibility Query\3D\Executable\3D\Debug\3D.lib" /MACHINE:X86 Debug\algebra3.obj
-         Debug\arcball.obj
-         Debug\blk_file.obj
-         Debug\cache.obj
-         Debug\camera.obj
-         Debug\functions.obj
-         Debug\glui.obj
-         Debug\glui_add_controls.obj
-         Debug\glui_bitmaps.obj
-         Debug\glui_bitmap_img_data.obj
-         Debug\glui_button.obj
-         Debug\glui_checkbox.obj
-         Debug\glui_column.obj
-         Debug\glui_commandline.obj
-         Debug\glui_control.obj
-         Debug\glui_edittext.obj
-         Debug\glui_filebrowser.obj
-         Debug\glui_list.obj
-         Debug\glui_listbox.obj
-         Debug\glui_mouse_iaction.obj
-         Debug\glui_node.obj
-         Debug\glui_panel.obj
-         Debug\glui_radio.obj
-         Debug\glui_rollout.obj
-         Debug\glui_rotation.obj
-         Debug\glui_scrollbar.obj
-         Debug\glui_separator.obj
-         Debug\glui_spinner.obj
-         Debug\glui_statictext.obj
-         Debug\glui_string.obj
-         Debug\glui_textbox.obj
-         Debug\glui_translation.obj
-         Debug\glui_tree.obj
-         Debug\glui_treepanel.obj
-         Debug\glui_window.obj
-         Debug\gpc.obj
-         Debug\linlist.obj
-         Debug\mian.obj
-         Debug\monotone.obj
-         Debug\mvq.obj
-         Debug\heap.obj
-         Debug\myCamera.obj
-         Debug\prevSource.obj
-         Debug\quaternion.obj
-         Debug\distance.obj
-         Debug\entry.obj
-         Debug\rtnode.obj
-         Debug\rtree.obj
-         Debug\rtree_cmd.obj
-         Debug\text3d.obj
-         Debug\tinyfiledialogs.obj
-         Debug\vcm.obj
-         Debug\vector3.obj
-         Debug\viewmodel.obj
-         3D.vcxproj -> H:\Study\Others\Visibility Query\3D\Executable\3D\Debug\3D.exe
-     1>Done Building Project "H:\Study\Others\Visibility Query\3D\Executable\3D\3D\3D.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:08.39
+﻿  vcm.cpp
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(47,1): warning C4005: 'INF': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\macros.h(24): message : see previous definition of 'INF'
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(48,1): warning C4005: 'EPS': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\macros.h(22): message : see previous definition of 'EPS'
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(51,1): warning C4005: 'Z': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\macros.h(23): message : see previous definition of 'Z'
+D:\Research\VizQ\vizq\3D\3D\func\gendef.h(33,1): warning C4005: 'min': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(197): message : see previous definition of 'min'
+D:\Research\VizQ\vizq\3D\3D\func\gendef.h(34,1): warning C4005: 'max': macro redefinition
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\shared\minwindef.h(193): message : see previous definition of 'max'
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(121,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\rtree\rtree.h(250,22): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.h(96,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.h(176,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.h(366,1): warning C4010: single-line comment contains line-continuation character
+D:\Research\VizQ\vizq\3D\3D\macros.h(22,1): warning C4005: 'EPS': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(48): message : see previous definition of 'EPS'
+D:\Research\VizQ\vizq\3D\3D\macros.h(23,1): warning C4005: 'Z': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(51): message : see previous definition of 'Z'
+D:\Research\VizQ\vizq\3D\3D\macros.h(24,1): warning C4005: 'INF': macro redefinition
+D:\Research\VizQ\vizq\3D\3D\prevSource.h(47): message : see previous definition of 'INF'
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(233,10): warning C4101: 'j1': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(233,14): warning C4101: 'k1': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(233,6): warning C4101: 'i1': unreferenced local variable
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(361,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(385,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(408,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(497,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(584,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(942,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1033,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1125,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1452,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1480,48): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1627,1): warning C4010: single-line comment contains line-continuation character
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1680,1): warning C4010: single-line comment contains line-continuation character
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1703,1): warning C4010: single-line comment contains line-continuation character
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1725,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1726,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1756,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1812,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1813,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1817,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1842,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1904,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1905,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1909,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(1934,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2058,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2128,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2206,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2212,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2216,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2237,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2316,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2321,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2325,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2349,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2418,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2423,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2427,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2448,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2523,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2528,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2532,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2552,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2626,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2631,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2634,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2654,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2729,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2734,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2737,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2759,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2834,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2839,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(2842,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3010,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3014,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3121,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3134,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3138,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3191,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3264,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3353,21): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3429,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3454,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3462,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3516,19): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3575,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3747,20): warning C4018: '<': signed/unsigned mismatch
+D:\Research\VizQ\vizq\3D\3D\vcm.cpp(3565): warning C4715: 'VCM::arrayIndexToPoint': not all control paths return a value
+D:\Research\VizQ\vizq\3D\3D\vcm.h(91): warning C4715: 'polygonAdapter::adapt32': not all control paths return a value
+  3D.vcxproj -> D:\Research\VizQ\vizq\3D\Debug\3D.exe

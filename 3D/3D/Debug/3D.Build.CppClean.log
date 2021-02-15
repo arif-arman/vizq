@@ -1,65 +1,57 @@
-h:\study\others\visibility query\3d\executable\3d\3d\debug\vc120.pdb
-h:\study\others\visibility query\3d\executable\3d\3d\debug\vc120.idb
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_treepanel.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_window.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\gpc.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\linlist.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\mian.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\monotone.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\mvq.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\heap.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\mycamera.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\prevsource.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\quaternion.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\distance.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\entry.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\rtnode.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\rtree.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\rtree_cmd.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\text3d.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\vcm.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\vector3.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\viewmodel.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_commandline.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_control.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_edittext.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_filebrowser.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_list.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_listbox.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_mouse_iaction.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_node.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_panel.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_radio.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_rollout.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_rotation.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_scrollbar.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_separator.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_spinner.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_statictext.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_string.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_textbox.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_translation.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_tree.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\algebra3.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\arcball.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\blk_file.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\cache.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\camera.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\functions.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_add_controls.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_bitmaps.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_bitmap_img_data.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_button.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_checkbox.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\glui_column.obj
-h:\study\others\visibility query\3d\executable\3d\3d\debug\tinyfiledialogs.obj
-h:\study\others\visibility query\3d\executable\3d\debug\3d.ilk
-h:\study\others\visibility query\3d\executable\3d\debug\3d.exe
-h:\study\others\visibility query\3d\executable\3d\debug\3d.pdb
-h:\study\others\visibility query\3d\executable\3d\3d\debug\3d.tlog\cl.command.1.tlog
-h:\study\others\visibility query\3d\executable\3d\3d\debug\3d.tlog\cl.read.1.tlog
-h:\study\others\visibility query\3d\executable\3d\3d\debug\3d.tlog\cl.write.1.tlog
-h:\study\others\visibility query\3d\executable\3d\3d\debug\3d.tlog\link.command.1.tlog
-h:\study\others\visibility query\3d\executable\3d\3d\debug\3d.tlog\link.read.1.tlog
-h:\study\others\visibility query\3d\executable\3d\3d\debug\3d.tlog\link.write.1.tlog
+d:\research\vizq\vizq\3d\3d\debug\vc142.pdb
+d:\research\vizq\vizq\3d\3d\debug\vc142.idb
+d:\research\vizq\vizq\3d\3d\debug\glui_mouse_iaction.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_listbox.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_list.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_filebrowser.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_edittext.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_control.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_commandline.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_column.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_checkbox.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_button.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_bitmap_img_data.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_bitmaps.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_add_controls.obj
+d:\research\vizq\vizq\3d\3d\debug\glui.obj
+d:\research\vizq\vizq\3d\3d\debug\functions.obj
+d:\research\vizq\vizq\3d\3d\debug\camera.obj
+d:\research\vizq\vizq\3d\3d\debug\cache.obj
+d:\research\vizq\vizq\3d\3d\debug\blk_file.obj
+d:\research\vizq\vizq\3d\3d\debug\arcball.obj
+d:\research\vizq\vizq\3d\3d\debug\algebra3.obj
+d:\research\vizq\vizq\3d\3d\debug\mvq.obj
+d:\research\vizq\vizq\3d\3d\debug\monotone.obj
+d:\research\vizq\vizq\3d\3d\debug\mian.obj
+d:\research\vizq\vizq\3d\3d\debug\linlist.obj
+d:\research\vizq\vizq\3d\3d\debug\gpc.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_window.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_treepanel.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_tree.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_translation.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_textbox.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_string.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_statictext.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_spinner.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_separator.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_scrollbar.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_rotation.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_rollout.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_radio.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_panel.obj
+d:\research\vizq\vizq\3d\3d\debug\glui_node.obj
+d:\research\vizq\vizq\3d\3d\debug\viewmodel.obj
+d:\research\vizq\vizq\3d\3d\debug\vector3.obj
+d:\research\vizq\vizq\3d\3d\debug\vcm.obj
+d:\research\vizq\vizq\3d\3d\debug\text3d.obj
+d:\research\vizq\vizq\3d\3d\debug\rtree_cmd.obj
+d:\research\vizq\vizq\3d\3d\debug\rtnode.obj
+d:\research\vizq\vizq\3d\3d\debug\entry.obj
+d:\research\vizq\vizq\3d\3d\debug\distance.obj
+d:\research\vizq\vizq\3d\3d\debug\quaternion.obj
+d:\research\vizq\vizq\3d\3d\debug\prevsource.obj
+d:\research\vizq\vizq\3d\3d\debug\mycamera.obj
+d:\research\vizq\vizq\3d\3d\debug\heap.obj
+d:\research\vizq\vizq\3d\3d\debug\3d.tlog\cl.command.1.tlog
+d:\research\vizq\vizq\3d\3d\debug\3d.tlog\cl.read.1.tlog
+d:\research\vizq\vizq\3d\3d\debug\3d.tlog\cl.write.1.tlog

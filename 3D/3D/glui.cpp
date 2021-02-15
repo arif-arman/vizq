@@ -1,6 +1,6 @@
 /****************************************************************************
-  
-  GLUI User Interface Toolkit 
+
+  GLUI User Interface Toolkit
   ---------------------------
 
      glui.cpp
@@ -9,39 +9,42 @@
 
   Copyright (c) 1998 Paul Rademacher
 
-  WWW:    http://sourceforge.net/projects/glui/
-  Forums: http://sourceforge.net/forum/?group_id=92496
+  WWW:    https://github.com/libglui/glui
+  Issues: https://github.com/libglui/glui/issues
 
-  This software is provided 'as-is', without any express or implied 
-  warranty. In no event will the authors be held liable for any damages 
-  arising from the use of this software. 
+  This software is provided 'as-is', without any express or implied
+  warranty. In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-  Permission is granted to anyone to use this software for any purpose, 
-  including commercial applications, and to alter it and redistribute it 
-  freely, subject to the following restrictions: 
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-  1. The origin of this software must not be misrepresented; you must not 
-  claim that you wrote the original software. If you use this software 
-  in a product, an acknowledgment in the product documentation would be 
-  appreciated but is not required. 
-  2. Altered source versions must be plainly marked as such, and must not be 
-  misrepresented as being the original software. 
-  3. This notice may not be removed or altered from any source distribution. 
+  1. The origin of this software must not be misrepresented; you must not
+  claim that you wrote the original software. If you use this software
+  in a product, an acknowledgment in the product documentation would be
+  appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+  misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 
 *****************************************************************************/
 #include "glui_internal_control.h"
 
+#include "tinyformat.h"
+
+#include <algorithm>
 
 /**
  Note: moving this routine here from glui_add_controls.cpp prevents the linker
- from touching glui_add_controls.o in non-deprecated programs, which 
+ from touching glui_add_controls.o in non-deprecated programs, which
  descreases the linked size of small GLUI programs substantially (100K+). (OSL 2006/06)
 */
 void GLUI_Node::add_child_to_control(GLUI_Node *parent,GLUI_Control *child)
 {
   GLUI_Control *parent_control;
 
-  /*** Collapsible nodes have to be handled differently, b/c the first and 
+  /*** Collapsible nodes have to be handled differently, b/c the first and
     last children are swapped in and out  ***/
   parent_control = ((GLUI_Control*)parent);
   if ( parent_control->collapsible == true ) {
@@ -72,7 +75,7 @@ void GLUI_Node::add_child_to_control(GLUI_Node *parent,GLUI_Control *child)
   child->glui->refresh();
 
   /** Now set the 'hidden' var based on the parent **/
-  if ( parent_control->hidden OR 
+  if ( parent_control->hidden OR
        (parent_control->collapsible AND NOT parent_control->is_open ) )
   {
     child->hidden = true;
@@ -89,7 +92,7 @@ int GLUI_Node::add_control( GLUI_Control *child )
 }
 
 /************************************ GLUI_Main::add_control() **************/
- 
+
 int GLUI_Main::add_control( GLUI_Node *parent, GLUI_Control *control )
 {
   add_child_to_control(parent,control);
@@ -106,7 +109,7 @@ GLUI_Master_Object GLUI_Master;
   Probably a silly routine.  Called after all event handling callbacks.
 */
 
-static void finish_drawing(void)
+static void finish_drawing()
 {
 	glFinish();
 }
@@ -121,14 +124,14 @@ void GLUI_CB::operator()(GLUI_Control*ctrl) const
 
 /************************************************ GLUI::GLUI() **********/
 
-int GLUI::init( const char *text, long flags, int x, int y, int parent_window ) 
+int GLUI::init( const GLUI_String &text, long flags, int x, int y, int parent_window )
 {
   int old_glut_window;
 
   this->flags = flags;
 
   window_name = text;
-  
+
   buffer_mode = buffer_back;  ///< New smooth way
   //buffer_mode = buffer_front; ///< Old flickery way (a bit faster).
 
@@ -150,7 +153,7 @@ int GLUI::init( const char *text, long flags, int x, int y, int parent_window )
       glutSetWindow( old_glut_window );
 
     top_level_glut_window_id = glut_window_id;
-  } 
+  }
   else /* *is* a subwindow */
   {
     old_glut_window = glutGetWindow();
@@ -169,7 +172,7 @@ int GLUI::init( const char *text, long flags, int x, int y, int parent_window )
       glutKeyboardFunc( glui_parent_window_keyboard_func );
       glutMouseFunc( glui_parent_window_mouse_func );
       */
-    
+
   }
 
   return true;
@@ -178,13 +181,13 @@ int GLUI::init( const char *text, long flags, int x, int y, int parent_window )
 
 /**************************** GLUI_Main::create_standalone_window() ********/
 
-void GLUI_Main::create_standalone_window( const char *name, int x, int y )
+void GLUI_Main::create_standalone_window( const GLUI_String &name, int x, int y )
 {
   glutInitWindowSize( 100, 100 );
   if ( x >= 0 OR y >= 0 )
     glutInitWindowPosition( x, y );
-  glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE ); 
-  glut_window_id = glutCreateWindow( name );
+  glutInitDisplayMode( GLUT_RGB | GLUT_DOUBLE );
+  glut_window_id = glutCreateWindow( name.c_str() );
 }
 
 
@@ -199,24 +202,24 @@ void GLUI_Main::create_subwindow( int parent_window, int window_alignment )
 
 /**************************** GLUI_Main::setup_default_glut_callbacks() *****/
 
-void GLUI_Main::setup_default_glut_callbacks( void )
+void GLUI_Main::setup_default_glut_callbacks()
 {
-  glutDisplayFunc( glui_display_func );
-  glutReshapeFunc( glui_reshape_func );
-  glutKeyboardFunc( glui_keyboard_func );
-  glutSpecialFunc( glui_special_func );
-  glutMouseFunc( glui_mouse_func );
-  glutMotionFunc( glui_motion_func );
-  glutPassiveMotionFunc( glui_passive_motion_func );
-  glutEntryFunc( glui_entry_func );
-  glutVisibilityFunc( glui_visibility_func );
-  /*  glutIdleFunc( glui_idle_func );    // FIXME!  100% CPU usage!      */
+  glutDisplayFunc( display_func );
+  glutReshapeFunc( reshape_func );
+  glutKeyboardFunc( keyboard_func );
+  glutSpecialFunc( special_func );
+  glutMouseFunc( mouse_func );
+  glutMotionFunc( motion_func );
+  glutPassiveMotionFunc( passive_motion_func );
+  glutEntryFunc( entry_func );
+  glutVisibilityFunc( visibility_func );
+  /*  glutIdleFunc( idle_func );    // FIXME!  100% CPU usage!      */
 }
 
 
 /********************************************** glui_display_func() ********/
 
-void glui_display_func(void)
+void GLUI_Main::display_func()
 {
   GLUI *glui;
 
@@ -225,10 +228,10 @@ void glui_display_func(void)
   glui = GLUI_Master.find_glui_by_window_id( glutGetWindow() );
 
   if ( glui ) {
-    glui->display(); 
-    /* 
+    glui->display();
+    /*
        Do not do anything after the above line, b/c the GLUI
-       window might have just closed itself 
+       window might have just closed itself
    */
   }
 }
@@ -236,7 +239,7 @@ void glui_display_func(void)
 
 /********************************************** glui_reshape_func() ********/
 
-void glui_reshape_func(int w,int h )
+void GLUI_Main::reshape_func(int w,int h )
 {
   GLUI             *glui;
   GLUI_Glut_Window *glut_window;
@@ -254,7 +257,7 @@ void glui_reshape_func(int w,int h )
     /***  Now send reshape events to all subwindows  ***/
     glui = (GLUI*) GLUI_Master.gluis.first_child();
     while(glui) {
-      if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND 
+      if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND
 	   glui->parent_window == current_window ) {
 	glutSetWindow( glui->get_glut_window_id());
 	glui->reshape(w,h);
@@ -276,7 +279,7 @@ void glui_reshape_func(int w,int h )
 
 /********************************************** glui_keyboard_func() ********/
 
-void glui_keyboard_func(unsigned char key, int x, int y)
+void GLUI_Main::keyboard_func(unsigned char key, int x, int y)
 {
   GLUI              *glui;
   int                current_window;
@@ -290,16 +293,16 @@ void glui_keyboard_func(unsigned char key, int x, int y)
   if ( glut_window ) { /**  Was event in a GLUT window?  **/
     if ( GLUI_Master.active_control_glui AND GLUI_Master.active_control ) {
       glutSetWindow( GLUI_Master.active_control_glui->get_glut_window_id() );
-      
-      GLUI_Master.active_control_glui->keyboard(key,x,y);    
+
+      GLUI_Master.active_control_glui->keyboard(key,x,y);
 	  finish_drawing();
-      
+
       glutSetWindow( current_window );
     }
     else {
-      if (glut_window->glut_keyboard_CB) 
+      if (glut_window->glut_keyboard_CB)
         glut_window->glut_keyboard_CB( key, x, y );
-    } 
+    }
   }
   else {   /***  Nope, event was in a standalone GLUI window  **/
     glui = GLUI_Master.find_glui_by_window_id( glutGetWindow() );
@@ -314,7 +317,7 @@ void glui_keyboard_func(unsigned char key, int x, int y)
 
 /************************************************ glui_special_func() ********/
 
-void glui_special_func(int key, int x, int y)
+void GLUI_Main::special_func(int key, int x, int y)
 {
   GLUI              *glui;
   int                current_window;
@@ -328,17 +331,17 @@ void glui_special_func(int key, int x, int y)
     if ( GLUI_Master.active_control_glui AND GLUI_Master.active_control )
     {
       glutSetWindow( GLUI_Master.active_control_glui->get_glut_window_id() );
-      
-      GLUI_Master.active_control_glui->special(key,x,y);    
+
+      GLUI_Master.active_control_glui->special(key,x,y);
       finish_drawing();
-      
+
       glutSetWindow( current_window );
     }
     else
     {
       if (glut_window->glut_special_CB)
         glut_window->glut_special_CB( key, x, y );
-    } 
+    }
   }
   else /***  Nope, event was in a standalone GLUI window  **/
   {
@@ -354,7 +357,7 @@ void glui_special_func(int key, int x, int y)
 
 /********************************************** glui_mouse_func() ********/
 
-void glui_mouse_func(int button, int state, int x, int y)
+void GLUI_Main::mouse_func(int button, int state, int x, int y)
 {
   GLUI              *glui;
   int                current_window;
@@ -364,7 +367,7 @@ void glui_mouse_func(int button, int state, int x, int y)
   glut_window = GLUI_Master.find_glut_window( current_window );
 
   if ( glut_window ) { /**  Was event in a GLUT window?  **/
-    if ( GLUI_Master.active_control_glui != NULL ) 
+    if ( GLUI_Master.active_control_glui != NULL )
       GLUI_Master.active_control_glui->deactivate_current_control();
 
     if (glut_window->glut_mouse_CB)
@@ -384,7 +387,7 @@ void glui_mouse_func(int button, int state, int x, int y)
 
 /********************************************** glui_motion_func() ********/
 
-void glui_motion_func(int x, int y)
+void GLUI_Main::motion_func(int x, int y)
 {
   GLUI *glui;
 
@@ -400,7 +403,7 @@ void glui_motion_func(int x, int y)
 
 /**************************************** glui_passive_motion_func() ********/
 
-void glui_passive_motion_func(int x, int y)
+void GLUI_Main::passive_motion_func(int x, int y)
 {
   GLUI *glui;
 
@@ -415,7 +418,7 @@ void glui_passive_motion_func(int x, int y)
 
 /********************************************** glui_entry_func() ********/
 
-void glui_entry_func(int state)
+void GLUI_Main::entry_func(int state)
 {
   GLUI *glui;
 
@@ -429,7 +432,7 @@ void glui_entry_func(int state)
 
 /******************************************** glui_visibility_func() ********/
 
-void glui_visibility_func(int state)
+void GLUI_Main::visibility_func(int state)
 {
   GLUI *glui;
 
@@ -447,7 +450,7 @@ void glui_visibility_func(int state)
 /********************************************** glui_idle_func() ********/
 /* Send idle event to each glui, then to the main window            */
 
-void glui_idle_func(void)
+void GLUI_Main::idle_func()
 {
   GLUI *glui;
 
@@ -455,18 +458,18 @@ void glui_idle_func(void)
   while( glui ) {
     glui->idle();
 	finish_drawing();
-    
+
     glui = (GLUI*) glui->next();
   }
 
   if ( GLUI_Master.glut_idle_CB ) {
     /*** We set the current glut window before calling the user's
-      idle function, even though glut explicitly says the window id is 
+      idle function, even though glut explicitly says the window id is
       undefined in an idle callback.  ***/
-    
+
     /** Check what the current window is first ***/
 
-    /*** Arbitrarily set the window id to the main gfx window of the 
+    /*** Arbitrarily set the window id to the main gfx window of the
       first glui window ***/
     /*   int current_window, new_window;          */
     /*   current_window = glutGetWindow();          */
@@ -478,7 +481,7 @@ void glui_idle_func(void)
     /*  glutSetWindow( new_window );          */
     /* }          */
     /*}          */
-    
+
     GLUI_Master.glut_idle_CB();
   }
 }
@@ -497,7 +500,7 @@ GLUI_Master_Object::~GLUI_Master_Object()
 
 /*********************************** GLUI_Master_Object::create_glui() ******/
 
-GLUI *GLUI_Master_Object::create_glui( const char *name, long flags,int x,int y )
+GLUI *GLUI_Master_Object::create_glui( const GLUI_String &name, long flags,int x,int y )
 {
   GLUI *new_glui = new GLUI;
   new_glui->init( name, flags, x, y, -1 );
@@ -508,12 +511,11 @@ GLUI *GLUI_Master_Object::create_glui( const char *name, long flags,int x,int y 
 
 /************************** GLUI_Master_Object::create_glui_subwindow() ******/
 
-GLUI *GLUI_Master_Object::create_glui_subwindow( int parent_window, 
+GLUI *GLUI_Master_Object::create_glui_subwindow( int parent_window,
 						   long flags )
 {
   GLUI *new_glui = new GLUI;
-  GLUI_String new_name;
-  glui_format_str( new_name, "subwin_%p", this );
+  GLUI_String new_name = tfm::format("subwin_%p", this );
 
   new_glui->init( new_name.c_str(), flags | GLUI_SUBWINDOW, 0,0,
 		    parent_window );
@@ -531,9 +533,9 @@ GLUI  *GLUI_Master_Object::find_glui_by_window_id( int window_id )
 
   node = gluis.first_child();
   while( node ) {
-    if ( ((GLUI*)node)->get_glut_window_id() == window_id ) 
+    if ( ((GLUI*)node)->get_glut_window_id() == window_id )
       return (GLUI*) node;
-    
+
     node = node->next();
   }
   return NULL;
@@ -542,7 +544,7 @@ GLUI  *GLUI_Master_Object::find_glui_by_window_id( int window_id )
 
 /******************************************** GLUI_Main::display() **********/
 
-void    GLUI_Main::display( void )
+void    GLUI_Main::display()
 {
   int       win_w, win_h;
 
@@ -551,7 +553,7 @@ void    GLUI_Main::display( void )
   don't update properly when resizing or damage-painting.
   */
   glutSetWindow( glut_window_id );
-  
+
   /* Set up OpenGL state for widget drawing */
   glDisable( GL_DEPTH_TEST );
   glCullFace( GL_BACK );
@@ -561,7 +563,7 @@ void    GLUI_Main::display( void )
 
   /**** This function is used as a special place to do 'safe' processing,
     e.g., handling window close requests.
-    That is, we can't close the window directly in the callback, so 
+    That is, we can't close the window directly in the callback, so
     we set a flag, post a redisplay message (which eventually calls
     this function), then close the window safely in here.  ****/
   if ( closing ) {
@@ -615,21 +617,12 @@ void    GLUI_Main::display( void )
   }
 }
 
-
-
-
 /*************************************** _glutBitmapWidthString() **********/
 
-int _glutBitmapWidthString( void *font, const char *s )
+int _glutBitmapWidthString( void *font, const GLUI_String &s )
 {
-  const char *p = s;
   int  width = 0;
-
-  while( *p != '\0' )  {
-    width += glutBitmapWidth( font, *p );
-    p++;
-  }
-
+  for (auto i : s) width += glutBitmapWidth( font, i );
   return width;
 }
 
@@ -637,17 +630,10 @@ int _glutBitmapWidthString( void *font, const char *s )
 /* Displays the contents of a string using GLUT's bitmap character function */
 /* Does not handle newlines                                             */
 
-void _glutBitmapString( void *font, const char *s )
+void _glutBitmapString( void *font, const GLUI_String &s )
 {
-  const char *p = s;
-
-  while( *p != '\0' )  {
-    glutBitmapCharacter( font, *p );
-    p++;
-  }
+  for (auto i : s) glutBitmapCharacter( font, i );
 }
-
-
 
 /****************************** GLUI_Main::reshape() **************/
 
@@ -663,7 +649,7 @@ void    GLUI_Main::reshape( int reshape_w, int reshape_h )
   if ( reshape_w != new_w OR reshape_h != new_h ) {
     this->w = new_w;
     this->h = new_h;
-    
+
     glutReshapeWindow( new_w, new_h );
   }
   else {
@@ -682,7 +668,7 @@ void    GLUI_Main::reshape( int reshape_w, int reshape_h )
       }
       ****/
   }
-  
+
   glViewport( 0, 0, new_w, new_h );
 
   /*  printf( "%d: %d\n", glutGetWindow(), this->flags );          */
@@ -701,7 +687,7 @@ void    GLUI_Main::keyboard(unsigned char key, int x, int y)
 
   /*** If it's a tab or shift tab, we don't pass it on to the controls.
     Instead, we use it to cycle through active controls ***/
-  if ( key == '\t' AND !mouse_button_down AND 
+  if ( key == '\t' AND !mouse_button_down AND
        (!active_control || !active_control->wants_tabs())) {
     if ( curr_modifiers & GLUT_ACTIVE_SHIFT ) {
       new_control = find_prev_control( active_control );
@@ -717,12 +703,12 @@ void    GLUI_Main::keyboard(unsigned char key, int x, int y)
     deactivate_current_control();
     activate_control( new_control, GLUI_ACTIVATE_TAB );
   }
-  else if ( key == ' ' AND active_control 
-	          AND active_control->spacebar_mouse_click ) { 
+  else if ( key == ' ' AND active_control
+	          AND active_control->spacebar_mouse_click ) {
     /*** If the user presses the spacebar, and a non-edittext control
       is active, we send it a mouse down event followed by a mouse up
       event (simulated mouse-click) ***/
-    
+
     active_control->mouse_down_handler( 0, 0 );
     active_control->mouse_up_handler( 0, 0, true );
   } else {
@@ -763,9 +749,9 @@ void    GLUI_Main::mouse(int button, int state, int x, int y)
     control = find_control( x, y );
 
     /*if ( control ) printf( "control: %s\n", control->name.c_str() );      */
-    
+
     if ( mouse_button_down AND active_control != NULL AND
-      	 state == GLUT_UP ) 
+      	 state == GLUT_UP )
     {
       /** We just released the mouse, which was depressed at some control **/
 
@@ -773,7 +759,7 @@ void    GLUI_Main::mouse(int button, int state, int x, int y)
         mouse_up_handler( x, y, control==active_control);
       glutSetCursor( GLUT_CURSOR_LEFT_ARROW );
 
-      if ( active_control AND 
+      if ( active_control AND
            active_control->active_type == GLUI_CONTROL_ACTIVE_MOUSEDOWN AND 0)
       {
         /*** This is a control that needs to be deactivated when the
@@ -829,12 +815,12 @@ void    GLUI_Main::motion(int x, int y)
   callthrough = true;
 
   control = find_control(x,y);
-  
+
   if ( mouse_button_down AND active_control != NULL ) {
-    callthrough = 
+    callthrough =
       active_control->mouse_held_down_handler(x,y,control==active_control);
   }
-  
+
   /**
     NO CALLTHROUGH NEEDED FOR MOUSE EVENTS
 
@@ -895,7 +881,7 @@ void    GLUI_Main::visibility(int state)
 
 /****************************** GLUI_Main::idle() **************/
 
-void    GLUI_Main::idle(void)
+void    GLUI_Main::idle()
 {
   /*** Pass the idle event onto the active control, if any ***/
 
@@ -912,13 +898,13 @@ void    GLUI_Main::idle(void)
       if ( glut_window_id > 0 AND glutGetWindow() != glut_window_id ) {
 	glutSetWindow( glut_window_id );
       }
-      
+
       active_control->idle();
     }
   }
 }
 
-int  GLUI_Main::needs_idle( void )
+int  GLUI_Main::needs_idle()
 {
   return active_control != NULL && active_control->needs_idle();
 }
@@ -935,13 +921,13 @@ GLUI_Control  *GLUI_Main::find_control( int x, int y )
   node = main_panel;
   while( node != NULL ) {
     if ( !dynamic_cast<GLUI_Column*>(node) AND
-         PT_IN_BOX( x, y, 
-                    node->x_abs, node->x_abs + node->w, 
-                    node->y_abs, node->y_abs + node->h ) 
-         ) 
+         PT_IN_BOX( x, y,
+                    node->x_abs, node->x_abs + node->w,
+                    node->y_abs, node->y_abs + node->h )
+         )
     {
       /*** Point is inside current node ***/
-      
+
       if ( node->first_child() == NULL ) {
         /*** SPECIAL CASE: for edittext boxes, we make sure click is
              in box, and not on name string.  This should be generalized
@@ -959,19 +945,19 @@ GLUI_Control  *GLUI_Main::find_control( int x, int y )
         last_container = node;
         node = (GLUI_Control*) node->first_child();  /* Descend into child */
       }
-      
+
     }
     else {
       node = (GLUI_Control*) node->next();
     }
   }
- 
+
   /** No leaf-level nodes found to accept the mouse click, so
       return the last container control found which DOES accept the click **/
-  
+
   if ( last_container ) {
     /*    printf( "ctrl: '%s'\n", last_container->name );          */
-  
+
     return last_container;
   }
   else {
@@ -982,7 +968,7 @@ GLUI_Control  *GLUI_Main::find_control( int x, int y )
 
 /************************************* GLUI_Main::pack_controls() ***********/
 
-void      GLUI_Main::pack_controls( void )
+void      GLUI_Main::pack_controls()
 {
   main_panel->pack(0,0);
 
@@ -1005,16 +991,16 @@ void      GLUI_Main::pack_controls( void )
 
     if ( 1 ) {
       if ( TEST_AND(this->flags,GLUI_SUBWINDOW_TOP )) {
-	main_panel->w = MAX( main_panel->w, parent_w );
+	main_panel->w = std::max( main_panel->w, parent_w );
       }
       else if ( TEST_AND(this->flags,GLUI_SUBWINDOW_LEFT )) {
-	main_panel->h = MAX( main_panel->h, parent_h );
+	main_panel->h = std::max( main_panel->h, parent_h );
       }
       else if ( TEST_AND(this->flags,GLUI_SUBWINDOW_BOTTOM )) {
-	main_panel->w = MAX( main_panel->w, parent_w );
+	main_panel->w = std::max( main_panel->w, parent_w );
       }
       else if ( TEST_AND(this->flags,GLUI_SUBWINDOW_RIGHT )) {
-	main_panel->h = MAX( main_panel->h, parent_h );
+	main_panel->h = std::max( main_panel->h, parent_h );
       }
     }
   }
@@ -1036,9 +1022,9 @@ void    GLUI_Main::align_controls( GLUI_Control *control )
 
   while( child != NULL ) {
     align_controls( child );
-    
+
     child = (GLUI_Control*)child->next();
-  }  
+  }
 }
 
 
@@ -1053,7 +1039,7 @@ void   GLUI::set_main_gfx_window( int window_id )
 
 /********************************* GLUI_Main::post_update_main_gfx() ********/
 
-void   GLUI_Main::post_update_main_gfx( void )
+void   GLUI_Main::post_update_main_gfx()
 {
   int old_window;
 
@@ -1069,7 +1055,7 @@ void   GLUI_Main::post_update_main_gfx( void )
 /********************************* GLUI_Main::should_redraw_now() ********/
 /** Return true if this control should redraw itself immediately (front buffer);
    Or queue up a redraw and return false if it shouldn't (back buffer).
-   
+
    Called from GLUI_Control::redraw.
 */
 bool	     GLUI_Main::should_redraw_now(GLUI_Control *ctl)
@@ -1088,7 +1074,7 @@ bool	     GLUI_Main::should_redraw_now(GLUI_Control *ctl)
 
 /********************************* GLUI_Main::set_current_draw_buffer() ********/
 
-int          GLUI_Main::set_current_draw_buffer( void )
+int          GLUI_Main::set_current_draw_buffer()
 {
   /* Save old buffer */
   GLint state;
@@ -1100,7 +1086,7 @@ int          GLUI_Main::set_current_draw_buffer( void )
   }
   return (int)state;
 }
- 
+
 
 /********************************* GLUI_Main::restore_draw_buffer() **********/
 
@@ -1112,7 +1098,7 @@ void         GLUI_Main::restore_draw_buffer( int buffer_state )
 
 /******************************************** GLUI_Main::GLUI_Main() ********/
 
-GLUI_Main::GLUI_Main( void ) 
+GLUI_Main::GLUI_Main()
 {
   mouse_button_down       = false;
   w                       = 0;
@@ -1130,13 +1116,10 @@ GLUI_Main::GLUI_Main( void )
   font                    = GLUT_BITMAP_HELVETICA_12;
   curr_cursor             = GLUT_CURSOR_LEFT_ARROW;
 
-  int r=200, g=200, b=200;
-  bkgd_color[0] = r;
-  bkgd_color[1] = g;
-  bkgd_color[2] = b;
-  bkgd_color_f[0] = r / 255.0f;
-  bkgd_color_f[1] = g / 255.0f;
-  bkgd_color_f[2] = b / 255.0f;
+  // X11 Silver: 75% white = 192
+  bkgd_color[0] = 192;
+  bkgd_color[1] = 192;
+  bkgd_color[2] = 192;
 
   /*** Create the main panel ***/
   main_panel              = new GLUI_Panel;
@@ -1220,7 +1203,7 @@ void         GLUI_Main::activate_control( GLUI_Control *control, int how )
   /*******      Now activate it      *****/
   if ( control != NULL AND control->can_activate AND control->enabled ) {
     active_control = control;
-    
+
     control->activate(how);
 
     /*if ( NOT active_control->is_container OR           */
@@ -1240,7 +1223,7 @@ void         GLUI_Main::activate_control( GLUI_Control *control, int how )
 
 /************************* GLUI_Main::deactivate_current_control() **********/
 
-void         GLUI_Main::deactivate_current_control( void )
+void         GLUI_Main::deactivate_current_control()
 {
   int orig;
 
@@ -1248,8 +1231,8 @@ void         GLUI_Main::deactivate_current_control( void )
     orig = active_control->set_to_glut_window();
 
     active_control->deactivate();
-    
-    /** If this isn't a container control, then redraw it in its 
+
+    /** If this isn't a container control, then redraw it in its
       deactivated state.  Container controls, such as panels, look
       the same activated or not **/
 
@@ -1295,7 +1278,7 @@ GLUI_Control  *GLUI_Main::find_next_control_rec( GLUI_Control *control )
     if ( child->can_activate AND child->enabled )
       return child;
     else     /*** Recurse into first child ***/
-      rec_control = find_next_control_rec( child );    
+      rec_control = find_next_control_rec( child );
 
     if ( rec_control )
       return rec_control;
@@ -1309,12 +1292,12 @@ GLUI_Control  *GLUI_Main::find_next_control_rec( GLUI_Control *control )
     if ( sibling->can_activate AND sibling->enabled )
       return sibling;
     else     /*** Recurse into sibling ***/
-      rec_control = find_next_control_rec( sibling );    
+      rec_control = find_next_control_rec( sibling );
 
     if ( rec_control )
       return rec_control;
   }
-  
+
   return NULL;
 }
 
@@ -1325,7 +1308,7 @@ GLUI_Control  *GLUI_Main::find_next_control( GLUI_Control *control )
 {
   GLUI_Control *tmp_control = NULL;
   int           back_up;
-  
+
   if ( control == NULL )
     control = main_panel;
 
@@ -1336,21 +1319,21 @@ GLUI_Control  *GLUI_Main::find_next_control( GLUI_Control *control )
     if ( tmp_control != NULL ) {
       if ( tmp_control->can_activate AND tmp_control->enabled )
 	return tmp_control;
-      
+
       control = tmp_control;  /* Descend into child */
       continue;
     }
-    
+
     /*** At this point, control has no children ***/
 
     /** see if this control has a next sibling **/
     tmp_control = (GLUI_Control*) control->next();
-    
+
     if ( tmp_control != NULL ) {
       if ( tmp_control->can_activate AND tmp_control->enabled )
 	return tmp_control;
-      
-      control = tmp_control;  
+
+      control = tmp_control;
       continue;
     }
 
@@ -1360,7 +1343,7 @@ GLUI_Control  *GLUI_Main::find_next_control( GLUI_Control *control )
       control = (GLUI_Control*) control->parent();
 
       if ( control->next() ) {
-	control = (GLUI_Control*) control->next();  
+	control = (GLUI_Control*) control->next();
 	if ( control->can_activate AND control->enabled )
 	  return control;
 	else
@@ -1401,32 +1384,32 @@ GLUI_Control  *GLUI_Main::find_prev_control( GLUI_Control *control )
 
   if ( control == NULL ) {        /* here we find the last valid control */
     next_control = main_panel;
-  
+
     do {
       tmp_control  = next_control;
-      next_control = find_next_control( tmp_control ); 
+      next_control = find_next_control( tmp_control );
     } while( next_control != NULL );
 
-    return tmp_control;    
+    return tmp_control;
   }
   else {                         /* here we find the actual previous control */
     next_control = main_panel;
-  
+
     do {
       tmp_control  = next_control;
-      next_control = find_next_control( tmp_control ); 
+      next_control = find_next_control( tmp_control );
     } while( next_control != NULL AND next_control != control );
-    
+
     if ( next_control == NULL OR tmp_control == main_panel )
       return NULL;
-    else 
+    else
       return tmp_control;
   }
 }
 
 /************************* GLUI_Master_Object::set_glutIdleFunc() ***********/
 
-void    GLUI_Master_Object::set_glutIdleFunc(void (*f)(void))
+void    GLUI_Master_Object::set_glutIdleFunc(void (*f)())
 {
   glut_idle_CB = f;
   GLUI_Master.glui_setIdleFuncIfNecessary();
@@ -1435,16 +1418,16 @@ void    GLUI_Master_Object::set_glutIdleFunc(void (*f)(void))
 
 /**************************************** GLUI::disable() ********************/
 
-void   GLUI::disable( void )
-{ 
+void   GLUI::disable()
+{
   deactivate_current_control();
-  main_panel->disable(); 
+  main_panel->disable();
 }
 
 
 /******************************************** GLUI::sync_live() **************/
 
-void   GLUI::sync_live( void )
+void   GLUI::sync_live()
 {
   main_panel->sync_live(true, true);
 }
@@ -1452,49 +1435,49 @@ void   GLUI::sync_live( void )
 
 /********************************* GLUI_Master_Object::sync_live_all() *****/
 
-void   GLUI_Master_Object::sync_live_all( void ) 
+void   GLUI_Master_Object::sync_live_all()
 {
   GLUI *glui;
 
   glui = (GLUI*) GLUI_Master.gluis.first_child();
   while( glui ) {
-   
+
     glui->sync_live();  /** sync it **/
- 
+
     glui = (GLUI*) glui->next();
-  }  
+  }
 }
 
 
 /************************************* GLUI_Master_Object::close() **********/
 
-void   GLUI_Master_Object::close_all( void ) 
+void   GLUI_Master_Object::close_all()
 {
   GLUI *glui;
 
   glui = (GLUI*) GLUI_Master.gluis.first_child();
   while( glui ) {
-   
+
     glui->close();  /** Set flag to close **/
- 
+
     glui = (GLUI*) glui->next();
-  }  
+  }
 }
 
 
 /************************************* GLUI_Main::close_internal() **********/
 
-void   GLUI_Main::close_internal( void ) 
+void   GLUI_Main::close_internal()
 {
   glutDestroyWindow(glutGetWindow()); /** Close this window **/
 
   this->unlink();
-  
+
   if ( GLUI_Master.active_control_glui == this ) {
     GLUI_Master.active_control      = NULL;
     GLUI_Master.active_control_glui = NULL;
   }
-    
+
   if ( parent_window != -1 ) {
     glutSetWindow( parent_window );
     int win_w = glutGet( GLUT_WINDOW_WIDTH );
@@ -1511,7 +1494,7 @@ void   GLUI_Main::close_internal( void )
 
 /************************************************** GLUI::close() **********/
 
-void   GLUI::close( void ) 
+void   GLUI::close()
 {
   int   old_glut_window;
 
@@ -1527,7 +1510,7 @@ void   GLUI::close( void )
 
 /************************** GLUI_Main::check_subwindow_position() **********/
 
-void   GLUI_Main::check_subwindow_position( void )
+void   GLUI_Main::check_subwindow_position()
 {
   /*** Reposition this window if subwindow ***/
   if ( TEST_AND( this->flags, GLUI_SUBWINDOW ) ) {
@@ -1546,15 +1529,15 @@ void   GLUI_Main::check_subwindow_position( void )
     if ( TEST_AND(this->flags,GLUI_SUBWINDOW_RIGHT )) {
       new_x = parent_w - this->w;
       new_y = 0;
-    } 
+    }
     else if ( TEST_AND(this->flags,GLUI_SUBWINDOW_LEFT )) {
       new_x = 0;
       new_y = 0;
-    } 
+    }
     else if ( TEST_AND(this->flags,GLUI_SUBWINDOW_BOTTOM )) {
       new_x = 0;
       new_y = parent_h - this->h;
-    } 
+    }
     else {    /***   GLUI_SUBWINDOW_TOP    ***/
       new_x = 0;
       new_y = 0;
@@ -1562,9 +1545,9 @@ void   GLUI_Main::check_subwindow_position( void )
 
     /** Now make adjustments based on presence of other subwindows **/
     GLUI *curr_glui;
-    curr_glui = (GLUI*) GLUI_Master.gluis.first_child(); 
+    curr_glui = (GLUI*) GLUI_Master.gluis.first_child();
     while( curr_glui ) {
-      if ( TEST_AND( curr_glui->flags, GLUI_SUBWINDOW) AND 
+      if ( TEST_AND( curr_glui->flags, GLUI_SUBWINDOW) AND
 	   curr_glui->parent_window == this->parent_window ) {
 
 	if ( TEST_AND( curr_glui->flags,GLUI_SUBWINDOW_LEFT ) ) {
@@ -1573,10 +1556,10 @@ void   GLUI_Main::check_subwindow_position( void )
 	}
 	else if ( TEST_AND( curr_glui->flags,GLUI_SUBWINDOW_RIGHT ) ) {
 	}
-	else if ( TEST_AND( curr_glui->flags,GLUI_SUBWINDOW_TOP ) AND 
+	else if ( TEST_AND( curr_glui->flags,GLUI_SUBWINDOW_TOP ) AND
 		  ( TEST_AND( this->flags,GLUI_SUBWINDOW_LEFT ) OR
 		    TEST_AND( this->flags,GLUI_SUBWINDOW_RIGHT ) ) ) {
-	  /** If we are a RIGHT or LEFT subwindow, and there exists some 
+	  /** If we are a RIGHT or LEFT subwindow, and there exists some
 	    TOP subwindow, bump our position down  **/
 
 	  new_y += curr_glui->h;
@@ -1608,9 +1591,9 @@ void   GLUI_Main::check_subwindow_position( void )
 
       curr_glui = (GLUI*) curr_glui->next();
     }
-	
 
-		
+
+
     CLAMP( new_x, 0, new_x );
     CLAMP( new_y, 0, new_y );
 
@@ -1626,23 +1609,23 @@ void   GLUI_Main::check_subwindow_position( void )
 /* This gets called by the user from a GLUT reshape callback.  So we look */
 /* for subwindows that belong to the current window                   */
 
-void  GLUI_Master_Object::reshape( void )
+void  GLUI_Master_Object::reshape()
 {
   GLUI *glui;
   int   current_window;
 
   current_window = glutGetWindow();
-  
+
   glui = (GLUI*) GLUI_Master.gluis.first_child();
   while( glui ) {
-    if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND 
+    if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND
 	 glui->parent_window == current_window ) {
       glutSetWindow( glui->get_glut_window_id());
       glui->check_subwindow_position();
     }
-    
+
     glui = (GLUI*) glui->next();
-  }  
+  }
 
   glutSetWindow(current_window);
 }
@@ -1652,28 +1635,28 @@ void  GLUI_Master_Object::reshape( void )
 
 void GLUI_Master_Object::set_glutReshapeFunc(void (*f)(int width, int height))
 {
-  glutReshapeFunc( glui_reshape_func );
-  add_cb_to_glut_window( glutGetWindow(), GLUI_GLUT_RESHAPE, (void*) f);
+  glutReshapeFunc( GLUI_Main::reshape_func );
+  add_cb_to_glut_window( glutGetWindow(), GLUI_GLUT_RESHAPE, reinterpret_cast<void(*)()>(f));
 }
 
 
 /**************************** GLUI_Master_Object::set_glutKeyboardFunc() ****/
 
-void GLUI_Master_Object::set_glutKeyboardFunc(void (*f)(unsigned char key, 
+void GLUI_Master_Object::set_glutKeyboardFunc(void (*f)(unsigned char key,
 							int x, int y))
 {
-  glutKeyboardFunc( glui_keyboard_func );
-  add_cb_to_glut_window( glutGetWindow(), GLUI_GLUT_KEYBOARD, (void*) f);
+  glutKeyboardFunc( GLUI_Main::keyboard_func );
+  add_cb_to_glut_window( glutGetWindow(), GLUI_GLUT_KEYBOARD, reinterpret_cast<void(*)()>(f));
 }
 
 
 /*********************** GLUI_Master_Object::set_glutSpecialFunc() **********/
 
-void GLUI_Master_Object::set_glutSpecialFunc(void (*f)(int key, 
+void GLUI_Master_Object::set_glutSpecialFunc(void (*f)(int key,
 						       int x, int y))
 {
-  glutSpecialFunc( glui_special_func );
-  add_cb_to_glut_window( glutGetWindow(), GLUI_GLUT_SPECIAL, (void*) f);
+  glutSpecialFunc( GLUI_Main::special_func );
+  add_cb_to_glut_window( glutGetWindow(), GLUI_GLUT_SPECIAL, reinterpret_cast<void(*)()>(f));
 }
 
 
@@ -1682,15 +1665,28 @@ void GLUI_Master_Object::set_glutSpecialFunc(void (*f)(int key,
 void GLUI_Master_Object::set_glutMouseFunc(void (*f)(int button, int state,
 						     int x, int y))
 {
-  glutMouseFunc( glui_mouse_func );
-  add_cb_to_glut_window( glutGetWindow(), GLUI_GLUT_MOUSE, (void*) f);
+  glutMouseFunc( GLUI_Main::mouse_func );
+  add_cb_to_glut_window( glutGetWindow(), GLUI_GLUT_MOUSE, reinterpret_cast<void(*)()>(f));
 }
 
+void GLUI_Master_Object::set_glutDisplayFunc(void (*f)(void)) {glutDisplayFunc(f);}
+void GLUI_Master_Object::set_glutTimerFunc(unsigned int millis, void (*f)(int value), int value)
+{ ::glutTimerFunc(millis,f,value);}
+void GLUI_Master_Object::set_glutOverlayDisplayFunc(void(*f)(void)){glutOverlayDisplayFunc(f);}
+void GLUI_Master_Object::set_glutSpaceballMotionFunc(Int3_CB f)  {glutSpaceballMotionFunc(f);}
+void GLUI_Master_Object::set_glutSpaceballRotateFunc(Int3_CB f)  {glutSpaceballRotateFunc(f);}
+void GLUI_Master_Object::set_glutSpaceballButtonFunc(Int2_CB f)  {glutSpaceballButtonFunc(f);}
+void GLUI_Master_Object::set_glutTabletMotionFunc(Int2_CB f)        {glutTabletMotionFunc(f);}
+void GLUI_Master_Object::set_glutTabletButtonFunc(Int4_CB f)        {glutTabletButtonFunc(f);}
+void GLUI_Master_Object::set_glutMenuStatusFunc(Int3_CB f)            {glutMenuStatusFunc(f);}
+void GLUI_Master_Object::set_glutMenuStateFunc(Int1_CB f)              {glutMenuStateFunc(f);}
+void GLUI_Master_Object::set_glutButtonBoxFunc(Int2_CB f)              {glutButtonBoxFunc(f);}
+void GLUI_Master_Object::set_glutDialsFunc(Int2_CB f)                      {glutDialsFunc(f);}
 
 /****************************** glui_parent_window_reshape_func() **********/
 /* This is the reshape callback for a window that contains subwindows      */
 
-void glui_parent_window_reshape_func( int w, int h )
+void GLUI_Main::parent_window_reshape_func( int w, int h )
 {
   int   current_window;
   GLUI  *glui;
@@ -1702,7 +1698,7 @@ void glui_parent_window_reshape_func( int w, int h )
 
   glui = (GLUI*) GLUI_Master.gluis.first_child();
   while( glui ) {
-    if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND 
+    if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND
 	 glui->parent_window == current_window ) {
       glutSetWindow( glui->get_glut_window_id());
       glui->check_subwindow_position();
@@ -1710,19 +1706,19 @@ void glui_parent_window_reshape_func( int w, int h )
 
       if ( first ) {
         if (glui->glut_reshape_CB) glui->glut_reshape_CB( w, h );
-	
+
         first = false;
       }
     }
-    
+
     glui = (GLUI*) glui->next();
-  }  
+  }
 }
 
 
 /****************************** glui_parent_window_keyboard_func() **********/
 
-void glui_parent_window_keyboard_func(unsigned char key, int x, int y)
+void GLUI_Main::parent_window_keyboard_func(unsigned char key, int x, int y)
 {
   /*  printf( "glui_parent_window_keyboard_func: %d\n", glutGetWindow() );          */
 
@@ -1734,39 +1730,39 @@ void glui_parent_window_keyboard_func(unsigned char key, int x, int y)
   if ( GLUI_Master.active_control_glui AND GLUI_Master.active_control ) {
     glutSetWindow( GLUI_Master.active_control_glui->get_glut_window_id() );
 
-    GLUI_Master.active_control_glui->keyboard(key,x,y);    
+    GLUI_Master.active_control_glui->keyboard(key,x,y);
 
     glutSetWindow( current_window );
   }
   else {
     glui = (GLUI*) GLUI_Master.gluis.first_child();
     while( glui ) {
-      if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND 
+      if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND
            glui->parent_window == current_window AND
-           glui->glut_keyboard_CB ) 
+           glui->glut_keyboard_CB )
       {
         glui->glut_keyboard_CB( key, x, y );
         break;
       }
-	
+
       glui = (GLUI*) glui->next();
     }
-  } 
+  }
 }
 
 
 /****************************** glui_parent_window_special_func() **********/
 
-void glui_parent_window_special_func(int key, int x, int y)
+void GLUI_Main::parent_window_special_func(int key, int x, int y)
 {
   /*printf( "glui_parent_window_special_func: %d\n", glutGetWindow() );          */
 
   int   current_window;
   GLUI  *glui;
 
-  /**  If clicking in the main area of a window w/subwindows, 
+  /**  If clicking in the main area of a window w/subwindows,
     deactivate any current control  **/
-  if ( GLUI_Master.active_control_glui != NULL ) 
+  if ( GLUI_Master.active_control_glui != NULL )
     GLUI_Master.active_control_glui->deactivate_current_control();
 
   /***   Now pass on the mouse event   ***/
@@ -1775,29 +1771,29 @@ void glui_parent_window_special_func(int key, int x, int y)
 
   glui = (GLUI*) GLUI_Master.gluis.first_child();
   while( glui ) {
-    if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND 
-         glui->parent_window == current_window ) 
+    if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND
+         glui->parent_window == current_window )
     {
       glutSetWindow( glui->get_glut_window_id());
       if (glui->glut_special_CB) glui->glut_special_CB( key, x, y );
       break;
     }
-    
+
     glui = (GLUI*) glui->next();
-  }  
+  }
 }
 
 
 /****************************** glui_parent_window_mouse_func() **********/
 
-void glui_parent_window_mouse_func(int button, int state, int x, int y)
+void GLUI_Main::parent_window_mouse_func(int button, int state, int x, int y)
 {
   int   current_window;
   GLUI  *glui;
 
-  /**  If clicking in the main area of a window w/subwindows, 
+  /**  If clicking in the main area of a window w/subwindows,
     deactivate any current control  **/
-  if ( GLUI_Master.active_control_glui != NULL ) 
+  if ( GLUI_Master.active_control_glui != NULL )
     GLUI_Master.active_control_glui->deactivate_current_control();
 
 
@@ -1807,17 +1803,17 @@ void glui_parent_window_mouse_func(int button, int state, int x, int y)
 
   glui = (GLUI*) GLUI_Master.gluis.first_child();
   while( glui ) {
-    if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND 
+    if ( TEST_AND( glui->flags, GLUI_SUBWINDOW) AND
          glui->parent_window == current_window AND
-         glui->glut_mouse_CB) 
+         glui->glut_mouse_CB)
     {
       glutSetWindow( glui->get_glut_window_id());
       glui->glut_mouse_CB( button, state, x, y );
       break;
     }
-    
+
     glui = (GLUI*) glui->next();
-  } 
+  }
 }
 
 
@@ -1829,9 +1825,9 @@ GLUI_Glut_Window  *GLUI_Master_Object::find_glut_window( int window_id )
 
   window = (GLUI_Glut_Window*) glut_windows.first_child();
   while( window ) {
-    if ( window->glut_window_id == window_id ) 
+    if ( window->glut_window_id == window_id )
       return window;
-    
+
     window = (GLUI_Glut_Window*) window->next();
   }
 
@@ -1843,14 +1839,14 @@ GLUI_Glut_Window  *GLUI_Master_Object::find_glut_window( int window_id )
 /******************** GLUI_Master_Object::add_cb_to_glut_window() **********/
 
 void     GLUI_Master_Object::add_cb_to_glut_window(int window_id,
-						   int cb_type,void *cb)
+						   int cb_type, void(*cb)())
 {
   GLUI_Glut_Window *window;
 
   window = find_glut_window( window_id );
   if ( NOT window ) {
     /***  Allocate new window structure  ***/
-    
+
     window                 = new GLUI_Glut_Window;
     window->glut_window_id = window_id;
     window->link_this_to_parent_last( (GLUI_Node*) &this->glut_windows );
@@ -1890,7 +1886,7 @@ void     GLUI_Master_Object::add_cb_to_glut_window(int window_id,
 
 /************* GLUI_Master_Object::set_left_button_glut_menu_control() *****/
 
-void  GLUI_Master_Object::set_left_button_glut_menu_control( 
+void  GLUI_Master_Object::set_left_button_glut_menu_control(
 							    GLUI_Control *control )
 {
   curr_left_button_glut_menu = control;
@@ -1899,7 +1895,7 @@ void  GLUI_Master_Object::set_left_button_glut_menu_control(
 
 /******************************* GLUI_Main::set_ortho_projection() **********/
 
-void  GLUI_Main::set_ortho_projection( void )
+void  GLUI_Main::set_ortho_projection()
 {
   int win_h, win_w;
 
@@ -1912,7 +1908,7 @@ void  GLUI_Main::set_ortho_projection( void )
   glOrtho( 0.0, (float)win_w, 0.0, (float) win_h, -1000.0, 1000.0 );
 
   glMatrixMode( GL_MODELVIEW );
- 
+
   return; /****-----------------------------------------------***/
 
   glMatrixMode( GL_MODELVIEW );
@@ -1928,7 +1924,7 @@ void  GLUI_Main::set_ortho_projection( void )
 
 /******************************* GLUI_Main::set_viewport() **********/
 
-void  GLUI_Main::set_viewport( void )
+void  GLUI_Main::set_viewport()
 {
   glViewport( 0, 0, main_panel->w, main_panel->h );
 }
@@ -1936,7 +1932,7 @@ void  GLUI_Main::set_viewport( void )
 
 /****************************** GLUI_Main::refresh() ****************/
 
-void    GLUI_Main::refresh( void )
+void    GLUI_Main::refresh()
 {
   int orig;
 
@@ -1976,7 +1972,7 @@ void    GLUI_Main::refresh( void )
 
 /***************** GLUI_Master_Object::get_main_gfx_viewport() ***********/
 
-void     GLUI_Master_Object::get_viewport_area( int *x, int *y, 
+void     GLUI_Master_Object::get_viewport_area( int *x, int *y,
 						int *w, int *h )
 {
   GLUI *curr_glui;
@@ -1989,9 +1985,9 @@ void     GLUI_Master_Object::get_viewport_area( int *x, int *y,
   curr_w = glutGet( GLUT_WINDOW_WIDTH );
   curr_h = glutGet( GLUT_WINDOW_HEIGHT );
 
-  curr_glui = (GLUI*) gluis.first_child(); 
+  curr_glui = (GLUI*) gluis.first_child();
   while( curr_glui ) {
-    if ( TEST_AND( curr_glui->flags, GLUI_SUBWINDOW) AND 
+    if ( TEST_AND( curr_glui->flags, GLUI_SUBWINDOW) AND
 	 curr_glui->parent_window == curr_window ) {
 
       /*			printf( "%s -> %d   %d %d\n", curr_glui->window_name.c_str(), curr_glui->flags,
@@ -2016,10 +2012,10 @@ void     GLUI_Master_Object::get_viewport_area( int *x, int *y,
     curr_glui = (GLUI*) curr_glui->next();
   }
 
-  curr_x = MAX( 0, curr_x );
-  curr_y = MAX( 0, curr_y );
-  curr_w = MAX( 0, curr_w );
-  curr_h = MAX( 0, curr_h );
+  curr_x = std::max( 0, curr_x );
+  curr_y = std::max( 0, curr_y );
+  curr_w = std::max( 0, curr_w );
+  curr_h = std::max( 0, curr_h );
 
   *x = curr_x;
   *y = curr_y;
@@ -2030,19 +2026,19 @@ void     GLUI_Master_Object::get_viewport_area( int *x, int *y,
 
 /*****************GLUI_Master_Object::auto_set_main_gfx_viewport() **********/
 
-void           GLUI_Master_Object::auto_set_viewport( void )
+void           GLUI_Master_Object::auto_set_viewport()
 {
   int x, y, w, h;
 
   get_viewport_area( &x, &y, &w, &h );
-  glViewport( MAX(x,0), MAX(y,0), MAX(w,0), MAX(h,0) );
+  glViewport( std::max(x,0), std::max(y,0), std::max(w,0), std::max(h,0) );
 }
 
 
 
 /***************************************** GLUI::show() **********************/
 
-void            GLUI::show( void )
+void            GLUI::show()
 {
   int orig_window;
 
@@ -2057,7 +2053,7 @@ void            GLUI::show( void )
 
 /***************************************** GLUI::hide() **********************/
 
-void            GLUI::hide( void )
+void            GLUI::hide()
 {
   int orig_window;
 
@@ -2072,7 +2068,7 @@ void            GLUI::hide( void )
 
 
 /**************** GLUI_DrawingSentinal **************/
-GLUI_DrawingSentinal::GLUI_DrawingSentinal(GLUI_Control *c_) 
+GLUI_DrawingSentinal::GLUI_DrawingSentinal(GLUI_Control *c_)
 	:c(c_)
 {
 	orig_win = c->set_to_glut_window();
@@ -2084,13 +2080,13 @@ GLUI_DrawingSentinal::~GLUI_DrawingSentinal() {
 }
 
 
-void GLUI_Master_Object::glui_setIdleFuncIfNecessary( void )
+void GLUI_Master_Object::glui_setIdleFuncIfNecessary()
 {
   GLUI *glui;
 
   glui = (GLUI*) GLUI_Master.gluis.first_child();
   int necessary;
-  if (this->glut_idle_CB) 
+  if (this->glut_idle_CB)
     necessary = true;
   else {
     necessary = false;
@@ -2103,7 +2099,7 @@ void GLUI_Master_Object::glui_setIdleFuncIfNecessary( void )
     }
   }
   if( necessary )
-    glutIdleFunc( glui_idle_func );  
+    glutIdleFunc( GLUI_Main::idle_func );
   else
-    glutIdleFunc( NULL );  
+    glutIdleFunc( NULL );
 }

@@ -62,7 +62,7 @@ class Rectangle2
 	public:
       Pointlocation upper_left;
 	  Pointlocation lower_right;
-	  bool operator==(Rectangle2 a);
+	  bool operator==(const Rectangle2& a) const;
 	  bool operator<(Rectangle2 a);
 	  bool operator<=(Rectangle2 a);
 	  bool operator>(Rectangle2 a);
@@ -92,7 +92,7 @@ struct line
 	line(){}
 	line(Point3D _a,Point3D _b){a=_a;b=_b;}
 
-	bool operator==(line a);
+	bool operator==(const line& x) const;
 };
 struct polygon
 {
@@ -106,7 +106,7 @@ struct polygon
 	{
 		sides = lines;
 	}
-	bool operator==(polygon poly);
+	bool operator==(const polygon& poly) const;
 	void draw(int planeId, double c) {
 		//double c = 0.2;
 		double x1 = 0, y1 = 0, z1 = 0;

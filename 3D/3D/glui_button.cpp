@@ -1,5 +1,5 @@
 /****************************************************************************
-  
+
   GLUI User Interface Toolkit
   ---------------------------
 
@@ -10,8 +10,8 @@
 
   Copyright (c) 1998 Paul Rademacher
 
-  WWW:    http://sourceforge.net/projects/glui/
-  Forums: http://sourceforge.net/forum/?group_id=92496
+  WWW:    https://github.com/libglui/glui
+  Issues: https://github.com/libglui/glui/issues
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -30,20 +30,32 @@
 *****************************************************************************/
 #include "glui_internal_control.h"
 
+#include "tinyformat.h"
+
+#include <algorithm>
+
 /****************************** GLUI_Button::GLUI_Button() **********/
 
-GLUI_Button::GLUI_Button( GLUI_Node *parent, const char *name,
+GLUI_Button::GLUI_Button( GLUI_Node *parent, const GLUI_String &name,
                           int id, GLUI_CB cb )
 {
   common_init();
   user_id     = id;
   callback    = cb;
   set_name( name );
-  currently_inside = false; 
-  
+  currently_inside = false;
+
   parent->add_control( this );
 }
 
+void GLUI_Button::common_init()
+{
+  name         = tfm::format("Button: %p", this);
+  h            = GLUI_BUTTON_SIZE;
+  w            = 100;
+  alignment    = GLUI_ALIGN_CENTER;
+  can_activate = true;
+}
 
 /****************************** GLUI_Button::mouse_down_handler() **********/
 
@@ -65,10 +77,10 @@ int    GLUI_Button::mouse_up_handler( int local_x, int local_y, bool inside )
 {
   set_int_val( 0 );   /** A button always turns off after you press it **/
 
-  currently_inside = false; 
+  currently_inside = false;
   redraw();
 
-  if ( inside ) { 
+  if ( inside ) {
     /*** Invoke the user's callback ***/
     execute_callback();
   }
@@ -86,7 +98,7 @@ int    GLUI_Button::mouse_held_down_handler( int local_x, int local_y,
     currently_inside = new_inside;
     redraw();
   }
-  
+
   return false;
 }
 
@@ -112,7 +124,7 @@ void    GLUI_Button::draw( int x, int y )
 
 /************************************** GLUI_Button::draw_pressed() ******/
 
-void   GLUI_Button::draw_pressed( void )
+void   GLUI_Button::draw_pressed()
 {
   glColor3f( 0.0, 0.0, 0.0 );
 
@@ -144,27 +156,27 @@ void     GLUI_Button::draw_text( int sunken )
   glEnd();
 
   glColor3ub( 0,0,0 );
-  
+
   string_width = _glutBitmapWidthString( glui->font,
 					 this->name.c_str() );
   if ( NOT sunken ) {
-    draw_name( MAX((w-string_width),0)/2, 13);
+    draw_name( std::max((w-string_width),0)/2, 13);
   }
   else {
-    draw_name( MAX((w-string_width),0)/2 + 1, 13 + 1);
+    draw_name( std::max((w-string_width),0)/2 + 1, 13 + 1);
   }
 
   if ( active ) {
     glEnable( GL_LINE_STIPPLE );
     glLineStipple( 1, 0x5555 );
-    
+
     glColor3f( 0., 0., 0. );
-    
+
     glBegin( GL_LINE_LOOP );
     glVertex2i( 3, 3 );         glVertex2i( w-3, 3 );
     glVertex2i( w-3, h-3 );     glVertex2i( 3, h-3 );
     glEnd();
-    
+
     glDisable( GL_LINE_STIPPLE );
   }
 }
@@ -172,7 +184,7 @@ void     GLUI_Button::draw_text( int sunken )
 
 /************************************** GLUI_Button::update_size() **********/
 
-void   GLUI_Button::update_size( void )
+void   GLUI_Button::update_size()
 {
   int text_size;
 

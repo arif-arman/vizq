@@ -1,5 +1,5 @@
 /****************************************************************************
-  
+
   GLUI User Interface Toolkit
   ---------------------------
 
@@ -10,25 +10,28 @@
 
   Copyright (c) 2004 John Kew
 
-  This software is provided 'as-is', without any express or implied 
-  warranty. In no event will the authors be held liable for any damages 
-  arising from the use of this software. 
+  This software is provided 'as-is', without any express or implied
+  warranty. In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-  Permission is granted to anyone to use this software for any purpose, 
-  including commercial applications, and to alter it and redistribute it 
-  freely, subject to the following restrictions: 
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-  1. The origin of this software must not be misrepresented; you must not 
-  claim that you wrote the original software. If you use this software 
-  in a product, an acknowledgment in the product documentation would be 
-  appreciated but is not required. 
-  2. Altered source versions must be plainly marked as such, and must not be 
-  misrepresented as being the original software. 
-  3. This notice may not be removed or altered from any source distribution. 
+  1. The origin of this software must not be misrepresented; you must not
+  claim that you wrote the original software. If you use this software
+  in a product, an acknowledgment in the product documentation would be
+  appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+  misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 
 *****************************************************************************/
 
 #include "glui_internal_control.h"
+
+#include <algorithm>
+
 #include <cmath>
 #include <sys/timeb.h>
 
@@ -36,7 +39,7 @@
 
 GLUI_List::GLUI_List( GLUI_Node *parent, bool scroll,
                       int id, GLUI_CB callback
-                      /*,GLUI_Control *object 
+                      /*,GLUI_Control *object
                       GLUI_InterObject_CB obj_cb*/)
 {
   common_construct(parent, NULL, scroll, id, callback/*, object, obj_cb*/);
@@ -45,9 +48,9 @@ GLUI_List::GLUI_List( GLUI_Node *parent, bool scroll,
 /****************************** GLUI_List::GLUI_List() **********/
 
 GLUI_List::GLUI_List( GLUI_Node *parent,
-                      GLUI_String& live_var, bool scroll, 
-                      int id, 
-                      GLUI_CB callback 
+                      GLUI_String& live_var, bool scroll,
+                      int id,
+                      GLUI_CB callback
                       /* ,GLUI_Control *object
                       ,GLUI_InterObject_CB obj_cb*/ )
 {
@@ -58,8 +61,8 @@ GLUI_List::GLUI_List( GLUI_Node *parent,
 
 void GLUI_List::common_construct(
   GLUI_Node *parent,
-  GLUI_String* data, bool scroll, 
-  int id, 
+  GLUI_String* data, bool scroll,
+  int id,
   GLUI_CB callback
   /*,GLUI_Control *object
   , GLUI_InterObject_CB obj_cb*/)
@@ -80,10 +83,10 @@ void GLUI_List::common_construct(
   this->callback    = callback;
   this->name        = "list";
   list_panel->add_control( this );
-  if (scroll) 
+  if (scroll)
   {
     new GLUI_Column(list_panel, false);
-    scrollbar = 
+    scrollbar =
       new GLUI_Scrollbar(list_panel,
                          "scrollbar",
                          GLUI_SCROLL_VERTICAL,
@@ -99,12 +102,12 @@ void GLUI_List::common_construct(
 int    GLUI_List::mouse_down_handler( int local_x, int local_y )
 {
   int tmp_line;
-  unsigned long int ms;
+  uint64_t ms;
   timeb time;
   ftime(&time);
   ms = time.millitm + (time.time)*1000;
 
-  tmp_line = find_line( local_x-x_abs, local_y-y_abs-5 );  
+  tmp_line = find_line( local_x-x_abs, local_y-y_abs-5 );
   if ( tmp_line == -1 ) {
     if ( glui )
       glui->deactivate_current_control(  );
@@ -116,14 +119,14 @@ int    GLUI_List::mouse_down_handler( int local_x, int local_y )
     if (scrollbar)
       scrollbar->set_int_val(curr_line);
     this->execute_callback();
-    if (associated_object != NULL)
+    if (associated_object != NULL) {
       if (cb_click_type == GLUI_SINGLE_CLICK) {
         if (obj_cb) {
           // obj_cb(associated_object, user_id);
           obj_cb(this);
         }
       } else {
-        if (last_line == curr_line && (ms - last_click_time) < 300) {
+        if (last_line == curr_line && last_click_time && (ms - last_click_time) < 300) {
           //obj_cb(associated_object, user_id);
           obj_cb(this);
         } else {
@@ -131,6 +134,7 @@ int    GLUI_List::mouse_down_handler( int local_x, int local_y )
           last_line = curr_line;
         }
       }
+    }
     if ( can_draw())
       update_and_draw_text();
   }
@@ -188,7 +192,7 @@ void    GLUI_List::activate( int how )
 
 /****************************** GLUI_List::deactivate() **********/
 
-void    GLUI_List::deactivate( void )
+void    GLUI_List::deactivate()
 {
   active = false;
   redraw();
@@ -199,16 +203,15 @@ void    GLUI_List::deactivate( void )
 void    GLUI_List::draw( int x, int y )
 {
   int line = 0;
-  int box_width;
   GLUI_List_Item *item;
- 
+
   GLUI_DRAWINGSENTINAL_IDIOM
 
   /* Bevelled Border */
   glBegin( GL_LINES );
   glColor3f( .5, .5, .5 );
   glVertex2i( 0, 0 );     glVertex2i( w, 0 );
-  glVertex2i( 0, 0 );     glVertex2i( 0, h );     
+  glVertex2i( 0, 0 );     glVertex2i( 0, h );
 
   glColor3f( 1., 1., 1. );
   glVertex2i( 0, h );     glVertex2i( w, h );
@@ -243,9 +246,6 @@ void    GLUI_List::draw( int x, int y )
     glEnd();
   }
 
-  /* Figure out how wide the box is */
-  box_width = get_box_width();
-
   /* Figure out which lines are visible*/
 
   visible_lines = (int)(h-20)/15;
@@ -270,7 +270,7 @@ void    GLUI_List::draw( int x, int y )
   }
 
   if (scrollbar) {
-    scrollbar->set_int_limits(MAX(0,num_lines-visible_lines), 0);
+    scrollbar->set_int_limits(std::max(0,num_lines-visible_lines), 0);
     glPushMatrix();
     glTranslatef(scrollbar->x_abs-x_abs, scrollbar->y_abs-y_abs,0.0);
     scrollbar->draw_scroll();
@@ -280,9 +280,10 @@ void    GLUI_List::draw( int x, int y )
 
 /********************************* GLUI_List::draw_text() ****************/
 
-void    GLUI_List::draw_text(const char *t, int selected, int x, int y )
+void    GLUI_List::draw_text(const GLUI_String &t, int selected, int x, int y )
 {
-  int text_x, i, x_pos;
+  int text_x, x_pos;
+  unsigned int i ;
   int box_width;
 
   GLUI_DRAWINGSENTINAL_IDIOM
@@ -299,7 +300,7 @@ void    GLUI_List::draw_text(const char *t, int selected, int x, int y )
     glVertex2i(w-text_x, y+19 );    glVertex2i(text_x, y+19 );
     glEnd();
   }
-  box_width = get_box_width();   
+  box_width = get_box_width();
 
   if ( !selected || !enabled ) {   /* No current selection */
     x_pos = text_x;                /*  or control disabled */
@@ -307,10 +308,10 @@ void    GLUI_List::draw_text(const char *t, int selected, int x, int y )
       glColor3b( 0, 0, 0 );
     else
       glColor3b( 32, 32, 32 );
-    
+
     glRasterPos2i( text_x, y+15);
     i = 0;
-    while( t[i] != '\0' && substring_width(t,0,i) < box_width) {
+    while( i<t.size() && substring_width(t,0,i) < box_width) {
       glutBitmapCharacter( get_font(), t[i] );
       x_pos += char_width( t[i] );
       i++;
@@ -321,7 +322,7 @@ void    GLUI_List::draw_text(const char *t, int selected, int x, int y )
     x_pos = text_x;
     glColor3f( 1., 1., 1. );
     glRasterPos2i( text_x, y+15);
-    while( t[i] != '\0' && substring_width(t,0,i) < box_width) {
+    while( i<t.size() &&  substring_width(t,0,i) < box_width) {
       glutBitmapCharacter( get_font(), t[i] );
       x_pos += char_width( t[i] );
       i++;
@@ -335,29 +336,29 @@ int GLUI_List::find_line(int x, int y) {
 }
 
 int      GLUI_List::get_box_width() {
-   return MAX( this->w 
-		   - 6     /*  2 * the two-line box border */ 
+   return std::max( this->w
+		   - 6     /*  2 * the two-line box border */
 		   - 2 * GLUI_LIST_BOXINNERMARGINX, 0 );
 
 }
 
 /******************************** GLUI_List::substring_width() *********/
-int  GLUI_List::substring_width( const char *t, int start, int end )
+int  GLUI_List::substring_width( const GLUI_String &t, int start, int end )
 {
   int i, width;
 
   width = 0;
 
   for( i=start; i<=end; i++ )
-    width += char_width( t[i] ); 
+    width += char_width( t[i] );
 
   return width;
 }
- 
+
 
 /***************************** GLUI_List::update_and_draw_text() ********/
 
-void   GLUI_List::update_and_draw_text( void )
+void   GLUI_List::update_and_draw_text()
 {
   if ( NOT can_draw() )
     return;
@@ -399,7 +400,7 @@ int    GLUI_List::special_handler( int key,int modifiers )
 
 /************************************ GLUI_List::update_size() **********/
 
-void   GLUI_List::update_size( void )
+void   GLUI_List::update_size()
 {
   if ( NOT glui )
     return;
@@ -410,7 +411,7 @@ void   GLUI_List::update_size( void )
 
 /**************************************** GLUI_Listbox::add_item() **********/
 
-int  GLUI_List::add_item( int id, const char *new_text )
+int  GLUI_List::add_item( int id, const GLUI_String &new_text )
 {
   GLUI_List_Item *new_node = new GLUI_List_Item;
   GLUI_List_Item *head;
@@ -433,7 +434,7 @@ int  GLUI_List::add_item( int id, const char *new_text )
   }
   num_lines++;
   if (scrollbar)
-    scrollbar->set_int_limits(MAX(num_lines-visible_lines,0), 0);
+    scrollbar->set_int_limits(std::max(num_lines-visible_lines,0), 0);
 
   return true;
 }
@@ -453,6 +454,7 @@ int  GLUI_List::delete_all()
 
   num_lines = 0;
   curr_line = 0;
+  start_line = 0;
 
   return true;
 }
@@ -460,7 +462,7 @@ int  GLUI_List::delete_all()
 
 /************************************** GLUI_Listbox::delete_item() **********/
 
-int  GLUI_List::delete_item( const char *text )
+int  GLUI_List::delete_item( const GLUI_String &text )
 {
   GLUI_List_Item *node = get_item_ptr( text );
 
@@ -496,7 +498,7 @@ int  GLUI_List::delete_item( int id )
 
 /************************************ GLUI_Listbox::get_item_ptr() **********/
 
-GLUI_List_Item *GLUI_List::get_item_ptr( const char *text )
+GLUI_List_Item *GLUI_List::get_item_ptr( const GLUI_String &text )
 {
   GLUI_List_Item *item;
 
@@ -504,7 +506,7 @@ GLUI_List_Item *GLUI_List::get_item_ptr( const char *text )
   while( item ) {
     if ( item->text == text )
       return item;
-    
+
     item = (GLUI_List_Item *) item->next();
   }
 
@@ -522,7 +524,7 @@ GLUI_List_Item *GLUI_List::get_item_ptr( int id )
   while( item ) {
     if ( item->id == id )
       return item;
-    
+
     item = (GLUI_List_Item *) item->next();
   }
 

@@ -1,5 +1,5 @@
 /****************************************************************************
-  
+
   GLUI User Interface Toolkit
   ---------------------------
 
@@ -10,30 +10,32 @@
 
   Copyright (c) 1998 Paul Rademacher
 
-  WWW:    http://sourceforge.net/projects/glui/
-  Forums: http://sourceforge.net/forum/?group_id=92496
+  WWW:    https://github.com/libglui/glui
+  Issues: https://github.com/libglui/glui/issues
 
-  This software is provided 'as-is', without any express or implied 
-  warranty. In no event will the authors be held liable for any damages 
-  arising from the use of this software. 
+  This software is provided 'as-is', without any express or implied
+  warranty. In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-  Permission is granted to anyone to use this software for any purpose, 
-  including commercial applications, and to alter it and redistribute it 
-  freely, subject to the following restrictions: 
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-  1. The origin of this software must not be misrepresented; you must not 
-  claim that you wrote the original software. If you use this software 
-  in a product, an acknowledgment in the product documentation would be 
-  appreciated but is not required. 
-  2. Altered source versions must be plainly marked as such, and must not be 
-  misrepresented as being the original software. 
-  3. This notice may not be removed or altered from any source distribution. 
+  1. The origin of this software must not be misrepresented; you must not
+  claim that you wrote the original software. If you use this software
+  in a product, an acknowledgment in the product documentation would be
+  appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+  misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 
 *****************************************************************************/
 
-#include "GL/glui.h"
+#include "glui_internal_control.h"
+
 #include "arcball.h"
 #include "algebra3.h"
+#include "tinyformat.h"
 
 /*************************** GLUI_Rotation::iaction_mouse_down_handler() ***/
 
@@ -59,7 +61,7 @@ int    GLUI_Rotation::iaction_mouse_down_handler( int local_x, int local_y )
 
 /*********************** GLUI_Rotation::iaction_mouse_up_handler() **********/
 
-int    GLUI_Rotation::iaction_mouse_up_handler( int local_x, int local_y, 
+int    GLUI_Rotation::iaction_mouse_up_handler( int local_x, int local_y,
 						bool inside )
 {
   copy_float_array_to_ball();
@@ -74,7 +76,7 @@ int    GLUI_Rotation::iaction_mouse_up_handler( int local_x, int local_y,
 
 int    GLUI_Rotation::iaction_mouse_held_down_handler( int local_x, int local_y,
 						       bool inside)
-{  
+{
   if ( NOT glui )
     return 0;
 
@@ -84,10 +86,10 @@ int    GLUI_Rotation::iaction_mouse_held_down_handler( int local_x, int local_y,
 
   /*	printf( "%d %d\n", local_x, local_y );              */
 
-  ball->mouse_motion( local_x, local_y, 0, 
-		     (glui->curr_modifiers & GLUT_ACTIVE_ALT) != 0, 
+  ball->mouse_motion( local_x, local_y, 0,
+		     (glui->curr_modifiers & GLUT_ACTIVE_ALT) != 0,
 		     (glui->curr_modifiers & GLUT_ACTIVE_CTRL) != 0 );
- 
+
   copy_ball_to_float_array();
 
   if ( can_spin )
@@ -99,21 +101,21 @@ int    GLUI_Rotation::iaction_mouse_held_down_handler( int local_x, int local_y,
 
 /******************** GLUI_Rotation::iaction_draw_active_area_persp() **************/
 
-void    GLUI_Rotation::iaction_draw_active_area_persp( void )
+void    GLUI_Rotation::iaction_draw_active_area_persp()
 {
   /********** arcball *******/
   copy_float_array_to_ball();
 
   setup_texture();
   setup_lights();
-	
+
   glEnable(GL_CULL_FACE );
 
   glMatrixMode( GL_MODELVIEW );
   glPushMatrix();
 
   mat4 tmp_rot = *ball->rot_ptr;
-  glMultMatrixf( (float*) &tmp_rot[0][0] ); 
+  glMultMatrixf( (float*) &tmp_rot[0][0] );
 
   /*** Draw the checkered box ***/
   /*glDisable( GL_TEXTURE_2D );              */
@@ -130,13 +132,13 @@ void    GLUI_Rotation::iaction_draw_active_area_persp( void )
 
 /******************** GLUI_Rotation::iaction_draw_active_area_ortho() **********/
 
-void    GLUI_Rotation::iaction_draw_active_area_ortho( void )
+void    GLUI_Rotation::iaction_draw_active_area_ortho()
 {
   float radius;
   radius = (float)(h-22)/2.0;  /*MIN((float)w/2.0, (float)h/2.0);  */
 
   /********* Draw emboss circles around arcball control *********/
-  int k;     
+  int k;
   glLineWidth( 1.0 );
   glBegin( GL_LINE_LOOP);
   for( k=0; k<60; k++ ) {
@@ -184,11 +186,11 @@ int    GLUI_Rotation::iaction_special_handler( int key,int modifiers )
 
 /********************************** GLUI_Rotation::init_ball() **********/
 
-void  GLUI_Rotation::init_ball( void )
+void  GLUI_Rotation::init_ball()
 {
   /*printf( "%f %f %f", float( MIN(w/2,h/2)), (float) w/2, (float) h/2 );              */
 
-  ball->set_params( vec2( (float)(w/2), (float)((h-18)/2)), 
+  ball->set_params( vec2( (float)(w/2), (float)((h-18)/2)),
 		   (float) 2.0*(h-18) );
   /*ball->set_damping( .05 );              */
   /*float( MIN(w/2,h/2))*2.0  );              */
@@ -198,7 +200,7 @@ void  GLUI_Rotation::init_ball( void )
 
 /****************************** GLUI_Rotation::setup_texture() *********/
 
-void GLUI_Rotation::setup_texture( void )
+void GLUI_Rotation::setup_texture()
 {
   static GLuint tex=0u;
   GLenum t=GL_TEXTURE_2D;
@@ -213,7 +215,7 @@ void GLUI_Rotation::setup_texture( void )
   glGenTextures(1,&tex);
   glBindTexture(t,tex);
   glEnable(t);
-  
+
   unsigned int i, j;
   int dark, light;   /*** Dark and light colors for ball checkerboard  ***/
 
@@ -222,9 +224,9 @@ void GLUI_Rotation::setup_texture( void )
 #define CHECKBOARD_REPEAT 32u /* pixels across one black/white sector */
   unsigned char texture_image[CHECKBOARD_SIZE] [CHECKBOARD_SIZE] [3];
   unsigned char c;
-  for( i=0; i<CHECKBOARD_SIZE; i++ ) 
+  for( i=0; i<CHECKBOARD_SIZE; i++ )
   {
-    for( j=0; j<CHECKBOARD_SIZE; j++ ) 
+    for( j=0; j<CHECKBOARD_SIZE; j++ )
     {
       dark = 110;
       light = 220;
@@ -237,9 +239,9 @@ void GLUI_Rotation::setup_texture( void )
       texture_image[i][j][0] = c;
       texture_image[i][j][1] = c;
       texture_image[i][j][2] = c;
-    }    
+    }
   }
-  
+
   glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
   glTexParameteri( t, GL_TEXTURE_WRAP_S, GL_REPEAT );
   glTexParameteri( t, GL_TEXTURE_WRAP_T, GL_REPEAT );
@@ -249,7 +251,7 @@ void GLUI_Rotation::setup_texture( void )
   	GL_RGB, GL_UNSIGNED_BYTE, texture_image);
 
 /* Add some mipmapping LOD bias, to keep sphere texture sharp */
-  float bias=-0.5; 
+  float bias=-0.5;
   /* glTexEnvf(TEXTURE_FILTER_CONTROL_EXT,TEXTURE_LOD_BIAS_EXT,bias); */
   /* glTexParameteri( t, GL_TEXTURE_MAX_LEVEL,1);*/
   glTexEnvf(0x8500,0x8501,bias); /* <- numeric version for older OpenGL headers */
@@ -264,10 +266,10 @@ void GLUI_Rotation::setup_texture( void )
 
 /****************************** GLUI_Rotation::setup_lights() ***********/
 
-void    GLUI_Rotation::setup_lights( void )
+void    GLUI_Rotation::setup_lights()
 {
   glEnable( GL_LIGHTING );
-  /*  if ( enabled ) 
+  /*  if ( enabled )
       glEnable( GL_LIGHTING );
       else
       glDisable( GL_LIGHTING );*/
@@ -288,7 +290,7 @@ void    GLUI_Rotation::setup_lights( void )
 	glLightfv(GL_LIGHT0, GL_AMBIENT, light0_ambient);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse);
   }
-  
+
 }
 
 
@@ -317,13 +319,13 @@ void    GLUI_Rotation::draw_ball( float radius )
 
 /****************************** GLUI_Rotation::reset() **********/
 
-void  GLUI_Rotation::reset( void )
+void  GLUI_Rotation::reset()
 {
   ball->init(); /** reset quaternion, etc. **/
-  ball->set_params( vec2( (float)(w/2), (float)((h-18)/2)), 
+  ball->set_params( vec2( (float)(w/2), (float)((h-18)/2)),
 		   (float) 2.0*(h-18) );
 
-  set_spin( this->damping );	
+  set_spin( this->damping );
 
   copy_ball_to_float_array();
 
@@ -335,7 +337,7 @@ void  GLUI_Rotation::reset( void )
 
 /****************************** GLUI_Rotation::needs_idle() *********/
 
-bool GLUI_Rotation::needs_idle( void ) const
+bool GLUI_Rotation::needs_idle() const
 {
   return can_spin;
 }
@@ -343,7 +345,7 @@ bool GLUI_Rotation::needs_idle( void ) const
 
 /****************************** GLUI_Rotation::idle() ***************/
 
-void        GLUI_Rotation::idle( void )
+void        GLUI_Rotation::idle()
 {
   spinning = ball->is_spinning?true:false;
 
@@ -364,14 +366,14 @@ void        GLUI_Rotation::idle( void )
 
     output_live(true); /** output live and update gfx **/
   }
-  else { 
+  else {
   }
 }
 
 
 /********************** GLUI_Rotation::copy_float_array_to_ball() *********/
 
-void     GLUI_Rotation::copy_float_array_to_ball( void )
+void     GLUI_Rotation::copy_float_array_to_ball()
 {
   int i;
   float *fp_src, *fp_dst;
@@ -390,7 +392,7 @@ void     GLUI_Rotation::copy_float_array_to_ball( void )
 
 /********************** GLUI_Rotation::copy_ball_to_float_array() *********/
 
-void     GLUI_Rotation::copy_ball_to_float_array( void )
+void     GLUI_Rotation::copy_ball_to_float_array()
 {
   mat4 tmp_rot;
   tmp_rot = *ball->rot_ptr;
@@ -403,7 +405,7 @@ void     GLUI_Rotation::copy_ball_to_float_array( void )
 
 void   GLUI_Rotation::set_spin( float damp_factor )
 {
-  if ( damp_factor == 0.0 ) 
+  if ( damp_factor == 0.0 )
     can_spin = false;
   else
     can_spin = true;
@@ -417,8 +419,8 @@ void   GLUI_Rotation::set_spin( float damp_factor )
 /************** GLUI_Rotation::GLUI_Rotation() ********************/
 
 GLUI_Rotation::GLUI_Rotation( GLUI_Node *parent,
-                              const char *name, float *value_ptr,
-                              int id, 
+                              const GLUI_String &name, float *value_ptr,
+                              int id,
                               GLUI_CB cb )
 {
   common_init();
@@ -428,7 +430,7 @@ GLUI_Rotation::GLUI_Rotation( GLUI_Node *parent,
   callback    = cb;
   parent->add_control( this );
   init_live();
-  
+
   /*** Init the live 4x4 matrix.  This is different than the standard
        live variable behavior, since the original value of the 4x4 matrix
        is ignored and reset to Identity  ***/
@@ -448,16 +450,16 @@ NO! WVB
     }
 */
     /*init_ball();              */
-		
+
 
 }
 
 
 /************** GLUI_Rotation::common_init() ********************/
 
-void GLUI_Rotation::common_init( void ) 
+void GLUI_Rotation::common_init()
 {
-  glui_format_str( name, "Rotation: %p", this );
+  name = tfm::format("Rotation: %p", this );
 //  type                = GLUI_CONTROL_ROTATION;
   w                   = GLUI_ROTATION_WIDTH;
   h                   = GLUI_ROTATION_HEIGHT;

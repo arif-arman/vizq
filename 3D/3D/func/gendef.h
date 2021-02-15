@@ -118,7 +118,7 @@ struct Point3D
 	float z;
 	Point3D(float _x,float _y,float _z){ x=_x;y=_y;z=_z; }
 	Point3D(){x=y=z=0.0;}
-	bool operator==(Point3D a);
+	bool operator==(const Point3D& a) const;
 	bool operator<(const Point3D &data) const {
 		if (x<data.x) return true;
 		if (x>data.x) return false;
